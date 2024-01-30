@@ -28,7 +28,7 @@ export const Home = () => {
       <Select optionObject={QuizDifficulties} />
       <Select optionObject={QuizType} />
       <Select optionObject={QuizTime} />
-      <Button content="Start quiz" />
+      <Button content="Start quiz" style="accept" />
       <Button content="See my statistics" />
     </div>
   );

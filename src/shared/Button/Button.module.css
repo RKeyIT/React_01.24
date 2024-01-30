@@ -1,3 +1,7 @@
 .Button {
     padding: var(--ui-padding);
 }
+
+.Button.accept {
+    background-color: rgb(117, 225, 117);
+}
