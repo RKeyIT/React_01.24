@@ -1,8 +1,13 @@
 .Home {
     box-sizing: border-box;
     display: grid;
-    grid-template-areas: "selects selects" "input buttons";
+    grid-template-areas: "heading heading" "selects selects" "input buttons";
+    grid-template-rows: auto 1fr 1fr;
     gap: 1em;
+}
+
+.heading {
+    grid-area: heading;
 }
 
 .selects {

@@ -2,6 +2,7 @@
 .option {
     padding: var(--ui-padding);
     cursor: pointer;
+    transition: var(--anim-fast);
 }
 
 .select {

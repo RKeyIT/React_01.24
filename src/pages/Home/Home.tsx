@@ -3,6 +3,7 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
+import { Heading } from '../../shared/Heading/Heading'
 
 /* 
     1. - OK - Number input for “number of questions”. Limit from 5 to 15
@@ -18,6 +19,9 @@ import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../glob
 export const Home = () => {
   return (
     <div className={styles.Home}>
+      <div className={styles.heading}>
+        <Heading pageName='Home' additionalText='Chose the quiz options!' />
+      </div>
       <div className={styles.selects}>
         <Select optionObject={QuizCategories} />
         <Select optionObject={QuizDifficulties} />

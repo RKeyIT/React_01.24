@@ -37,7 +37,7 @@
 
 
 .Button.common {
-    border-color: var(--color-gray-border);
+    border-color: var(--color-ui-border);
     background-color: var(--color-ui-white);
 }
 
