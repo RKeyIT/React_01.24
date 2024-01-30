@@ -4,6 +4,15 @@
 }
 
 :root {
+    /* COLORS */
     --color-bg-main: rgb(200, 175, 140);
     --color-border-main: rgb(245, 220, 180);
+
+    /* DIMENSIONS */
+    --ui-padding: .5em
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
 }

@@ -1,0 +1,4 @@
+.select,
+.option {
+    padding: var(--ui-padding);
+}
