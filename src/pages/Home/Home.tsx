@@ -1,13 +1,8 @@
-import { Button } from '../../shared/Button/Button';
-import { NumberInput } from '../../entities/NumberInput/NumberInput';
-import styles from './Home.module.css';
-import { Select } from '../../shared/Select/Select';
-import {
-  QuizCategories,
-  QuizDifficulties,
-  QuizTime,
-  QuizType,
-} from '../../global.types';
+import { Button } from '../../shared/Button/Button'
+import { NumberInput } from '../../entities/NumberInput/NumberInput'
+import styles from './Home.module.css'
+import { Select } from '../../shared/Select/Select'
+import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 
 /* 
     1. - OK - Number input for “number of questions”. Limit from 5 to 15
@@ -37,5 +32,5 @@ export const Home = () => {
         <Button content="See my statistics" />
       </div>
     </div>
-  );
-};
+  )
+}

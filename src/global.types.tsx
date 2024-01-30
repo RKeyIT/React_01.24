@@ -1,10 +1,10 @@
 export interface ISelectOption {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 export interface IObjectWithOptions {
-  [key: string]: ISelectOption;
+  [key: string]: ISelectOption
 }
 
 export const QuizCategories: IObjectWithOptions = Object.freeze({
@@ -33,33 +33,33 @@ export const QuizCategories: IObjectWithOptions = Object.freeze({
   ScienceGadgets: { id: '30', name: 'Science: Gadgets' },
   EntJapaneseAnimeManga: {
     id: '31',
-    name: 'Entertainment: Japanese Anime & Manga',
+    name: 'Entertainment: Japanese Anime & Manga'
   },
   EntCartoonAnimations: {
     id: '32',
-    name: 'Entertainment: Cartoon & Animations',
-  },
-});
+    name: 'Entertainment: Cartoon & Animations'
+  }
+})
 
 export const QuizDifficulties: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Difficulty' },
   easy: { id: 'easy', name: 'Easy' },
   medium: { id: 'medium', name: 'Medium' },
-  hard: { id: 'hard', name: 'Hard' },
-});
+  hard: { id: 'hard', name: 'Hard' }
+})
 
 export const QuizType: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Type' },
   MULTIPLE: { id: 'multiple', name: 'Multiple Choice' },
-  BOOLEAN: { id: 'boolean', name: 'True / False' },
-});
+  BOOLEAN: { id: 'boolean', name: 'True / False' }
+})
 
 export const QuizTime: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Time' },
   ONE: { id: '1', name: 'One Minute' },
   TWO: { id: '2', name: 'Two Minutes' },
-  FIVE: { id: '5', name: 'Five Minutes' },
-});
+  FIVE: { id: '5', name: 'Five Minutes' }
+})
 
 // export enum QuizCategoriesIDs {
 //   GENERAL = 9,
@@ -87,18 +87,18 @@ export const QuizTime: IObjectWithOptions = Object.freeze({
 //   EntertJapaneseAnimeManga,
 //   EntertCartoonAnimations,
 // }
+//
+// export enum QuizDifficultyEnum {
+//   ANY = 'any',
+//   EASY = 'easy',
+//   MEDIUM = 'medium',
+//   HARD = 'hard'
+// }
+//
+// export enum QuizTypeEnum {
+//   ANY = 'any',
+//   MULTIPLE = 'multiple',
+//   BOOLEAN = 'boolean'
+// }
 
-export enum QuizDifficultyEnum {
-  ANY = 'any',
-  EASY = 'easy',
-  MEDIUM = 'medium',
-  HARD = 'hard',
-}
-
-export enum QuizTypeEnum {
-  ANY = 'any',
-  MULTIPLE = 'multiple',
-  BOOLEAN = 'boolean',
-}
-
-export type QuizTimeForAnswerType = 1 | 2 | 5;
+// export type QuizTimeForAnswerType = 1 | 2 | 5
