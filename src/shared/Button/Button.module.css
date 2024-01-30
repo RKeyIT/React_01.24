@@ -1,9 +1,62 @@
 .Button {
+    box-sizing: border-box;
+    outline: none;
+    border: 2px solid transparent;
+    border-radius: var(--border-rad-font);
     padding: var(--ui-padding);
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
+    transition: var(--anim-fast);
 }
 
 .Button.accept {
-    background-color: rgb(117, 225, 117);
+    border-color: var(--color-green-border);
+    background-color: var(--color-green-light-tr);
+}
+
+.Button.accept:hover {
+    background-color: var(--color-green-hover);
+}
+
+.Button.accept:active {
+    background-color: var(--color-green-active);
+}
+
+.Button.decline {
+    border-color: var(--color-red-border);
+    background-color: var(--color-red-light-tr);
+}
+
+.Button.decline:hover {
+    background-color: var(--color-red-hover);
+}
+
+.Button.decline:active {
+    background-color: var(--color-red-active);
+}
+
+
+.Button.common {
+    border-color: var(--color-gray-border);
+    background-color: var(--color-ui-white);
+}
+
+.Button.common:hover {
+    background-color: var(--color-ui-hover);
+}
+
+.Button.common:active {
+    background-color: var(--color-ui-active);
+}
+
+.Button.accept:hover,
+.Button.decline:hover,
+.Button.common:hover {
+    box-shadow: 0 0 10px 1px var(--color-text-white);
+}
+
+.Button.accept:active,
+.Button.decline:active,
+.Button.common:active {
+    box-shadow: 0 0 15px 5px var(--color-text-white);
 }

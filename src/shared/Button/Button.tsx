@@ -8,7 +8,7 @@ interface IButtonProps {
 
 export const Button: FC<IButtonProps> = ({ content, style = 'common' }) => {
   return (
-    <button type="button" title="button" className={`${styles.Button} ${styles[style]}`}>
+    <button type="button" className={`${styles.Button} ${styles[style]}`}>
       {content}
     </button>
   )

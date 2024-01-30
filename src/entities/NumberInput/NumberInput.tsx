@@ -31,7 +31,7 @@ export const NumberInput: FC<IProps> = ({
   }
 
   return (
-    <>
+    <div className={styles.NumberInput}>
       <label className={styles.label} htmlFor={styles.label}>
         {label}
       </label>
@@ -41,8 +41,8 @@ export const NumberInput: FC<IProps> = ({
         onChange={changeHandler}
         value={value}
         placeholder={placeholder}
-        className={styles.NumberInput}
+        className={styles.input}
       />
-    </>
+    </div>
   )
 }

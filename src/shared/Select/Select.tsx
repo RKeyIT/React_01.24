@@ -13,11 +13,15 @@ export const Select: FC<IProps> = ({ optionObject }) => {
     options.push(optionObject[key])
   }
 
+  const handleSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value)
+  }
+
   return (
-    <select title="select" className={styles.select}>
+    <select onChange={handleSelection} title="Selector" className={styles.select}>
       {options.map((el, index) => {
         return (
-          <option className={styles.option} key={el.id + index}>
+          <option value={el.id} className={styles.option} key={el.id + index}>
             {el.name}
           </option>
         )

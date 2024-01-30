@@ -25,11 +25,11 @@ export const Home = () => {
         <Select optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
-        <NumberInput min={5} max={15} label="Chose the number of questions" />
+        <NumberInput min={5} max={15} label="Chose the number of questions: " />
       </div>
       <div className={styles.buttons}>
         <Button content="Start quiz" style="accept" />
-        <Button content="See my statistics" />
+        <Button content="See my statistics" style="common" />
       </div>
     </div>
   )
