@@ -3,11 +3,11 @@ export interface ISelectOption {
   name: string;
 }
 
-interface ICategoriesObject {
+export interface IObjectWithOptions {
   [key: string]: ISelectOption;
 }
 
-export const QuizCategories: ICategoriesObject = Object.freeze({
+export const QuizCategories: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Category' },
   GENERAL: { id: '9', name: 'General Knowledge' },
   EntBooks: { id: '10', name: 'Entertainment: Books' },
@@ -41,17 +41,24 @@ export const QuizCategories: ICategoriesObject = Object.freeze({
   },
 });
 
-export const QuizDifficulties = Object.freeze({
+export const QuizDifficulties: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Difficulty' },
   easy: { id: 'easy', name: 'Easy' },
   medium: { id: 'medium', name: 'Medium' },
   hard: { id: 'hard', name: 'Hard' },
 });
 
-export const QuizType = Object.freeze({
+export const QuizType: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Type' },
   MULTIPLE: { id: 'multiple', name: 'Multiple Choice' },
   BOOLEAN: { id: 'boolean', name: 'True / False' },
+});
+
+export const QuizTime: IObjectWithOptions = Object.freeze({
+  ANY: { id: 'any', name: 'Any Time' },
+  ONE: { id: '1', name: 'One Minute' },
+  TWO: { id: '2', name: 'Two Minutes' },
+  FIVE: { id: '5', name: 'Five Minutes' },
 });
 
 // export enum QuizCategoriesIDs {

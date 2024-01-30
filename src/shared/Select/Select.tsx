@@ -1,11 +1,17 @@
 import { FC } from 'react';
-import { ISelectOption } from '../../global.types';
+import { IObjectWithOptions, ISelectOption } from '../../global.types';
 
 interface IProps {
-  options: ISelectOption[];
+  optionObject: IObjectWithOptions;
 }
 
-export const Select: FC<IProps> = ({ options }) => {
+export const Select: FC<IProps> = ({ optionObject }) => {
+  const options: ISelectOption[] = [];
+
+  for (const key in optionObject) {
+    options.push(optionObject[key]);
+  }
+
   return (
     <select title="select">
       {options.map((el, index) => {
