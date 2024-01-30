@@ -2,3 +2,7 @@
     padding: var(--ui-padding);
     font-weight: bold;
 }
+
+.label {
+    text-align: center;
+}

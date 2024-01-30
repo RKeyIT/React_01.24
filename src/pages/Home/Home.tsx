@@ -23,13 +23,19 @@ import {
 export const Home = () => {
   return (
     <div className={styles.Home}>
-      <NumberInput min={5} max={15} />
-      <Select optionObject={QuizCategories} />
-      <Select optionObject={QuizDifficulties} />
-      <Select optionObject={QuizType} />
-      <Select optionObject={QuizTime} />
-      <Button content="Start quiz" style="accept" />
-      <Button content="See my statistics" />
+      <div className={styles.selects}>
+        <Select optionObject={QuizCategories} />
+        <Select optionObject={QuizDifficulties} />
+        <Select optionObject={QuizType} />
+        <Select optionObject={QuizTime} />
+      </div>
+      <div className={styles.input}>
+        <NumberInput min={5} max={15} label="Chose the number of questions" />
+      </div>
+      <div className={styles.buttons}>
+        <Button content="Start quiz" style="accept" />
+        <Button content="See my statistics" />
+      </div>
     </div>
   );
 };

@@ -1,4 +1,24 @@
 .Home {
     box-sizing: border-box;
-    border: 1px solid black;
+    display: grid;
+    grid-template-areas: "input selects" "buttons selects";
+}
+
+.selects {
+    grid-area: selects;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input {
+    grid-area: input;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
 }

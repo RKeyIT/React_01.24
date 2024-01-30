@@ -1,5 +1,7 @@
 .Button {
     padding: var(--ui-padding);
+    font-weight: 500;
+    cursor: pointer;
 }
 
 .Button.accept {

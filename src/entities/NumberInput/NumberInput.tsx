@@ -5,6 +5,7 @@ interface IProps {
   min?: number;
   max?: number;
   placeholder?: string;
+  label?: string;
 }
 
 type StateType = number;
@@ -13,6 +14,7 @@ export const NumberInput: FC<IProps> = ({
   min = Number.MIN_SAFE_INTEGER,
   max = Number.MAX_SAFE_INTEGER,
   placeholder = 'Input number',
+  label = '',
 }) => {
   if (max < min) {
     throw new Error('Received invalid values: max should be more than min');
@@ -29,12 +31,18 @@ export const NumberInput: FC<IProps> = ({
   };
 
   return (
-    <input
-      type="number"
-      onChange={changeHandler}
-      value={value}
-      placeholder={placeholder}
-      className={styles.NumberInput}
-    />
+    <>
+      <label className={styles.label} htmlFor={styles.label}>
+        {label}
+      </label>
+      <input
+        id={styles.label}
+        type="number"
+        onChange={changeHandler}
+        value={value}
+        placeholder={placeholder}
+        className={styles.NumberInput}
+      />
+    </>
   );
 };
