@@ -7,9 +7,3 @@
     --color-bg-main: rgb(200, 175, 140);
     --color-border-main: rgb(245, 220, 180);
 }
-
-body {
-    background: rgb(0, 212, 255);
-    background: radial-gradient(circle at 100% 100%, rgba(0, 180, 215, 1) 0%,
-            rgba(97, 6, 90, 1) 70%, rgba(2, 0, 36, 1) 100%);
-}
