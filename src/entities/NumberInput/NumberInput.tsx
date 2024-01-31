@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useState } from 'react'
 import styles from './NumberInput.module.css'
 
 interface IProps {
+  callback: (newValue: number) => void
   min?: number
   max?: number
   placeholder?: string
@@ -11,6 +12,7 @@ interface IProps {
 type StateType = number
 
 export const NumberInput: FC<IProps> = ({
+  callback,
   min = Number.MIN_SAFE_INTEGER,
   max = Number.MAX_SAFE_INTEGER,
   placeholder = 'Input number',
@@ -28,6 +30,8 @@ export const NumberInput: FC<IProps> = ({
     if (isNaN(newValue) || newValue < min || newValue > max) return
 
     setValue(newValue)
+
+    callback(newValue)
   }
 
   return (

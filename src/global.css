@@ -38,3 +38,15 @@ html {
     color: var(--color-text-black);
     background-color: var(--color-text-white);
 }
+
+h1 {
+    font-family: 'Rubik Glitch Pop', sans-serif;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Sixtyfour', sans-serif;
+}

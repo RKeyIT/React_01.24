@@ -9,54 +9,54 @@
     transition: var(--anim-fast);
 }
 
-.Button.accept {
+.Button.green {
     border-color: var(--color-green-border);
     background-color: var(--color-green-light-tr);
 }
 
-.Button.accept:hover {
+.Button.green:hover {
     background-color: var(--color-green-hover);
 }
 
-.Button.accept:active {
+.Button.green:active {
     background-color: var(--color-green-active);
 }
 
-.Button.decline {
+.Button.red {
     border-color: var(--color-red-border);
     background-color: var(--color-red-light-tr);
 }
 
-.Button.decline:hover {
+.Button.red:hover {
     background-color: var(--color-red-hover);
 }
 
-.Button.decline:active {
+.Button.red:active {
     background-color: var(--color-red-active);
 }
 
 
-.Button.common {
+.Button.white {
     border-color: var(--color-ui-border);
     background-color: var(--color-ui-white);
 }
 
-.Button.common:hover {
+.Button.white:hover {
     background-color: var(--color-ui-hover);
 }
 
-.Button.common:active {
+.Button.white:active {
     background-color: var(--color-ui-active);
 }
 
-.Button.accept:hover,
-.Button.decline:hover,
-.Button.common:hover {
+.Button.green:hover,
+.Button.red:hover,
+.Button.white:hover {
     box-shadow: 0 0 10px 1px var(--color-text-white);
 }
 
-.Button.accept:active,
-.Button.decline:active,
-.Button.common:active {
+.Button.green:active,
+.Button.red:active,
+.Button.white:active {
     box-shadow: 0 0 15px 5px var(--color-text-white);
 }

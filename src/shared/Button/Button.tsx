@@ -3,12 +3,13 @@ import styles from './Button.module.css'
 
 interface IButtonProps {
   content: string
-  style?: 'accept' | 'decline' | 'common'
+  callback: () => void
+  style?: 'green' | 'red' | 'white'
 }
 
-export const Button: FC<IButtonProps> = ({ content, style = 'common' }) => {
+export const Button: FC<IButtonProps> = ({ content, callback, style = 'white' }) => {
   return (
-    <button type="button" className={`${styles.Button} ${styles[style]}`}>
+    <button onClick={callback} type="button" className={`${styles.Button} ${styles[style]}`}>
       {content}
     </button>
   )

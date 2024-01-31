@@ -3,10 +3,11 @@ import { IObjectWithOptions, ISelectOption } from '../../global.types'
 import styles from './Select.module.css'
 
 interface IProps {
+  callback: (id: string) => void
   optionObject: IObjectWithOptions
 }
 
-export const Select: FC<IProps> = ({ optionObject }) => {
+export const Select: FC<IProps> = ({ callback, optionObject }) => {
   const options: ISelectOption[] = []
 
   for (const key in optionObject) {
@@ -14,7 +15,7 @@ export const Select: FC<IProps> = ({ optionObject }) => {
   }
 
   const handleSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
+    callback(e.target.value)
   }
 
   return (

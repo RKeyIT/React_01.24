@@ -61,6 +61,23 @@ export const QuizTime: IObjectWithOptions = Object.freeze({
   FIVE: { id: '5', name: 'Five Minutes' }
 })
 
+// export type QuizCategoriesIDs = keyof typeof QuizCategories;
+// export type QuizCategoriesNames = IObjectWithOptions[QuizCategoriesIDs]['name'];
+
+// export type QuizDifficultiesIDs = keyof typeof QuizDifficulties;
+// export type QuizDifficultiesNames = IObjectWithOptions[QuizDifficultiesIDs]['name'];
+
+// export type QuizTypeIDs = keyof typeof QuizType;
+// export type QuizTypeNames = IObjectWithOptions[QuizTypeIDs]['name'];
+
+// export type QuizTimeIDs = keyof typeof QuizTime;
+// export type QuizTimeNames = IObjectWithOptions[QuizTimeIDs]['name'];
+
+// QuizCategories
+// QuizDifficulties
+// QuizType
+// QuizTime
+
 // export enum QuizCategoriesIDs {
 //   GENERAL = 9,
 //   EntertBooks,

@@ -17,6 +17,7 @@
 
 .input:hover {
     background-color: var(--color-ui-hover);
+    text-decoration: underline;
 }
 
 .input:active {
@@ -27,4 +28,5 @@
     text-align: center;
     font-weight: bold;
     width: max-content;
+    text-decoration: underline;
 }
