@@ -1,0 +1,35 @@
+.Home {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas: "heading heading" "selects selects" "input buttons";
+    grid-template-rows: auto 1fr 1fr;
+    gap: 1em;
+}
+
+.heading {
+    grid-area: heading;
+}
+
+.selects {
+    grid-area: selects;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input {
+    grid-area: input;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    align-items: center;
+}
+
+.buttons {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    justify-self: flex-end;
+    gap: 2em
+}

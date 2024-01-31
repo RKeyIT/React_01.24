@@ -1,0 +1,12 @@
+{
+  "extends": ["development"],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": ["text-size-adjust"],
+      },
+    ],
+    "typescript-config/is-valid": "off",
+  },
+}

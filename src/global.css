@@ -1,0 +1,52 @@
+:root {
+    /* COLORS */
+    --color-bg-main: rgb(200, 175, 140);
+    --color-border-main: rgb(245, 220, 180);
+    --color-text-white: rgba(240, 240, 240, 0.9);
+    --color-text-black: rgba(15, 15, 15, 0.9);
+    --color-green-light: rgba(115, 225, 115, 1);
+    --color-green-hover: rgb(90, 220, 90);
+    --color-green-active: rgb(50, 220, 50);
+    --color-green-light-tr: rgba(115, 225, 115, 0.8);
+    --color-green-border: rgb(50, 220, 50);
+    --color-red-light: rgba(225, 115, 115, 1);
+    --color-red-hover: rgba(225, 90, 90, 1);
+    --color-red-active: rgba(225, 50, 50, 1);
+    --color-red-light-tr: rgba(225, 115, 115, 0.8);
+    --color-red-border: rgb(220, 50, 50);
+    --color-ui-white: rgba(220, 220, 220, 1);
+    --color-ui-hover: rgba(200, 200, 200, 1);
+    --color-ui-active: rgba(180, 180, 180, 1);
+    --color-ui-border: rgba(150, 150, 150, 1);
+
+    /* DIMENSIONS */
+    --ui-padding: .5em;
+
+    /* ANIMATIONS */
+    --anim-fast: all ease 0.2s;
+    --anim-mid: all ease 0.5s;
+    --anim-slow: all ease 1s;
+
+    /* RADIUSES */
+    --border-rad-font: 1em;
+    --border-rad-font-half: 0.5em;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    color: var(--color-text-black);
+    background-color: var(--color-text-white);
+}
+
+h1 {
+    font-family: 'Rubik Glitch Pop', sans-serif;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Sixtyfour', sans-serif;
+}

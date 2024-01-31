@@ -1,0 +1,32 @@
+.NumberInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    width: 100%;
+}
+
+.input {
+    width: 25%;
+    padding: var(--ui-padding);
+    border: 2px solid var(--color-ui-border);
+    border-radius: var(--border-rad-font-half);
+    background-color: var(--color-ui-white);
+    transition: var(--anim-fast);
+}
+
+.input:hover {
+    background-color: var(--color-ui-hover);
+    text-decoration: underline;
+}
+
+.input:active {
+    background-color: var(--color-ui-active);
+}
+
+.label {
+    text-align: center;
+    font-weight: bold;
+    width: max-content;
+    text-decoration: underline;
+}

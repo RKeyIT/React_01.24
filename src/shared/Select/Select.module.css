@@ -1,0 +1,19 @@
+.select,
+.option {
+    padding: var(--ui-padding);
+    cursor: pointer;
+    transition: var(--anim-fast);
+}
+
+.select {
+    border-radius: var(--border-rad-font-half);
+    background-color: var(--color-ui-white);
+}
+
+.select:hover {
+    background-color: var(--color-ui-hover);
+}
+
+.select:active {
+    background-color: var(--color-ui-active);
+}
