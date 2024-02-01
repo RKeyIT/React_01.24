@@ -6,18 +6,10 @@ import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../glob
 import { Heading } from '../../shared/Heading/Heading'
 import { useEffect, useState } from 'react'
 
-/* 
-    1. - OK - Number input for “number of questions”. Limit from 5 to 15
-    2. - OK - Select input for “category” with required values 
-    3. - OK - Select input for “difficulty” with required values (any || easy || medium || hard)
-    4. - OK - Select input for “type” with required values (any || multiple choice || true/false)
-    5. - OK - Select input for “time” with values: 1m, 2m, 5m
-    6. - OK - Button “Start quiz”
-    7. - OK - Button “See my statistics”
-    8. Style everything!
-*/
-
 export const Home = () => {
+  // FIXME - Create reducer to replece logic of this component
+  const BASEURL = `https://opentdb.com/api.php?`
+
   const [state, setState] = useState({
     questionAmountMin: 5,
     questionAmountMax: 15,
@@ -31,7 +23,6 @@ export const Home = () => {
   const [apiURL, setApiURL] = useState(
     `https://opentdb.com/api.php?amount=${state.currentQuestionAmount}`
   )
-  const BASEURL = `https://opentdb.com/api.php?`
 
   const setCategory = (id: string) => {
     setState((prev) => ({
@@ -65,7 +56,7 @@ export const Home = () => {
   }
 
   const onStartHandler = () => {
-    console.log('START')
+    console.log(apiURL)
   }
 
   const onShowStatisticsHandler = () => {
@@ -83,13 +74,7 @@ export const Home = () => {
     if (type !== 'any') urlParams += '&type=' + type
 
     setApiURL(BASEURL + urlParams)
-    console.log(time)
   }, [state, BASEURL])
-
-  // FIXME - remove it later
-  useEffect(() => {
-    console.log(apiURL)
-  }, [apiURL])
 
   return (
     <div className={styles.Home}>

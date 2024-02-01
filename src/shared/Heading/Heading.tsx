@@ -9,7 +9,7 @@ interface IProps {
 export const Heading: FC<IProps> = ({ pageName, additionalText }) => {
   return (
     <div className={styles.Heading}>
-      <h2 className={styles.h2}>{pageName}</h2>
+      <h2 className={`${styles.h2} ${styles.mainHeading}`}>{pageName}</h2>
       {additionalText && <h2 className={styles.h2}>{additionalText}</h2>}
     </div>
   )
