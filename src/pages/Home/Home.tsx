@@ -5,13 +5,14 @@ import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 import { useEffect, useState } from 'react'
 import { ActionTypeEnum, useHomeReducer } from '../../reducers/HomeReducer'
+import { useGameContext } from '../../context/GameContext'
 
 export const Home = () => {
   // TODO - Rebuild the component using Context
   // Request example: https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple
   const BASE_API_URL = `https://opentdb.com/api.php?`
-  const MIN_QUESTION_AMOUNT = 5;
-  const MAX_QUESTION_AMOUNT = 15
+
+  const context = useGameContext()
 
   const [state, dispatch] = useHomeReducer()
 
@@ -51,8 +52,8 @@ export const Home = () => {
       <div className={styles.input}>
         <NumberInput
           callback={setQuestionAmount}
-          min={MIN_QUESTION_AMOUNT}
-          max={MAX_QUESTION_AMOUNT}
+          min={context.minQuestionsCount}
+          max={context.maxQuestionsCount}
           label="Chose the number of questions: "
         />
       </div>
