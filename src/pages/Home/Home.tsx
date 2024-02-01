@@ -64,8 +64,8 @@ export const Home = () => {
   }
 
   useEffect(() => {
-    const { category, currentQuestionAmount, difficulty, time, type } = state
-    // Typical request https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple
+    const { category, currentQuestionAmount, difficulty, type } = state
+    // Request example: https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple
 
     let urlParams = 'amount=' + currentQuestionAmount
 
