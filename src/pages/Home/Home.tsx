@@ -3,7 +3,6 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { Heading } from '../../shared/Heading/Heading'
 import { useEffect, useState } from 'react'
 
 export const Home = () => {
@@ -78,9 +77,6 @@ export const Home = () => {
 
   return (
     <div className={styles.Home}>
-      <div className={styles.heading}>
-        <Heading pageName="Home" additionalText="Chose the quiz options!" />
-      </div>
       <div className={styles.selects}>
         <Select callback={setCategory} optionObject={QuizCategories} />
         <Select callback={setDifficulty} optionObject={QuizDifficulties} />
