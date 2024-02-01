@@ -50,15 +50,15 @@ export const QuizDifficulties: IObjectWithOptions = Object.freeze({
 
 export const QuizType: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Type' },
-  MULTIPLE: { id: 'multiple', name: 'Multiple Choice' },
-  BOOLEAN: { id: 'boolean', name: 'True / False' }
+  multiple: { id: 'multiple', name: 'Multiple Choice' },
+  boolean: { id: 'boolean', name: 'True / False' }
 })
 
 export const QuizTime: IObjectWithOptions = Object.freeze({
   ANY: { id: 'any', name: 'Any Time' },
-  ONE: { id: '1', name: 'One Minute' },
-  TWO: { id: '2', name: 'Two Minutes' },
-  FIVE: { id: '5', name: 'Five Minutes' }
+  one: { id: '1', name: 'One Minute' },
+  two: { id: '2', name: 'Two Minutes' },
+  five: { id: '5', name: 'Five Minutes' }
 })
 
 // export type QuizCategoriesIDs = keyof typeof QuizCategories;
