@@ -9,7 +9,7 @@ import { Result } from '../pages/Result/Result'
 import { Statistics } from '../pages/Statistics/Statistics'
 
 export const App = () => {
-  const {currentPage} = useGameContext()
+  const [context] = useGameContext()
 
   return (
     <div className={styles.App}>
@@ -22,11 +22,11 @@ export const App = () => {
             <div className={styles.closeButton}>
                 <CloseButton />
             </div>
-            <Heading pageName={currentPage}/>
-            {currentPage === 'Game' && <Game />}
-            {currentPage === 'Home' && <Home />}
-            {currentPage === 'Result' && <Result />}
-            {currentPage === 'Statistics' && <Statistics />}
+            <Heading pageName={context.currentPage}/>
+            {context.currentPage === 'Game' && <Game />}
+            {context.currentPage === 'Home' && <Home />}
+            {context.currentPage === 'Result' && <Result />}
+            {context.currentPage === 'Statistics' && <Statistics />}
           </div>
         </GameProvider>
       <h2 className={styles.Footer}>QUIZzTRON</h2>

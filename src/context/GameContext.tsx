@@ -1,4 +1,4 @@
-import { useContext, createContext, ReactNode, FC, useReducer } from "react";
+import { useContext, createContext, ReactNode, FC, useState, Dispatch, SetStateAction } from "react";
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from "../global.types";
 
 export enum PageNames {
@@ -8,7 +8,7 @@ export enum PageNames {
     STATISTICS = 'Statistics'
 }
 
-interface IGameSettings {
+export interface IGameSettings {
     questionAmount: number,
     category: string,
     difficulty: string,
@@ -79,12 +79,28 @@ const defaultContext: IGameContext = {
      }
 }
 
-const GameContext = createContext(defaultContext)
+type ProviderValue = [IGameContext, Dispatch<SetStateAction<IGameContext>>]
 
-export const useGameContext = () => useContext(GameContext)
+const GameContext = createContext<ProviderValue>([defaultContext, () => {}])
 
-export const GameProvider: FC<IGameProvider> = ({children}) => {
-    return <GameContext.Provider value={defaultContext}>
-        {children}
-    </GameContext.Provider>
+export const useGameContext = (): ProviderValue => {
+    const [context, setContext] = useContext(GameContext);
+
+    if (!context) {
+        throw new Error('useGameContext must be used within a GameProvider');
+    }
+
+    return [context, setContext];
 }
+
+
+export const GameProvider: FC<IGameProvider> = ({ children }) => {
+    // FIXME - How to add setContext to a value of Provider?!
+    const [context, setContext] = useState(defaultContext);
+
+    return (
+        <GameContext.Provider value={[context, setContext]}>
+            {children}
+        </GameContext.Provider>
+    );
+};

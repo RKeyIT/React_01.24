@@ -6,14 +6,54 @@ import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../glob
 import { useGameContext } from '../../context/GameContext'
 
 export const Home = () => {
-  const context = useGameContext()
-  const settings = context.gameSettings
+  const [context, setContext] = useGameContext()
 
-  const setQuestionAmount = (id: number) => settings.questionAmount = id
-  const setCategory = (id: string) => settings.category = id
-  const setDiff = (id: string) => settings.difficulty = id
-  const setType = (id: string) =>  settings.type = id
-  const setTime = (id: string) => settings.time = id
+  const setQuestionAmount = (id: number) => {
+    setContext(prev => ({
+      ...prev,
+      gameSettings: {
+        ...prev.gameSettings,
+        questionAmount: id
+      }
+    }))
+  }
+  // const setQuestionAmount = (id: number) => settings.questionAmount = id
+  const setCategory = (id: string) => {
+    setContext(prev => ({
+      ...prev,
+      gameSettings: {
+        ...prev.gameSettings,
+        ['category']: id
+      }
+    }))
+  }
+  const setDiff = (id: string) => {
+    setContext(prev => ({
+      ...prev,
+      gameSettings: {
+        ...prev.gameSettings,
+        difficulty: id
+      }
+    }))
+  }
+  const setType = (id: string) => {
+    setContext(prev => ({
+      ...prev,
+      gameSettings: {
+        ...prev.gameSettings,
+        type: id
+      }
+    }))
+  }
+  const setTime = (id: string) => {
+    setContext(prev => ({
+      ...prev,
+      gameSettings: {
+        ...prev.gameSettings,
+        time: id
+      }
+    }))
+  }
 
   const onStartHandler = () => console.log(context.getApiUrl())
   const onShowStatisticsHandler = () => console.log(context)
