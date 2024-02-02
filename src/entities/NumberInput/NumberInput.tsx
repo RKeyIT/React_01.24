@@ -30,7 +30,6 @@ export const NumberInput: FC<IProps> = ({
     if (isNaN(newValue) || newValue < min || newValue > max) return
 
     setValue(newValue)
-
     callback(newValue)
   }
 

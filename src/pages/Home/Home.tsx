@@ -3,49 +3,26 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { useEffect, useState } from 'react'
-import { ActionTypeEnum, useHomeReducer } from '../../reducers/HomeReducer'
 import { useGameContext } from '../../context/GameContext'
 
 export const Home = () => {
-  // TODO - Rebuild the component using Context
-  // Request example: https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple
-  const BASE_API_URL = `https://opentdb.com/api.php?`
-
   const context = useGameContext()
+  const settings = context.gameSettings
 
-  const [state, dispatch] = useHomeReducer()
+  const setQuestionAmount = (id: number) => settings.questionAmount = id
+  const setCategory = (id: string) => settings.category = id
+  const setDiff = (id: string) => settings.difficulty = id
+  const setType = (id: string) =>  settings.type = id
+  const setTime = (id: string) => settings.time = id
 
-  const [apiURL, setApiURL] = useState(
-    `${BASE_API_URL}amount=${state.questionAmount}`
-  )
-
-  const setQuestionAmount = (id: number) => dispatch({type: ActionTypeEnum.AMOUNT, payload: String(id)})
-  const setCategory = (id: string) => dispatch({type: ActionTypeEnum.CATEGORY, payload: id})
-  const setDifficulty = (id: string) => dispatch({type: ActionTypeEnum.DIFFICULTY, payload: id})
-  const setType = (id: string) =>  dispatch({type: ActionTypeEnum.TYPE, payload: id})
-  const setTime = (id: string) => dispatch({type: ActionTypeEnum.TIME, payload: id})
-
-  const onStartHandler = () => console.log(state.time, apiURL)
-  const onShowStatisticsHandler = () => console.log('STATISTICS')
-
-  useEffect(() => {
-    const { category, questionAmount, difficulty, type } = state
-
-    let urlParams = 'amount=' + questionAmount
-
-    if (category !== 'any') urlParams += '&category=' + category
-    if (difficulty !== 'any') urlParams += '&difficulty=' + difficulty
-    if (type !== 'any') urlParams += '&type=' + type
-
-    setApiURL(BASE_API_URL + urlParams)
-  }, [state, BASE_API_URL])
+  const onStartHandler = () => console.log(context.getApiUrl())
+  const onShowStatisticsHandler = () => console.log(context)
 
   return (
     <div className={styles.Home}>
       <div className={styles.selects}>
         <Select callback={setCategory} optionObject={QuizCategories} />
-        <Select callback={setDifficulty} optionObject={QuizDifficulties} />
+        <Select callback={setDiff} optionObject={QuizDifficulties} />
         <Select callback={setType} optionObject={QuizType} />
         <Select callback={setTime} optionObject={QuizTime} />
       </div>
