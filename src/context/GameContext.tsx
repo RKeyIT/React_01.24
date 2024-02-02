@@ -1,7 +1,7 @@
-import { useContext, createContext, ReactNode, FC } from "react";
+import { useContext, createContext, ReactNode, FC, useReducer } from "react";
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from "../global.types";
 
-enum PageNames {
+export enum PageNames {
     GAME = 'Game',
     HOME = 'Home',
     RESULT = 'Result',
@@ -16,7 +16,7 @@ interface IGameSettings {
     time: string,
 }
 
-interface IGameContext {
+export interface IGameContext {
     currentPage: PageNames
     isInGame: boolean
     minQuestionsCount: number,
@@ -80,7 +80,6 @@ const defaultContext: IGameContext = {
 }
 
 const GameContext = createContext(defaultContext)
-
 
 export const useGameContext = () => useContext(GameContext)
 

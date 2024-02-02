@@ -1,0 +1,25 @@
+.CloseButton {
+    background-color: var(--color-red-light);
+    border: none;
+    border-radius: 0 0 50% 50%;
+    width: 2em;
+    height: 2em;
+    font-family: 'Rubik Glitch Pop', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+}
+
+.CloseButton:hover {
+    background-color: var(--color-red-hover);
+}
+
+.CloseButton:active {
+    background-color: var(--color-red-active);
+}
+
+.CloseButton:disabled {
+    background-color: var(--color-main-dark);
+    cursor: default;
+}

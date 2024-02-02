@@ -1,7 +1,11 @@
 :root {
     /* COLORS */
+    --color-darker-main: rgb(180, 160, 125);
     --color-bg-main: rgb(200, 175, 140);
     --color-border-main: rgb(245, 220, 180);
+    --color-main-dark: rgb(180, 160, 125);
+    --color-main-mid: rgb(200, 175, 140);
+    --color-main-light: rgb(245, 220, 180);
     --color-text-white: rgba(240, 240, 240, 0.9);
     --color-text-black: rgba(15, 15, 15, 0.9);
     --color-green-light: rgba(115, 225, 115, 1);

@@ -1,0 +1,28 @@
+.NavButton {
+    background-color: var(--color-main-light);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    border: 2px outset;
+    transition: var(--anim-fast);
+    cursor: pointer;
+}
+
+.NavButton:hover {
+    background-color: var(--color-main-mid);
+}
+
+.NavButton:active {
+    background-color: var(--color-main-dark);
+}
+
+.NavButton:disabled {
+    background-color: var(--color-main-mid);
+    cursor: default;
+}
+
+.NavButton.active,
+.NavButton.active:hover,
+.NavButton.active:active {
+    background-color: var(--color-main-mid);
+    border: 2px inset
+}

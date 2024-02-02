@@ -43,6 +43,7 @@
 }
 
 .container {
+    position: relative;
     width: 1000px;
     height: 500px;
     box-sizing: border-box;
@@ -53,6 +54,18 @@
 
     box-shadow: 0 0 10px 1px var(--color-border-main);
     animation: shadow-resizer 5s infinite;
+}
+
+.navigation {
+    position: absolute;
+    top: 0;
+    left: 2em;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 2em;
 }
 
 @keyframes shadow-resizer {
