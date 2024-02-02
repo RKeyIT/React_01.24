@@ -4,6 +4,7 @@ import styles from './Navigation.module.css'
 import { FC } from 'react'
 
 export const Navigation: FC = () => {
+
   return (
     <div className={styles.Navigation}>
         <NavButton >

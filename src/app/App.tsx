@@ -4,6 +4,9 @@ import { Heading } from '../shared/Heading/Heading'
 import { GameProvider, useGameContext } from '../context/GameContext'
 import { Navigation } from '../features/Navigation/Navigation'
 import { CloseButton } from '../shared/CloseButton/CloseButton'
+import { Game } from '../pages/Game/Game'
+import { Result } from '../pages/Result/Result'
+import { Statistics } from '../pages/Statistics/Statistics'
 
 export const App = () => {
   const {currentPage} = useGameContext()
@@ -20,7 +23,10 @@ export const App = () => {
                 <CloseButton />
             </div>
             <Heading pageName={currentPage}/>
-            <Home />
+            {currentPage === 'Game' && <Game />}
+            {currentPage === 'Home' && <Home />}
+            {currentPage === 'Result' && <Result />}
+            {currentPage === 'Statistics' && <Statistics />}
           </div>
         </GameProvider>
       <h2 className={styles.Footer}>QUIZzTRON</h2>

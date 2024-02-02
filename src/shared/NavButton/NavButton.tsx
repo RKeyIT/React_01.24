@@ -1,4 +1,4 @@
-import { PageNames } from '../../context/GameContext';
+import { PageNames, useGameContext } from '../../context/GameContext';
 import styles from './NavButton.module.css'
 import { FC } from 'react'
 
@@ -7,8 +7,15 @@ interface IProps {
 }
 
 export const NavButton: FC<IProps> = ({children}) => {
+    const ctx = useGameContext()
+
+    const changePage = () => {
+        ctx.currentPage = children
+        console.log(ctx.currentPage)
+    }
+   
     return (
-        <button className={styles.NavButton}>
+        <button onClick={changePage} className={styles.NavButton}>
             { children }
         </button>
     );
