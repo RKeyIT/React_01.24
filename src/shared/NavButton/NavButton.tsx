@@ -7,11 +7,13 @@ interface IProps {
 }
 
 export const NavButton: FC<IProps> = ({children}) => {
-    const ctx = useGameContext()
+    const [, setContext] = useGameContext()
 
     const changePage = () => {
-        ctx.currentPage = children
-        console.log(ctx.currentPage)
+        setContext(prev => ({
+            ...prev,
+            currentPage: children
+        }))
     }
    
     return (

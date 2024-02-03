@@ -31,7 +31,7 @@ export interface IGameContext {
 interface IGameProvider { children: ReactNode }
 
 const defaultContext: IGameContext = {
-    currentPage: PageNames.HOME,
+    currentPage: PageNames.GAME,
     isInGame: false,
     minQuestionsCount: 5,
     maxQuestionsCount: 15,
