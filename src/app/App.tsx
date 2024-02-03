@@ -22,7 +22,7 @@ export const App = () => {
             <div className={styles.closeButton}>
                 <CloseButton title='Close quiz'/>
             </div>
-            <Heading pageName={context.currentPage}/>
+            <Heading pageName={context.currentPage} />
             {context.currentPage === 'Game' && <Game />}
             {context.currentPage === 'Home' && <Home />}
             {context.currentPage === 'Result' && <Result />}

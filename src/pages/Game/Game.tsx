@@ -1,21 +1,30 @@
+import { Button } from '../../shared/Button/Button';
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar';
-import { Checkbox } from '../../shared/QuestionWindow/Answers/Checkbox';
-import { TrueFalse } from '../../shared/QuestionWindow/Answers/TrueFalse';
+import { Answers } from '../../shared/QuestionWindow/Answers/Answers';
 import { QuestionWindow } from '../../shared/QuestionWindow/QuestionWindow';
 import { Timer } from '../../shared/Timer/Timer';
 import styles from './Game.module.css'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 export const Game: FC = () => {
+  const [answersType, setAnswersType] = useState<'boolean' | 'multiply'>('boolean')
+
+  const acceptHandler = () => {
+    setAnswersType(answersType === 'boolean' ? 'multiply' : 'boolean')
+  }
+
   return (
     <div className={styles.Game}>
-      <ProgressBar />
       <Timer />
+      <ProgressBar />
       <QuestionWindow />
       <div className={styles.answers}>
-        <TrueFalse />
-        <Checkbox />
+        {answersType === 'boolean'
+          ? <Answers type='boolean' />
+          : <Answers type='multiply' />
+        }
       </div>
+      <Button content='Accept' style='green' callback={acceptHandler}/>
     </div>
   );
 };

@@ -1,3 +1,4 @@
 .QuestionWindow {
     font-weight: 500;
+    overflow: auto;
 }

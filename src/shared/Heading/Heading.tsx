@@ -3,14 +3,12 @@ import { FC } from 'react'
 
 interface IProps {
   pageName: string
-  additionalText?: string
 }
 
-export const Heading: FC<IProps> = ({ pageName, additionalText }) => {
+export const Heading: FC<IProps> = ({ pageName }) => {
   return (
     <div className={styles.Heading}>
       <h2 className={`${styles.h2} ${styles.mainHeading}`}>{pageName}</h2>
-      {additionalText && <h2 className={styles.h2}>{additionalText}</h2>}
     </div>
   )
 }

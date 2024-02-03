@@ -1,0 +1,48 @@
+.Checkbox {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.Radio {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+    grid-template-columns: 1fr 1fr;
+}
+
+.checkboxLabel,
+.trueLabel,
+.falseLabel {
+    display: flex;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.hiddenInput:checked+.checkboxLabel {
+    background-color: var(--color-yellow-light);
+}
+
+.hiddenInput:checked+.trueLabel {
+    background-color: var(--color-green-light);
+}
+
+.hiddenInput:checked+.falseLabel {
+    background-color: var(--color-red-light);
+}
+
+.answerText {
+    display: flex;
+    text-align: center;
+}
