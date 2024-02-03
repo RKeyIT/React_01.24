@@ -20,7 +20,7 @@ export const App = () => {
               <Navigation />
             </nav>
             <div className={styles.closeButton}>
-                <CloseButton />
+                <CloseButton title='Close quiz'/>
             </div>
             <Heading pageName={context.currentPage}/>
             {context.currentPage === 'Game' && <Game />}

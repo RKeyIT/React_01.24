@@ -7,6 +7,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: var(--anim-fast);
+    width: 100%;
 }
 
 .Button.green {

@@ -43,6 +43,8 @@
 }
 
 .container {
+    display: grid;
+    grid-template-rows: auto 1fr;
     position: relative;
     width: 1000px;
     height: 500px;
@@ -65,7 +67,7 @@
 .closeButton {
     position: absolute;
     top: 0;
-    right: 2em;
+    right: 1em;
 }
 
 @keyframes shadow-resizer {

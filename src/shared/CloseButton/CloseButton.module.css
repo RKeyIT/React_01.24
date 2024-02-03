@@ -1,5 +1,6 @@
 .CloseButton {
     background-color: var(--color-red-light);
+    transition: var(--anim-fast);
     border: none;
     border-radius: 0 0 50% 50%;
     width: 2em;

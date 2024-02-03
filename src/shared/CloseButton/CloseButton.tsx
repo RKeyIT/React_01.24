@@ -1,9 +1,13 @@
 import styles from './CloseButton.module.css'
 import { FC } from 'react'
 
-export const CloseButton: FC = () => {
+interface IProps {
+  title?: string
+}
+
+export const CloseButton: FC<IProps> = ({title = 'close'}) => {
   return (
-    <button className={styles.CloseButton}>
+    <button type='button' title={title} className={styles.CloseButton}>
         x
     </button>
   );
