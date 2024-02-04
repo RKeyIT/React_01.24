@@ -14,10 +14,12 @@
 
 .CloseButton:hover {
     background-color: var(--color-red-hover);
+    box-shadow: inset 0 0 2px 0 var(--color-red-border);
 }
 
 .CloseButton:active {
     background-color: var(--color-red-active);
+    box-shadow: inset 0 0 4px 0;
 }
 
 .CloseButton:disabled {

@@ -10,4 +10,17 @@
     display: flex;
     justify-self: center;
     align-items: center;
+    transition: var(--anim-fast);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.Timer.halfMinute {
+    color: var(--color-orange-dark);
+    box-shadow: inset 0 0 10px 0 var(--color-orange-dark);
+}
+
+.Timer.criticalTime {
+    color: var(--color-red-dark);
+    box-shadow: inset 0 0 20px 2px var(--color-red-light);
 }

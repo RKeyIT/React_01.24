@@ -5,7 +5,7 @@ interface IProps {
     seconds?: number
 }
 
-export const Timer: FC<IProps> = ({seconds = 620}) => {
+export const Timer: FC<IProps> = ({seconds = 35}) => {
     const [time, setTime] = useState({
         minutes: getMinutes(seconds),
         seconds: getMinutes(seconds) <= 0 ? seconds : getMinutes(seconds) % 60,
@@ -14,9 +14,7 @@ export const Timer: FC<IProps> = ({seconds = 620}) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setTime((prev) => {
-                console.log(prev.minutes, prev.seconds)
                 if (prev.minutes <= 0 && prev.seconds <= 0) {
-                    console.log('Exit case!')
                     clearInterval(interval)
                     return prev
                 }
@@ -48,9 +46,17 @@ export const Timer: FC<IProps> = ({seconds = 620}) => {
         return mins + ':' + secs
     }
 
-  return (
-        <span className={styles.Timer}>
+    function isHalfMinute() {
+        return time.minutes === 0 && time.seconds <= 30 && time.seconds > 10
+    }
+
+    function isCriticalTime() {
+        return time.minutes === 0 && time.seconds <= 10
+    }
+
+    return (
+        <span className={`${styles.Timer} ${isHalfMinute() && styles.halfMinute} ${isCriticalTime() && styles.criticalTime}`}>
             {getFormattedTime()}
         </span>
-  );
+    );
 };

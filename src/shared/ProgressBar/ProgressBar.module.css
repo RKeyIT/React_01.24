@@ -1,7 +1,6 @@
 .ProgressBar {
+    height: 0.4em;
     margin: 0;
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
     display: flex;
     width: 100%;
     flex-direction: row;
