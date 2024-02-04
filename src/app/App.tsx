@@ -20,13 +20,15 @@ export const App = () => {
               <Navigation />
             </nav>
             <div className={styles.closeButton}>
+                {/* TODO - Replace next title by state or context value */}
                 <CloseButton title='Close quiz'/>
             </div>
             <Heading pageName={context.currentPage} />
-            {context.currentPage === 'Game' && <Game />}
+            <Home />
+            {/* {context.currentPage === 'Game' && <Game />}
             {context.currentPage === 'Home' && <Home />}
             {context.currentPage === 'Result' && <Result />}
-            {context.currentPage === 'Statistics' && <Statistics />}
+            {context.currentPage === 'Statistics' && <Statistics />} */}
           </div>
         </GameProvider>
       <h2 className={styles.Footer}>QUIZzTRON</h2>
