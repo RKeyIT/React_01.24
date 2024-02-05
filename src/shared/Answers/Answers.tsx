@@ -6,7 +6,6 @@ interface IProps {
   type: 'boolean' | 'multiply'
 }
 
-// TODO - Rename to answers
 export const Answers: FC<IProps> = ({ type }) => {
   return (
     <div className={type === 'multiply' ? styles.Multiple : styles.Boolean}>

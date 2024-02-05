@@ -1,5 +1,4 @@
-.QuestionWindow {
+.TextField {
     font-weight: 500;
     overflow: auto;
-    height: 4em;
 }

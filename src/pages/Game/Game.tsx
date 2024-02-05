@@ -1,7 +1,7 @@
 import { Button } from '../../shared/Button/Button'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
-import { Answers } from '../../shared/QuestionWindow/Answers/Answers'
-import { QuestionWindow } from '../../shared/QuestionWindow/QuestionWindow'
+import { Answers } from '../../shared/Answers/Answers'
+import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
 import { FC, useState } from 'react'
@@ -17,7 +17,7 @@ export const Game: FC = () => {
     <div className={styles.Game}>
       <Timer />
       <ProgressBar />
-      <QuestionWindow />
+      <TextField />
       <div className={styles.answers}>
         {answersType === 'boolean' ? <Answers type="boolean" /> : <Answers type="multiply" />}
       </div>

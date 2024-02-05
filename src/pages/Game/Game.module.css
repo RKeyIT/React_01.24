@@ -1,5 +1,6 @@
 .Game {
     display: grid;
+    grid-template-rows: auto auto 4em auto auto;
     gap: 1em;
 }
 
