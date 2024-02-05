@@ -27,30 +27,43 @@
     animation: red-alert ease 1s infinite;
 }
 
+.Timer.timeOut {
+    color: var(--color-red-dark);
+    box-shadow:
+        inset 0 0 20px 2px var(--color-red-dark),
+        0 0 20px 2px var(--color-red-dark);
+}
+
 @keyframes orange-alert {
     0% {
         box-shadow: 0 0 5px 0px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
+        color: var(--color-orange-dark)
     }
 
     50% {
         box-shadow: 0 0 10px 1px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
+        color: var(--color-main-mid);
     }
 
     100% {
         box-shadow: 0 0 5px 0px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
+        color: var(--color-orange-dark);
     }
 }
 
 @keyframes red-alert {
     0% {
-        box-shadow: 0 0 10px 2px var(--color-red-light), inset 0 0 20px 2px var(--color-red-light);
+        box-shadow: 0 0 10px 2px var(--color-red-dark), inset 0 0 20px 2px var(--color-red-dark);
+        color: var(--color-red-dark);
     }
 
     50% {
         box-shadow: 0 0 20px 5px var(--color-red-light), inset 0 0 20px 5px var(--color-red-light);
+        color: var(--color-red-dark);
     }
 
     100% {
-        box-shadow: 0 0 10px 2px var(--color-red-light), inset 0 0 20px 2px var(--color-red-light);
+        box-shadow: 0 0 10px 2px var(--color-main-mid), inset 0 0 20px 2px var(--color-main-mid);
+        color: var(--color-main-mid);
     }
 }

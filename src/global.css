@@ -7,7 +7,9 @@
     --color-main-mid: rgb(200, 175, 140);
     --color-main-light: rgb(245, 220, 180);
     --color-text-white: rgba(240, 240, 240, 0.9);
+    --color-white: rgba(240, 240, 240, 0.9);
     --color-text-black: rgba(15, 15, 15, 0.9);
+    --color-black: rgba(15, 15, 15, 0.9);
     --color-green-min: rgb(130, 190, 130);
     --color-green-light: rgba(115, 225, 115, 1);
     --color-green-hover: rgb(90, 220, 90);
