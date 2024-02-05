@@ -5,7 +5,7 @@ interface IProps {
   seconds?: number
 }
 
-export const Timer: FC<IProps> = ({ seconds = 12 }) => {
+export const Timer: FC<IProps> = ({ seconds = 20 }) => {
   const [time, setTime] = useState({
     minutes: getMinutes(seconds),
     seconds: getMinutes(seconds) <= 0 ? seconds : getMinutes(seconds) % 60

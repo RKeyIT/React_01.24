@@ -33,7 +33,9 @@
     --color-ui-border: rgba(150, 150, 150, 1);
 
     /* DIMENSIONS */
-    --ui-padding: .5em;
+    --ui-padding: 0.5em;
+    --ui-element-padding: 0.5em;
+    --ui-element-height: 2em;
 
     /* ANIMATIONS */
     --anim-fast: all ease 0.2s;

@@ -1,12 +1,12 @@
 .Timer {
     text-align: center;
-    font-size: 1.5rem;
     font-weight: 500;
     box-sizing: border-box;
     border: 2px solid;
-    border-radius: 0.5em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    border-radius: var(--ui-element-padding);
+    padding-left: var(--ui-element-padding);
+    padding-right: var(--ui-element-padding);
+    height: var(--ui-element-height);
     display: flex;
     justify-self: center;
     align-items: center;
@@ -42,7 +42,7 @@
 
     50% {
         box-shadow: 0 0 10px 1px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
-        color: var(--color-main-mid);
+        color: var(--color-black);
     }
 
     100% {

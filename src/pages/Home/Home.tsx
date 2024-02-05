@@ -71,12 +71,12 @@ export const Home = () => {
           callback={setQuestionAmount}
           min={context.minQuestionsCount}
           max={context.maxQuestionsCount}
-          label="Chose the number of questions: "
+          label="Count of questions: "
         />
       </div>
       <div className={styles.buttons}>
-        <Button callback={onStartHandler} content="Start quiz" style="green" />
         <Button callback={onShowStatisticsHandler} content="See my statistics" style="white" />
+        <Button callback={onStartHandler} content="Start quiz" style="green" />
       </div>
     </div>
   )

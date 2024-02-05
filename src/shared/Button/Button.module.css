@@ -3,11 +3,14 @@
     outline: none;
     border: 2px solid transparent;
     border-radius: var(--border-rad-font);
-    padding: var(--ui-padding);
     font-weight: 600;
     cursor: pointer;
     transition: var(--anim-fast);
     width: 100%;
+    height: var(--ui-element-height);
+    padding-left: var(--ui-element-padding);
+    padding-right: var(--ui-element-padding);
+    line-height: 1em;
 }
 
 .Button.green {

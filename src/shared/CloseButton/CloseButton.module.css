@@ -6,13 +6,15 @@
     transition: var(--anim-fast);
     border: none;
     border-radius: 0 0 50% 50%;
-    width: 2em;
-    height: 2em;
+    width: var(--ui-element-height);
+    height: var(--ui-element-height);
     font-family: 'Rubik Glitch Pop', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
+    line-height: 1em;
+    padding: var(--ui-element-padding);
 }
 
 .CloseButton:hover {

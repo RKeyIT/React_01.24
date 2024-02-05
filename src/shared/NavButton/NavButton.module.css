@@ -5,6 +5,9 @@
     border: 2px outset;
     transition: var(--anim-fast);
     cursor: pointer;
+    line-height: 1em;
+    padding: var(--ui-element-padding);
+    height: var(--ui-element-height);
 }
 
 .NavButton:hover {

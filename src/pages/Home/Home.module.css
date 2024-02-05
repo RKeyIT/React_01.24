@@ -2,7 +2,6 @@
     box-sizing: border-box;
     display: grid;
     grid-template-areas: "selects selects" "input buttons";
-    grid-template-rows: 1fr 1fr;
 }
 
 .heading {
@@ -13,7 +12,7 @@
     grid-area: selects;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .input {
@@ -26,9 +25,10 @@
 
 .buttons {
     grid-area: buttons;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-self: flex-end;
     justify-self: flex-end;
-    gap: 2em
+    gap: var(--ui-element-padding)
 }
