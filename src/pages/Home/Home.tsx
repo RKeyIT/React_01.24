@@ -3,95 +3,74 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { Heading } from '../../shared/Heading/Heading'
-import { useEffect, useState } from 'react'
+import { useGameContext } from '../../context/GameContext'
 
 export const Home = () => {
-  // FIXME - Create reducer to replece logic of this component
-  const BASEURL = `https://opentdb.com/api.php?`
+  const [context, setContext] = useGameContext()
 
-  const [state, setState] = useState({
-    questionAmountMin: 5,
-    questionAmountMax: 15,
-    currentQuestionAmount: 5,
-    category: QuizCategories.ANY.id,
-    difficulty: QuizDifficulties.ANY.id,
-    type: QuizType.ANY.id,
-    time: QuizTime.ANY.id
-  })
-
-  const [apiURL, setApiURL] = useState(
-    `https://opentdb.com/api.php?amount=${state.currentQuestionAmount}`
-  )
-
-  const setCategory = (id: string) => {
-    setState((prev) => ({
+  const setQuestionAmount = (id: number) => {
+    setContext(prev => ({
       ...prev,
-      category: id
+      gameSettings: {
+        ...prev.gameSettings,
+        questionAmount: id
+      }
     }))
   }
-  const setDifficulty = (id: string) => {
-    setState((prev) => ({
+  // const setQuestionAmount = (id: number) => settings.questionAmount = id
+  const setCategory = (id: string) => {
+    setContext(prev => ({
       ...prev,
-      difficulty: id
+      gameSettings: {
+        ...prev.gameSettings,
+        ['category']: id
+      }
+    }))
+  }
+  const setDiff = (id: string) => {
+    setContext(prev => ({
+      ...prev,
+      gameSettings: {
+        ...prev.gameSettings,
+        difficulty: id
+      }
     }))
   }
   const setType = (id: string) => {
-    setState((prev) => ({
+    setContext(prev => ({
       ...prev,
-      type: id
+      gameSettings: {
+        ...prev.gameSettings,
+        type: id
+      }
     }))
   }
   const setTime = (id: string) => {
-    setState((prev) => ({
+    setContext(prev => ({
       ...prev,
-      time: id
-    }))
-  }
-  const setQuestionAmount = (count: number) => {
-    setState((prev) => ({
-      ...prev,
-      currentQuestionAmount: count
+      gameSettings: {
+        ...prev.gameSettings,
+        time: id
+      }
     }))
   }
 
-  const onStartHandler = () => {
-    console.log(apiURL)
-  }
-
-  const onShowStatisticsHandler = () => {
-    console.log('STATISTICS')
-  }
-
-  useEffect(() => {
-    const { category, currentQuestionAmount, difficulty, type } = state
-    // Request example: https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple
-
-    let urlParams = 'amount=' + currentQuestionAmount
-
-    if (category !== 'any') urlParams += '&category=' + category
-    if (difficulty !== 'any') urlParams += '&difficulty=' + difficulty
-    if (type !== 'any') urlParams += '&type=' + type
-
-    setApiURL(BASEURL + urlParams)
-  }, [state, BASEURL])
+  const onStartHandler = () => console.log(context.getApiUrl())
+  const onShowStatisticsHandler = () => console.log(context)
 
   return (
     <div className={styles.Home}>
-      <div className={styles.heading}>
-        <Heading pageName="Home" additionalText="Chose the quiz options!" />
-      </div>
       <div className={styles.selects}>
         <Select callback={setCategory} optionObject={QuizCategories} />
-        <Select callback={setDifficulty} optionObject={QuizDifficulties} />
+        <Select callback={setDiff} optionObject={QuizDifficulties} />
         <Select callback={setType} optionObject={QuizType} />
         <Select callback={setTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
         <NumberInput
           callback={setQuestionAmount}
-          min={state.questionAmountMin}
-          max={state.questionAmountMax}
+          min={context.minQuestionsCount}
+          max={context.maxQuestionsCount}
           label="Chose the number of questions: "
         />
       </div>

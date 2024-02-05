@@ -1,0 +1,14 @@
+.Game {
+    display: grid;
+    grid-template-rows: 42px 0.4em 100px auto 47px;
+    justify-content: center;
+    gap: 1em;
+}
+
+.answers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em
+}
