@@ -7,8 +7,8 @@ import { Result } from '../../pages/Result/Result'
 import { Statistics } from '../../pages/Statistics/Statistics'
 import { CloseButton } from '../../shared/CloseButton/CloseButton'
 import { Heading } from '../../shared/Heading/Heading'
-import styles from './ContentContainer.module.css'
 import { FC } from 'react'
+import styles from './ContentContainer.module.css'
 
 export const ContentContainer: FC = () => {
   const [context] = useGameContext()
