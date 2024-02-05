@@ -1,4 +1,9 @@
-.Checkbox {
+.Multiple,
+.Boolean {
+    height: 110px;
+}
+
+.Multiple {
     display: grid;
     width: 100%;
     gap: 1em;
@@ -6,7 +11,7 @@
     grid-template-rows: 1fr 1fr;
 }
 
-.Radio {
+.Boolean {
     display: grid;
     width: 100%;
     gap: 1em;
@@ -14,10 +19,6 @@
     grid-template-rows: 1fr;
 }
 
-.Checkbox,
-.Radio {
-    height: 110px;
-}
 
 .checkboxLabel,
 .trueLabel,

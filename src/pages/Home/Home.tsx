@@ -3,13 +3,13 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { useGameContext } from '../../context/GameContext'
+import { useGameContext } from '../../context/useGameContext'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
 
   const setQuestionAmount = (id: number) => {
-    setContext(prev => ({
+    setContext((prev) => ({
       ...prev,
       gameSettings: {
         ...prev.gameSettings,
@@ -19,7 +19,7 @@ export const Home = () => {
   }
   // const setQuestionAmount = (id: number) => settings.questionAmount = id
   const setCategory = (id: string) => {
-    setContext(prev => ({
+    setContext((prev) => ({
       ...prev,
       gameSettings: {
         ...prev.gameSettings,
@@ -28,7 +28,7 @@ export const Home = () => {
     }))
   }
   const setDiff = (id: string) => {
-    setContext(prev => ({
+    setContext((prev) => ({
       ...prev,
       gameSettings: {
         ...prev.gameSettings,
@@ -37,7 +37,7 @@ export const Home = () => {
     }))
   }
   const setType = (id: string) => {
-    setContext(prev => ({
+    setContext((prev) => ({
       ...prev,
       gameSettings: {
         ...prev.gameSettings,
@@ -46,7 +46,7 @@ export const Home = () => {
     }))
   }
   const setTime = (id: string) => {
-    setContext(prev => ({
+    setContext((prev) => ({
       ...prev,
       gameSettings: {
         ...prev.gameSettings,

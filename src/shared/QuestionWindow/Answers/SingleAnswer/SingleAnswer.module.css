@@ -1,0 +1,31 @@
+/* .SingleAnswer {} */
+
+.label {
+    display: flex;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid;
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: var(--color-ui-white);
+    cursor: pointer;
+    transition: var(--anim-fast);
+    box-shadow: 0 0 3px 0px inset;
+}
+
+.label:hover {
+    box-shadow: 0 0 5px 0px inset;
+    background-color: var(--color-yellow-min);
+}
+
+.hiddenInput {
+    display: none;
+}
+
+.hiddenInput:checked+.label {
+    background-color: var(--color-yellow-light);
+}
+
+.hiddenInput:checked+.label:hover {
+    background-color: var(--color-yellow-hover);
+}

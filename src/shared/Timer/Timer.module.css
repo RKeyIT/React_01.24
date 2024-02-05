@@ -18,9 +18,39 @@
 .Timer.halfMinute {
     color: var(--color-orange-dark);
     box-shadow: inset 0 0 10px 0 var(--color-orange-dark);
+    animation: orange-alert ease 2s infinite;
 }
 
 .Timer.criticalTime {
     color: var(--color-red-dark);
     box-shadow: inset 0 0 20px 5px var(--color-red-light);
+    animation: red-alert ease 1s infinite;
+}
+
+@keyframes orange-alert {
+    0% {
+        box-shadow: 0 0 5px 0px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
+    }
+
+    50% {
+        box-shadow: 0 0 10px 1px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
+    }
+
+    100% {
+        box-shadow: 0 0 5px 0px var(--color-orange-dark), inset 0 0 10px 0px var(--color-orange-dark);
+    }
+}
+
+@keyframes red-alert {
+    0% {
+        box-shadow: 0 0 10px 2px var(--color-red-light), inset 0 0 20px 2px var(--color-red-light);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 5px var(--color-red-light), inset 0 0 20px 5px var(--color-red-light);
+    }
+
+    100% {
+        box-shadow: 0 0 10px 2px var(--color-red-light), inset 0 0 20px 2px var(--color-red-light);
+    }
 }
