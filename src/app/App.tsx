@@ -7,11 +7,8 @@ import { CloseButton } from '../shared/CloseButton/CloseButton'
 import { Game } from '../pages/Game/Game'
 import { Result } from '../pages/Result/Result'
 import { Statistics } from '../pages/Statistics/Statistics'
-import { useGameContext } from '../context/useGameContext'
 
 export const App = () => {
-  const [context] = useGameContext()
-
   return (
     <div className={styles.App}>
       <h1 className={styles.Header}>QUIZzTRON</h1>
@@ -24,11 +21,11 @@ export const App = () => {
             {/* TODO - Replace next title by state or context value */}
             <CloseButton title="Close quiz" />
           </div>
-          <Heading pageName={context.currentPage} />
-          {context.currentPage === 'Game' && <Game />}
-          {context.currentPage === 'Home' && <Home />}
-          {context.currentPage === 'Result' && <Result />}
-          {context.currentPage === 'Statistics' && <Statistics />}
+          <Heading pageName={'Game'} />
+          {/* <Home /> */}
+          <Game />
+          {/* <Result />
+          <Statistics /> */}
         </div>
       </GameProvider>
       <h2 className={styles.Footer}>QUIZzTRON</h2>
