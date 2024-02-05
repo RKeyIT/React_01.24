@@ -24,11 +24,10 @@ export const App = () => {
                 <CloseButton title='Close quiz'/>
             </div>
             <Heading pageName={context.currentPage} />
-            <Home />
-            {/* {context.currentPage === 'Game' && <Game />}
+            {context.currentPage === 'Game' && <Game />}
             {context.currentPage === 'Home' && <Home />}
             {context.currentPage === 'Result' && <Result />}
-            {context.currentPage === 'Statistics' && <Statistics />} */}
+            {context.currentPage === 'Statistics' && <Statistics />}
           </div>
         </GameProvider>
       <h2 className={styles.Footer}>QUIZzTRON</h2>
