@@ -1,7 +1,7 @@
 import styles from './App.module.css'
 import { GameProvider } from '../context/GameContext'
 import { AppTitles } from '../entities/AppBackground/AppTitles'
-import { ContentContainer } from '../entities/ContentContainer/ContentContainer'
+import { ContentContainer } from '../features/ContentContainer/ContentContainer'
 
 export const App = () => {
   return (

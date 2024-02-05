@@ -1,6 +1,6 @@
 import { PageNames } from '../../context/GameContext.types'
 import { useGameContext } from '../../context/useGameContext'
-import { Navigation } from '../../features/Navigation/Navigation'
+import { Navigation } from '../Navigation/Navigation'
 import { Game } from '../../pages/Game/Game'
 import { Home } from '../../pages/Home/Home'
 import { Result } from '../../pages/Result/Result'
