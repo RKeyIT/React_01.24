@@ -52,16 +52,16 @@ export const Timer: FC<IProps> = ({ seconds = 12 }) => {
   function isCriticalTime() {
     return time.minutes === 0 && time.seconds <= 10 && time.seconds > 0
   }
-  
+
   function isTimeOut() {
     return time.minutes === 0 && time.seconds <= 0
   }
 
   return (
     <span
-      className={`${
-        styles.Timer} ${isHalfMinute() && styles.halfMinute} ${
-          isCriticalTime() && styles.criticalTime} ${isTimeOut() && styles.timeOut}`}>
+      className={`${styles.Timer} ${isHalfMinute() && styles.halfMinute} ${
+        isCriticalTime() && styles.criticalTime
+      } ${isTimeOut() && styles.timeOut}`}>
       {getFormattedTime()}
     </span>
   )

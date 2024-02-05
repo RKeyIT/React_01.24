@@ -1,0 +1,27 @@
+.ContentContainer {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    box-sizing: border-box;
+    border: 2px solid var(--color-border-main);
+    background-color: var(--color-bg-main);
+    border-radius: 1em;
+    padding: 1.5em;
+
+    box-shadow: 0 0 10px 1px var(--color-border-main);
+    animation: shadow-resizer 5s infinite;
+}
+
+
+
+@keyframes shadow-resizer {
+    0% {
+        box-shadow: 0 0 10px 1px var(--color-border-main);
+    }
+
+    50% {
+        box-shadow: 0 0 14px 2px var(--color-border-main);
+    }
+}

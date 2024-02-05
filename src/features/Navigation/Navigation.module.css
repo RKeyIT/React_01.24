@@ -1,5 +1,8 @@
 .Navigation {
     /* font-family: 'Sixtyfour', sans-serif; */
+    position: absolute;
+    top: 0;
+    left: 2em;
     transform: skew(-40deg);
     border: 0.1em outset var(--color-border-main);
     background-color: var(--color-darker-main);

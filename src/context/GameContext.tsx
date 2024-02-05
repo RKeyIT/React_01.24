@@ -56,7 +56,6 @@ const defaultContext: IGameContext = {
 export const GameContext = createContext<ProviderValue>([defaultContext, () => {}])
 
 export const GameProvider: FC<IGameProvider> = ({ children }) => {
-  // FIXME - How to add setContext to a value of Provider?!
   const [context, setContext] = useState(defaultContext)
 
   return <GameContext.Provider value={[context, setContext]}>{children}</GameContext.Provider>

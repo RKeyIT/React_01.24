@@ -1,4 +1,7 @@
 .CloseButton {
+    position: absolute;
+    top: 0;
+    right: 1em;
     background-color: var(--color-red-light);
     transition: var(--anim-fast);
     border: none;
