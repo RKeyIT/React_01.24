@@ -7,7 +7,7 @@ interface IGameProvider {
 }
 
 const defaultContext: IGameContext = {
-  currentPage: PageNames.GAME,
+  currentPage: PageNames.RESULT,
   isInGame: false,
   minQuestionsCount: 5,
   maxQuestionsCount: 15,

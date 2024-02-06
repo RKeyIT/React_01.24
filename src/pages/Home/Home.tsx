@@ -4,6 +4,7 @@ import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 import { useGameContext } from '../../context/useGameContext'
+import { PageNames } from '../../context/GameContext.types'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
@@ -55,8 +56,19 @@ export const Home = () => {
     }))
   }
 
-  const onStartHandler = () => console.log(context.getApiUrl())
-  const onShowStatisticsHandler = () => console.log(context)
+  const onStartHandler = () => {
+    setContext((prev) => ({
+      ...prev,
+      currentPage: PageNames.GAME
+    }))
+    console.log(context.getApiUrl())
+  }
+  const onShowStatisticsHandler = () => {
+    setContext((prev) => ({
+      ...prev,
+      currentPage: PageNames.STATISTICS
+    }))
+  }
 
   return (
     <div className={styles.Home}>

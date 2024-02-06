@@ -11,12 +11,19 @@ import { FC } from 'react'
 import styles from './ContentContainer.module.css'
 
 export const ContentContainer: FC = () => {
-  const [context] = useGameContext()
+  const [context, setContext] = useGameContext()
+
+  const onCloseButton = () => {
+    setContext((prev) => ({
+      ...prev,
+      currentPage: PageNames.HOME
+    }))
+  }
 
   return (
     <div className={styles.ContentContainer}>
       <Navigation />
-      <CloseButton title="Close quiz" />
+      <CloseButton callback={onCloseButton} title="Close quiz" />
       <Heading pageName={context.currentPage} />
       {context.currentPage === PageNames.HOME && <Home />}
       {context.currentPage === PageNames.GAME && <Game />}
