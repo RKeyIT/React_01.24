@@ -4,14 +4,14 @@
 }
 
 .congratulations {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: var(--ui-element-padding)
 }
 
 .summary {
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
+    gap: 0.5em;
 }
 
 .summary> :nth-child(-n + 2) {
@@ -26,11 +26,4 @@
 
 .summary> :last-child {
     grid-column-start: span 2;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    gap: var(--ui-element-padding);
 }

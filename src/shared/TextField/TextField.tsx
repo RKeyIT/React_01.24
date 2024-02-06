@@ -11,5 +11,6 @@ const lorem =
   'iure nihil aliquam cupiditate harum dolor reiciendis sint dolorum doloremque quisquam nostrum!'
 
 export const TextField: FC<IProps> = ({ children = lorem }) => {
-  return <div className={styles.TextField}>{children}</div>
+  return <p className={styles.TextField}>{children}</p>
+
 }
