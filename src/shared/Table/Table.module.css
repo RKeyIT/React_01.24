@@ -1,0 +1,41 @@
+.Table {
+    display: grid;
+    border: 2px solid var(--color-ui-border);
+    border-radius: var(--ui-element-padding);
+}
+
+.tableName {
+    font-weight: 900;
+    padding-left: var(--ui-element-padding);
+    padding-right: var(--ui-element-padding);
+    text-align: center;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    background-color: var(--color-main-dark);
+    padding-top: calc(var(--ui-element-padding) / 2);
+    padding-bottom: calc(var(--ui-element-padding) / 2);
+}
+
+.row:nth-child(even) {
+    background-color: var(--color-main-light);
+}
+
+.category,
+.description {
+    text-transform: capitalize;
+    padding-left: var(--ui-element-padding);
+    padding-right: var(--ui-element-padding);
+}
+
+.category {
+    font-weight: 600;
+}
+
+.description {
+    display: flex;
+    justify-self: flex-end;
+}
