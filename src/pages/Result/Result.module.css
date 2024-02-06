@@ -17,7 +17,6 @@
 .summary> :nth-child(-n + 2) {
     display: flex;
     align-items: flex-end;
-    overflow: hidden;
 }
 
 .summary> :nth-child(2) {
@@ -26,4 +25,11 @@
 
 .summary> :last-child {
     grid-column-start: span 2;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: var(--ui-element-padding);
 }
