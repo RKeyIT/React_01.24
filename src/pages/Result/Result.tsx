@@ -1,6 +1,7 @@
 import { PageNames } from '../../context/GameContext.types'
 import { useGameContext } from '../../context/useGameContext'
 import { Button } from '../../shared/Button/Button'
+import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { Table } from '../../shared/Table/Table'
 import { TextField } from '../../shared/TextField/TextField'
@@ -26,6 +27,7 @@ export const Result: FC = () => {
 
   return (
     <div className={styles.Result}>
+      <Heading pageName={PageNames.RESULT} />
       <div className={styles.congratulations}>
         <TextField>Thank you for completing this quiz. Here are your results</TextField>
         <Table name="Quiz configuration" />

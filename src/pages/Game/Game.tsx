@@ -5,6 +5,8 @@ import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
 import { FC, useState } from 'react'
+import { PageNames } from '../../context/GameContext.types'
+import { Heading } from '../../shared/Heading/Heading'
 
 export const Game: FC = () => {
   const [answersType, setAnswersType] = useState<'boolean' | 'multiply'>('boolean')
@@ -15,6 +17,7 @@ export const Game: FC = () => {
 
   return (
     <div className={styles.Game}>
+      <Heading pageName={PageNames.GAME} />
       <Timer />
       <ProgressBar />
       <TextField />

@@ -5,6 +5,7 @@ import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 import { useGameContext } from '../../context/useGameContext'
 import { PageNames } from '../../context/GameContext.types'
+import { Heading } from '../../shared/Heading/Heading'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
@@ -72,6 +73,7 @@ export const Home = () => {
 
   return (
     <div className={styles.Home}>
+      <Heading pageName={PageNames.HOME} />
       <div className={styles.selects}>
         <Select callback={setCategory} optionObject={QuizCategories} />
         <Select callback={setDiff} optionObject={QuizDifficulties} />
