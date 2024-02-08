@@ -1,5 +1,11 @@
+.a {
+    text-decoration: none;
+}
+
 .NavButton {
-    background-color: var(--color-main-light);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-main-dark);
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
     border: 2px outset;
@@ -7,25 +13,23 @@
     cursor: pointer;
     line-height: 1em;
     padding: var(--ui-element-padding);
+    border-radius: var(--ui-element-padding);
     height: var(--ui-element-height);
 }
 
+a.active>.NavButton {
+    background-color: var(--color-main-light);
+}
+
 .NavButton:hover {
-    background-color: var(--color-main-mid);
+    background-color: var(--color-main-light);
 }
 
 .NavButton:active {
-    background-color: var(--color-main-dark);
+    background-color: var(--color-main-mid);
 }
 
 .NavButton:disabled {
-    background-color: var(--color-main-mid);
+    background-color: var(--color-ui-disabled);
     cursor: default;
-}
-
-.NavButton.active,
-.NavButton.active:hover,
-.NavButton.active:active {
-    background-color: var(--color-main-mid);
-    border: 2px inset
 }

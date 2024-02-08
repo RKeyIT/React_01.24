@@ -1,34 +1,39 @@
-import { createBrowserRouter } from "react-router-dom";
-import { Home } from "../pages/Home/Home";
-import { Game } from "../pages/Game/Game";
-import { Result } from "../pages/Result/Result";
-import { Statistics } from "../pages/Statistics/Statistics";
-import { ContentContainer } from "../features/ContentContainer/ContentContainer";
+import { createBrowserRouter } from 'react-router-dom'
+import { Home } from '../pages/Home/Home'
+import { Game } from '../pages/Game/Game'
+import { Result } from '../pages/Result/Result'
+import { Statistics } from '../pages/Statistics/Statistics'
+import { ContentContainer } from '../features/ContentContainer/ContentContainer'
+import { URLs } from './router.types'
 
 const home = {
-    path: '/',
-    element: <Home />,
+  path: URLs.HOME,
+  element: <Home />
 }
 
 const game = {
-    path: '/game',
-    element: <Game />,
+  path: URLs.GAME,
+  element: <Game />
 }
 
 const result = {
-    path: '/result',
-    element: <Result />,
+  path: URLs.RESULT,
+  element: <Result />
 }
 
 const statistics = {
-    path: '/statistics',
-    element: <Statistics />,
+  path: URLs.STATISTICS,
+  element: <Statistics />
 }
 
-const root = [{
+const root = [
+  {
     path: '/',
     element: <ContentContainer />,
-    children: [ home, game, result, statistics ]
-}]
+    children: [home, game, result, statistics]
+  }
+]
 
+// NOTE - Useless linter warning disabling
+// eslint-disable-next-line react-refresh/only-export-components
 export const ROUTER = createBrowserRouter(root)

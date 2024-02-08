@@ -1,7 +1,7 @@
 .Game {
     display: grid;
-    grid-template-rows: auto auto 4em auto auto;
-    gap: 1em;
+    grid-template-rows: auto auto auto 4em auto auto;
+    align-content: space-between;
 }
 
 .answers {

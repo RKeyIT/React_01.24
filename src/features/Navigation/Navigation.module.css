@@ -3,8 +3,8 @@
     position: absolute;
     top: 0;
     left: 2em;
-    transform: skew(-40deg);
     border: 0.1em outset var(--color-border-main);
+    border-radius: 0 0 0.5em 0.5em;
     background-color: var(--color-darker-main);
     box-sizing: border-box;
     display: flex;

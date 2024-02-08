@@ -20,7 +20,9 @@ export const Game: FC = () => {
       <Heading pageName={PageNames.GAME} />
       <Timer />
       <ProgressBar />
-      <TextField />
+      <div className={styles.question}>
+        <TextField />
+      </div>
       <div className={styles.answers}>
         {answersType === 'boolean' ? <Answers type="boolean" /> : <Answers type="multiply" />}
       </div>
