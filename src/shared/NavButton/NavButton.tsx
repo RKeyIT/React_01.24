@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import { PageNames } from '../../context/GameContext.types'
-import { useGameContext } from '../../context/useGameContext'
 import { URLs } from '../../router/router.types'
 import styles from './NavButton.module.css'
 import { FC } from 'react'
