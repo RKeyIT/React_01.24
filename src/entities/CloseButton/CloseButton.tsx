@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './CloseButton.module.css'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { URLs } from '../../router/router.types'
 import { createPortal } from 'react-dom'
 import { ModalGameEnder } from '../ModalGameEnder/ModalGameEnder'
@@ -16,6 +16,12 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
 
   const portalTarget = document.getElementById('ContentContainer')
   const disabled = path === URLs.HOME ? true : false
+
+  useEffect(() => {
+    if (isModalVisible && path !== URLs.GAME) {
+      setModalVisible(false)
+    }
+  }, [path])
 
   const onCloseButton = () => {
     if(path === URLs.HOME) return
