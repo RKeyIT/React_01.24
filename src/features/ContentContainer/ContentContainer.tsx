@@ -1,5 +1,5 @@
 import { Navigation } from '../Navigation/Navigation'
-import { CloseButton } from '../../shared/CloseButton/CloseButton'
+import { CloseButton } from '../../entities/CloseButton/CloseButton'
 import { FC } from 'react'
 import styles from './ContentContainer.module.css'
 import { Outlet } from 'react-router-dom'
