@@ -7,18 +7,25 @@ import styles from './Game.module.css'
 import { FC, useState } from 'react'
 import { PageNames } from '../../context/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
+import { useNavigate } from 'react-router-dom'
+import { URLs } from '../../router/router.types'
 
 export const Game: FC = () => {
+  const navigate = useNavigate()
   const [answersType, setAnswersType] = useState<'boolean' | 'multiply'>('boolean')
 
   const acceptHandler = () => {
     setAnswersType(answersType === 'boolean' ? 'multiply' : 'boolean')
   }
 
+  const timeoutCallback = () => {
+    navigate(URLs.RESULT)
+  }
+
   return (
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
-      <Timer />
+      <Timer timeoutCallback={timeoutCallback}/>
       <ProgressBar />
       <div className={styles.question}>
         <TextField />

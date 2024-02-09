@@ -9,11 +9,6 @@ interface IProps {
   title?: string
 }
 
-/* TODO
-- After answering the last question or if timer ends on the main quiz screen, 
-  we need to navigate users to the result screen
-*/
-
 export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   const [isModalVisible, setModalVisible] = useState<boolean>(false)
   const path = useLocation().pathname
