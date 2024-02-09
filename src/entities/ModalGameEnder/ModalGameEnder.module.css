@@ -1,0 +1,32 @@
+.ModalGameEnder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+
+    background-color: var(--color-main-modal);
+    border-radius: var(--border-rad-font);
+}
+
+.confirmation {
+    background-color: var(--color-main-light);
+    padding: 1em;
+    box-sizing: border-box;
+    border: var(--ui-element-padding) solid var(--color-ui-border);
+    border-radius: var(--ui-element-padding);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--ui-element-padding);
+}
+
+.confirmation :first-child {
+    grid-column: 1 / span 2;
+}

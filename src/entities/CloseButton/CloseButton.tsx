@@ -1,26 +1,25 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './CloseButton.module.css'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { URLs } from '../../router/router.types'
+import { createPortal } from 'react-dom'
+import { ModalGameEnder } from '../ModalGameEnder/ModalGameEnder'
 
 interface IProps {
   title?: string
 }
 
 /* TODO
-- Upon pressing the “End quiz” button on the main quiz screen we should see a 
-  modal window with some text and 2 buttons - “Cancel” and “Confirm”. 
-  Upon pressing “Cancel” button, we just close this modal window, but upon pressing 
-  “Confirm” button we need to navigate user back to configuration screen
-
 - After answering the last question or if timer ends on the main quiz screen, 
   we need to navigate users to the result screen
 */
 
 export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
+  const [isModalVisible, setModalVisible] = useState<boolean>(false)
   const path = useLocation().pathname
   const navigate = useNavigate()
 
+  const portalTarget = document.getElementById('ContentContainer')
   const disabled = path === URLs.HOME ? true : false
 
   const onCloseButton = () => {
@@ -29,12 +28,28 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
     if (path !== URLs.GAME) {
       return navigate(URLs.HOME)
     }
+
+    if (path === URLs.GAME && portalTarget !== null) {
+      setModalVisible(true)
+    }
   }
+
+  const onCancelModal = () => {
+    setModalVisible(false)
+  }
+  const onEndGame = () => {
+    setModalVisible(false)
+    return navigate(URLs.HOME)
+  }
+
+  const ModalWithProps = <ModalGameEnder cancel={onCancelModal} close={onEndGame} />
+
   
-  return (
-      <button disabled={disabled} onClick={onCloseButton} 
-              type="button" title={title} className={styles.CloseButton}>
-        x
-      </button>
-  )
+  return <>
+    <button disabled={disabled} onClick={onCloseButton} 
+          type="button" title={title} className={styles.CloseButton}>
+    x
+  </button>
+  {isModalVisible && portalTarget && createPortal(ModalWithProps, portalTarget)}
+</>
 }
