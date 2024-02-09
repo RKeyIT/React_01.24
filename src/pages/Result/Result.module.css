@@ -32,3 +32,7 @@
     align-items: flex-end;
     gap: var(--ui-element-padding);
 }
+
+.buttons a {
+    width: 100%;
+}

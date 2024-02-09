@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom'
 import { PageNames } from '../../context/GameContext.types'
-import { useGameContext } from '../../context/useGameContext'
 import { Button } from '../../shared/Button/Button'
 import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
@@ -7,24 +7,9 @@ import { Table } from '../../shared/Table/Table'
 import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
 import { FC } from 'react'
+import { URLs } from '../../router/router.types'
 
 export const Result: FC = () => {
-  const [, setContext] = useGameContext()
-
-  const onRestart = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.GAME
-    }))
-  }
-
-  const onAnotherQuiz = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.HOME
-    }))
-  }
-
   return (
     <div className={styles.Result}>
       <Heading pageName={PageNames.RESULT} />
@@ -38,8 +23,12 @@ export const Result: FC = () => {
         <ProgressBar />
       </div>
       <div className={styles.buttons}>
-        <Button callback={onRestart} content="Restart" />
-        <Button callback={onAnotherQuiz} content="Chose another quiz" />
+        <Link to={URLs.GAME}>
+          <Button content="Restart" />
+        </Link>
+        <Link to={URLs.HOME}>
+          <Button content="Chose another quiz" />
+        </Link>
       </div>
     </div>
   )
