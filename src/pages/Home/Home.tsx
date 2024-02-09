@@ -6,6 +6,8 @@ import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../glob
 import { useGameContext } from '../../context/useGameContext'
 import { PageNames } from '../../context/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
+import { Link } from 'react-router-dom'
+import { URLs } from '../../router/router.types'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
@@ -57,23 +59,11 @@ export const Home = () => {
     }))
   }
 
-  const onStartHandler = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.GAME
-    }))
-    console.log(context.getApiUrl())
-  }
-  const onShowStatisticsHandler = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.STATISTICS
-    }))
-  }
-
   return (
     <div className={styles.Home}>
-      <Heading pageName={PageNames.HOME} />
+      <div className={styles.heading}>
+        <Heading pageName={PageNames.HOME} />
+      </div>
       <div className={styles.selects}>
         <Select callback={setCategory} optionObject={QuizCategories} />
         <Select callback={setDiff} optionObject={QuizDifficulties} />
@@ -89,8 +79,12 @@ export const Home = () => {
         />
       </div>
       <div className={styles.buttons}>
-        <Button callback={onShowStatisticsHandler} content="See my statistics" style="white" />
-        <Button callback={onStartHandler} content="Start quiz" style="green" />
+        <Link to={URLs.STATISTICS}>
+          <Button content="See my statistics" style="white" />
+        </Link>
+        <Link to={URLs.GAME}>
+          <Button content="Start quiz" style="green" />
+        </Link>
       </div>
     </div>
   )
