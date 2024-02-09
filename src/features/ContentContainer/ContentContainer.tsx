@@ -8,7 +8,7 @@ export const ContentContainer: FC = () => {
   return (
     <div className={styles.ContentContainer}>
       <Navigation />
-      <CloseButton callback={() => {}} title="Close quiz" />
+      <CloseButton title="Close quiz" />
       <Outlet />
     </div>
   )
