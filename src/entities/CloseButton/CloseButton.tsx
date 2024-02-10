@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './CloseButton.module.css'
 import { FC, useEffect, useState } from 'react'
-import { URLs } from '../../router/router.types'
+import { URLS } from '../../router/router.types'
 import { createPortal } from 'react-dom'
 import { ModalGameEnder } from '../ModalGameEnder/ModalGameEnder'
 
@@ -15,22 +15,22 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   const navigate = useNavigate()
 
   const portalTarget = document.getElementById('ContentContainer')
-  const disabled = path === URLs.HOME ? true : false
+  const disabled = path === URLS.HOME ? true : false
 
   useEffect(() => {
-    if (isModalVisible && path !== URLs.GAME) {
+    if (isModalVisible && path !== URLS.GAME) {
       setModalVisible(false)
     }
   }, [path])
 
   const onCloseButton = () => {
-    if(path === URLs.HOME) return
+    if(path === URLS.HOME) return
 
-    if (path !== URLs.GAME) {
-      return navigate(URLs.HOME)
+    if (path !== URLS.GAME) {
+      return navigate(URLS.HOME)
     }
 
-    if (path === URLs.GAME && portalTarget !== null) {
+    if (path === URLS.GAME && portalTarget !== null) {
       setModalVisible(true)
     }
   }
@@ -40,7 +40,7 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   }
   const onEndGame = () => {
     setModalVisible(false)
-    return navigate(URLs.HOME)
+    return navigate(URLS.HOME)
   }
 
   const ModalWithProps = <ModalGameEnder cancel={onCancelModal} close={onEndGame} />

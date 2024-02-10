@@ -7,7 +7,7 @@ import { Table } from '../../shared/Table/Table'
 import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
 import { FC } from 'react'
-import { URLs } from '../../router/router.types'
+import { URLS } from '../../router/router.types'
 
 export const Result: FC = () => {
   return (
@@ -23,10 +23,10 @@ export const Result: FC = () => {
         <ProgressBar />
       </div>
       <div className={styles.buttons}>
-        <Link to={URLs.GAME}>
+        <Link to={URLS.GAME}>
           <Button content="Restart" />
         </Link>
-        <Link to={URLs.HOME}>
+        <Link to={URLS.HOME}>
           <Button content="Chose another quiz" />
         </Link>
       </div>

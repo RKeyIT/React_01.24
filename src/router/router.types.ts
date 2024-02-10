@@ -1,6 +1,6 @@
-export enum URLs {
+export enum URLS {
   HOME = '/',
   GAME = '/game',
   RESULT = '/result',
-  STATISTICS = '/statistics'
+  STATISTICS = '/statistics',
 }

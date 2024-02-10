@@ -8,7 +8,7 @@ import { FC, useState } from 'react'
 import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
-import { URLs } from '../../router/router.types'
+import { URLS } from '../../router/router.types'
 
 export const Game: FC = () => {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ export const Game: FC = () => {
   }
 
   const timeoutCallback = () => {
-    navigate(URLs.RESULT)
+    navigate(URLS.RESULT)
   }
 
   return (

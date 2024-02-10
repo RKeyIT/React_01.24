@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { PageNames } from '../../context/GameContext/GameContext.types'
-import { URLs } from '../../router/router.types'
+import { URLS } from '../../router/router.types'
 import styles from './NavButton.module.css'
 import { FC } from 'react'
 
 interface IProps {
   content: PageNames
-  navLink: URLs
+  navLink: URLS
 }
 
 export const NavButton: FC<IProps> = ({ navLink, content }) => {

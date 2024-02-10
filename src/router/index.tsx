@@ -4,25 +4,25 @@ import { Game } from '../pages/Game/Game'
 import { Result } from '../pages/Result/Result'
 import { Statistics } from '../pages/Statistics/Statistics'
 import { ContentContainer } from '../features/ContentContainer/ContentContainer'
-import { URLs } from './router.types'
+import { URLS } from './router.types'
 
 const home = {
-  path: URLs.HOME,
+  path: URLS.HOME,
   element: <Home />
 }
 
 const game = {
-  path: URLs.GAME,
+  path: URLS.GAME,
   element: <Game />
 }
 
 const result = {
-  path: URLs.RESULT,
+  path: URLS.RESULT,
   element: <Result />
 }
 
 const statistics = {
-  path: URLs.STATISTICS,
+  path: URLS.STATISTICS,
   element: <Statistics />
 }
 

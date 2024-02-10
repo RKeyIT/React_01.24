@@ -7,7 +7,7 @@ import { useGameContext } from '../../context/GameContext/useGameContext'
 import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { Link } from 'react-router-dom'
-import { URLs } from '../../router/router.types'
+import { URLS } from '../../router/router.types'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
@@ -79,10 +79,10 @@ export const Home = () => {
         />
       </div>
       <div className={styles.buttons}>
-        <Link to={URLs.STATISTICS}>
+        <Link to={URLS.STATISTICS}>
           <Button content="See my statistics" style="white" />
         </Link>
-        <Link to={URLs.GAME}>
+        <Link to={URLS.GAME}>
           <Button content="Start quiz" style="green" />
         </Link>
       </div>
