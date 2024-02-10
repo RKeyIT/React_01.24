@@ -21,7 +21,6 @@ export const Home = () => {
       }
     }))
   }
-  // const setQuestionAmount = (id: number) => settings.questionAmount = id
   const setCategory = (id: string) => {
     setContext((prev) => ({
       ...prev,

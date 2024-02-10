@@ -13,37 +13,24 @@ export const Answers: FC<IProps> = ({ type, correct, incorrect }) => {
   const answerstArr = fillAnswersArrRandomely()
 
   function fillAnswersArrRandomely() {
-    const arr = [correct]
+    const arr: string[] = []
 
     incorrectAnswers.forEach(el => {
-      if (Math.round(Math.random())) {
-        arr.push(el)
-      } else {
-        arr.unshift(el)
-      }
+      Math.round(Math.random()) ? arr.push(el) : arr.unshift(el)
     })
+
+    const randomIndex = Math.round(Math.random() * arr.length)
+    
+    arr.splice(randomIndex, 0, correct)
 
     return arr
   }
 
-  console.log(answerstArr)
-
   return (
     <div className={type === 'multiple' ? styles.Multiple : styles.Boolean}>
-      {type === 'multiple' && (
-        <>
-          <SingleAnswer id={1} answer="answer 1" />
-          <SingleAnswer id={2} answer="answer 2" />
-          <SingleAnswer id={3} answer="answer 3" />
-          <SingleAnswer id={4} answer="answer 4" />
-        </>
-      )}
-      {type === 'boolean' && (
-        <>
-          <SingleAnswer id={1} answer="True" />
-          <SingleAnswer id={2} answer="False" />
-        </>
-      )}
+      {answerstArr.map((answer, index) => {
+        return <SingleAnswer key={'SingleAnswer ' + index} id={index} answer={answer} />
+      })}
     </div>
   )
 }
