@@ -15,10 +15,13 @@ export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
 
   const navigate = useNavigate()
-  const [answersType, setAnswersType] = useState<'boolean' | 'multiply'>('boolean')
+
+  const [answersType, setAnswersType] = useState<'boolean' | 'multiple'>('boolean')
   const [questionObjArray, setQuestionObjArray] = useState<any[]>([])
   const [currentQuestIndex, setCurrentQuestIndex] = useState(0);
   const [currentQuest, setCurrentQuest] = useState('')
+  const [correct, setCorrect] = useState('')
+  const [incorrect, setIncorrect] = useState('')
 
   useEffect(() => {
    (async () => {
@@ -30,13 +33,20 @@ export const Game: FC = () => {
   }, [])
 
   useEffect(() => {
-    if(questionObjArray[currentQuestIndex] && questionObjArray[currentQuestIndex].question) {
-      setCurrentQuest(questionObjArray[currentQuestIndex].question)
+    if(questionObjArray[currentQuestIndex]) {
+      const currentQuestObject = questionObjArray[currentQuestIndex]
+
+      const {question, type, correct_answer, incorrect_answers} = currentQuestObject
+
+      setCurrentQuest(question)
+      setAnswersType(type)
+      setCorrect(correct_answer)
+      setIncorrect(incorrect_answers)
     }
   }, [questionObjArray, currentQuestIndex])
 
   const acceptHandler = () => {
-    setAnswersType(answersType === 'boolean' ? 'multiply' : 'boolean')
+    setAnswersType(answersType === 'boolean' ? 'multiple' : 'boolean')
   }
 
   const timeoutCallback = () => {
@@ -59,7 +69,7 @@ export const Game: FC = () => {
         </TextField>
       </div>
       <div className={styles.answers}>
-        {answersType === 'boolean' ? <Answers type="boolean" /> : <Answers type="multiply" />}
+        <Answers type={answersType} correct={correct} incorrect={incorrect} />
       </div>
       <Button content="Accept" style="green" callback={acceptHandler} />
     </div>
