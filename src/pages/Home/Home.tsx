@@ -65,10 +65,10 @@ export const Home = () => {
         <Heading pageName={PageNames.HOME} />
       </div>
       <div className={styles.selects}>
-        <Select callback={setCategory} optionObject={QuizCategories} />
-        <Select callback={setDiff} optionObject={QuizDifficulties} />
-        <Select callback={setType} optionObject={QuizType} />
-        <Select callback={setTime} optionObject={QuizTime} />
+        <Select domId={'CategorySelect'} callback={setCategory} optionObject={QuizCategories} />
+        <Select domId={'DifficultySelect'} callback={setDiff} optionObject={QuizDifficulties} />
+        <Select domId={'TypeSelect'} callback={setType} optionObject={QuizType} />
+        <Select domId={'TimeSelect'} callback={setTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
         <NumberInput

@@ -5,9 +5,10 @@ import styles from './Select.module.css'
 interface IProps {
   callback: (id: string) => void
   optionObject: IObjectWithOptions
+  domId: string
 }
 
-export const Select: FC<IProps> = ({ callback, optionObject }) => {
+export const Select: FC<IProps> = ({ callback, optionObject, domId }) => {
   const options: ISelectOption[] = []
 
   for (const key in optionObject) {
@@ -19,7 +20,7 @@ export const Select: FC<IProps> = ({ callback, optionObject }) => {
   }
 
   return (
-    <select onChange={handleSelection} title="Selector" className={styles.select}>
+    <select id={domId} onChange={handleSelection} title="Selector" className={styles.select}>
       {options.map((el, index) => {
         return (
           <option value={el.id} className={styles.option} key={el.id + index}>
