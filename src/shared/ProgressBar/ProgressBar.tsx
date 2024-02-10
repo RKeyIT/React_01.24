@@ -6,24 +6,12 @@ interface IProps {
 }
 
 export const ProgressBar: FC<IProps> = ({ barsCount = 5 }) => {
-  const arr = new Array(barsCount).fill(null)
+  const barArr = new Array(barsCount)
+    .fill(null).map((_el, index) => <div className={styles.singleBar} key={index}></div>)
 
   return (
     <div className={styles.ProgressBar}>
-      <div className={`${styles.singleBar} ${styles.green}`}></div>
-      <div className={`${styles.singleBar} ${styles.green}`}></div>
-      <div className={`${styles.singleBar} ${styles.red}`}></div>
-      <div className={`${styles.singleBar} ${styles.green}`}></div>
-      <div className={`${styles.singleBar} ${styles.green}`}></div>
-
-      {arr.map((_el, index) => {
-        return <div className={styles.singleBar} key={index}></div>
-      })}
-      <div className={`${styles.singleBar} ${styles.red}`}></div>
-      <div className={`${styles.singleBar} ${styles.red}`}></div>
-      <div className={`${styles.singleBar} ${styles.green}`}></div>
-      <div className={`${styles.singleBar} ${styles.red}`}></div>
-      <div className={`${styles.singleBar} ${styles.green}`}></div>
+      {barArr}
     </div>
   )
 }
