@@ -1,4 +1,4 @@
-import { PageNames } from '../../context/GameContext.types'
+import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import styles from './Statistics.module.css'
 import { FC } from 'react'

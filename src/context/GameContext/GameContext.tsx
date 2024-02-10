@@ -1,5 +1,5 @@
 import { createContext, ReactNode, FC, useState } from 'react'
-import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../global.types'
+import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 import { IGameContext, PageNames, ProviderValue } from './GameContext.types'
 
 interface IGameProvider {
@@ -9,6 +9,10 @@ interface IGameProvider {
 const defaultContext: IGameContext = {
   currentPage: PageNames.RESULT,
   isInGame: false,
+  inGameData: {
+    currQuestIndex: 0,
+    lastQuestIndex: 9,
+  },
   minQuestionsCount: 5,
   maxQuestionsCount: 15,
   gameSettings: {

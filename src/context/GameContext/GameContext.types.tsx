@@ -7,6 +7,11 @@ export enum PageNames {
   STATISTICS = 'Statistics'
 }
 
+export interface IGameData {
+  currQuestIndex: number,
+  lastQuestIndex: number,
+}
+
 export interface IGameSettings {
   questionAmount: number
   category: string
@@ -18,6 +23,7 @@ export interface IGameSettings {
 export interface IGameContext {
   currentPage: PageNames
   isInGame: boolean
+  inGameData: IGameData
   minQuestionsCount: number
   maxQuestionsCount: number
   gameSettings: IGameSettings

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { PageNames } from '../../context/GameContext.types'
+import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Button } from '../../shared/Button/Button'
 import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'

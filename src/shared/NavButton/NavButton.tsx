@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { PageNames } from '../../context/GameContext.types'
+import { PageNames } from '../../context/GameContext/GameContext.types'
 import { URLs } from '../../router/router.types'
 import styles from './NavButton.module.css'
 import { FC } from 'react'
@@ -15,7 +15,7 @@ export const NavButton: FC<IProps> = ({ navLink, content }) => {
 
   return (
     <NavLink to={navLink} className={({ isActive }) => (isActive ? activeNav : navLinkClass)}>
-      <button type="button" onClick={() => {}} className={styles.NavButton}>
+      <button type="button" className={styles.NavButton}>
         {content}
       </button>
     </NavLink>
