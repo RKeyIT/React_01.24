@@ -4,13 +4,13 @@ import { IQuizContext, QuizProviderValueType } from "./QuizConfigContext.types";
 import { quizConfigReducer } from "./QuizConfigReducer.tsx";
 
 const defaultQuizContext: IQuizContext = {
-    questionAmount: 5,
+    questsAmount: 5,
     category: QuizCategories.ANY.id,
     difficulty: QuizDifficulties.ANY.id,
     type: QuizType.ANY.id,
     time: QuizTime.ANY.id,
-    minQuestionsCount: 5,
-    maxQuestionsCount: 15,
+    minQuestsCount: 5,
+    maxQuestsCount: 15,
 }
 
 const QuizConfigContext = createContext<QuizProviderValueType>([defaultQuizContext, () => {}])

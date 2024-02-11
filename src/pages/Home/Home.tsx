@@ -35,8 +35,8 @@ export const Home = () => {
       <div className={styles.input}>
         <NumberInput
           callback={configSetter.questAmount}
-          min={ctx.minQuestionsCount}
-          max={ctx.maxQuestionsCount}
+          min={ctx.minQuestsCount}
+          max={ctx.maxQuestsCount}
           label="Count of questions: "
         />
       </div>

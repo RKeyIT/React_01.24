@@ -1,13 +1,13 @@
 import { Dispatch } from "react"
 
 export interface IQuizContext {
-    questionAmount: number | string
+    questsAmount: number | string
     category: string
     difficulty: string
     type: string
     time: string
-    minQuestionsCount: number
-    maxQuestionsCount: number
+    minQuestsCount: number
+    maxQuestsCount: number
 }
 
 export enum ActionTypeEnum {

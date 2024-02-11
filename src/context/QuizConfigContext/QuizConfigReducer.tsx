@@ -1,10 +1,10 @@
 import { ActionTypeEnum, IAction, IQuizContext, QuizContextReducerType } from "./QuizConfigContext.types";
 
 export const quizConfigReducer: QuizContextReducerType = (state: IQuizContext, action: IAction) => {
-    const isQuestAmount = () => typeof action.payload === 'number' 
+    const isQuestsAmount = () => typeof action.payload === 'number' 
         && !isNaN(action.payload) && action.type === ActionTypeEnum.AMOUNT
 
-    if (isQuestAmount()) {
+    if (isQuestsAmount()) {
         return {
             ...state,
             questionAmount: action.payload
