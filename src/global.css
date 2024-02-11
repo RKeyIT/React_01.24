@@ -3,6 +3,7 @@
     --color-darker-main: rgb(180, 160, 125);
     --color-bg-main: rgb(200, 175, 140);
     --color-border-main: rgb(245, 220, 180);
+    --color-main-modal: rgba(180, 160, 125, 0.5);
     --color-main-dark: rgb(180, 160, 125);
     --color-main-mid: rgb(200, 175, 140);
     --color-main-light: rgb(245, 220, 180);
@@ -31,6 +32,7 @@
     --color-ui-hover: rgba(200, 200, 200, 1);
     --color-ui-active: rgba(180, 180, 180, 1);
     --color-ui-border: rgba(150, 150, 150, 1);
+    --color-ui-disabled: rgba(150, 150, 150, 1);
 
     /* DIMENSIONS */
     --ui-padding: 0.5em;
@@ -69,4 +71,8 @@ h6 {
 p {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
+}
+
+a {
+    text-decoration: none;
 }

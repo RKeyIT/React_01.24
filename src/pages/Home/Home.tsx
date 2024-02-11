@@ -3,8 +3,11 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { useGameContext } from '../../context/useGameContext'
-import { PageNames } from '../../context/GameContext.types'
+import { useGameContext } from '../../context/GameContext/useGameContext'
+import { PageNames } from '../../context/GameContext/GameContext.types'
+import { Heading } from '../../shared/Heading/Heading'
+import { Link } from 'react-router-dom'
+import { URLS } from '../../router/router.types'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
@@ -18,7 +21,6 @@ export const Home = () => {
       }
     }))
   }
-  // const setQuestionAmount = (id: number) => settings.questionAmount = id
   const setCategory = (id: string) => {
     setContext((prev) => ({
       ...prev,
@@ -56,27 +58,16 @@ export const Home = () => {
     }))
   }
 
-  const onStartHandler = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.GAME
-    }))
-    console.log(context.getApiUrl())
-  }
-  const onShowStatisticsHandler = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.STATISTICS
-    }))
-  }
-
   return (
     <div className={styles.Home}>
+      <div className={styles.heading}>
+        <Heading pageName={PageNames.HOME} />
+      </div>
       <div className={styles.selects}>
-        <Select callback={setCategory} optionObject={QuizCategories} />
-        <Select callback={setDiff} optionObject={QuizDifficulties} />
-        <Select callback={setType} optionObject={QuizType} />
-        <Select callback={setTime} optionObject={QuizTime} />
+        <Select domId={'CategorySelect'} callback={setCategory} optionObject={QuizCategories} />
+        <Select domId={'DifficultySelect'} callback={setDiff} optionObject={QuizDifficulties} />
+        <Select domId={'TypeSelect'} callback={setType} optionObject={QuizType} />
+        <Select domId={'TimeSelect'} callback={setTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
         <NumberInput
@@ -87,8 +78,12 @@ export const Home = () => {
         />
       </div>
       <div className={styles.buttons}>
-        <Button callback={onShowStatisticsHandler} content="See my statistics" style="white" />
-        <Button callback={onStartHandler} content="Start quiz" style="green" />
+        <Link to={URLS.STATISTICS}>
+          <Button content="See my statistics" style="white" />
+        </Link>
+        <Link to={URLS.GAME}>
+          <Button content="Start quiz" style="green" />
+        </Link>
       </div>
     </div>
   )

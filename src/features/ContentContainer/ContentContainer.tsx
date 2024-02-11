@@ -1,34 +1,15 @@
-import { PageNames } from '../../context/GameContext.types'
-import { useGameContext } from '../../context/useGameContext'
 import { Navigation } from '../Navigation/Navigation'
-import { Game } from '../../pages/Game/Game'
-import { Home } from '../../pages/Home/Home'
-import { Result } from '../../pages/Result/Result'
-import { Statistics } from '../../pages/Statistics/Statistics'
-import { CloseButton } from '../../shared/CloseButton/CloseButton'
-import { Heading } from '../../shared/Heading/Heading'
+import { CloseButton } from '../../entities/CloseButton/CloseButton'
 import { FC } from 'react'
 import styles from './ContentContainer.module.css'
+import { Outlet } from 'react-router-dom'
 
 export const ContentContainer: FC = () => {
-  const [context, setContext] = useGameContext()
-
-  const onCloseButton = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: PageNames.HOME
-    }))
-  }
-
   return (
-    <div className={styles.ContentContainer}>
+    <div className={styles.ContentContainer} id='ContentContainer'>
       <Navigation />
-      <CloseButton callback={onCloseButton} title="Close quiz" />
-      <Heading pageName={context.currentPage} />
-      {context.currentPage === PageNames.HOME && <Home />}
-      {context.currentPage === PageNames.GAME && <Game />}
-      {context.currentPage === PageNames.RESULT && <Result />}
-      {context.currentPage === PageNames.STATISTICS && <Statistics />}
+      <CloseButton />
+      <Outlet />
     </div>
   )
 }

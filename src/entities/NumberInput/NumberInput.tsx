@@ -40,6 +40,7 @@ export const NumberInput: FC<IProps> = ({
       </label>
       <input
         id={styles.label}
+        name={styles.label}
         type="number"
         onChange={changeHandler}
         value={value}

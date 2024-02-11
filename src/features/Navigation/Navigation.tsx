@@ -1,15 +1,18 @@
-import { PageNames } from '../../context/GameContext.types'
+import { PageNames } from '../../context/GameContext/GameContext.types'
 import { NavButton } from '../../shared/NavButton/NavButton'
 import styles from './Navigation.module.css'
 import { FC } from 'react'
+import { URLS } from '../../router/router.types'
 
 export const Navigation: FC = () => {
+  // NOTE - Are we need the Game page in navigation?
+
   return (
     <nav className={styles.Navigation}>
-      <NavButton>{PageNames.HOME}</NavButton>
-      <NavButton>{PageNames.GAME}</NavButton>
-      <NavButton>{PageNames.RESULT}</NavButton>
-      <NavButton>{PageNames.STATISTICS}</NavButton>
+      <NavButton navLink={URLS.HOME} content={PageNames.HOME} />
+      <NavButton navLink={URLS.GAME} content={PageNames.GAME} />
+      <NavButton navLink={URLS.RESULT} content={PageNames.RESULT} />
+      <NavButton navLink={URLS.STATISTICS} content={PageNames.STATISTICS} />
     </nav>
   )
 }

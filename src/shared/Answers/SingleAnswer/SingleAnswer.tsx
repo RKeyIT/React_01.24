@@ -10,7 +10,7 @@ export const SingleAnswer: FC<IProps> = ({ id, answer }) => {
   return (
     <div className={styles.SingleAnswer}>
       <input className={styles.hiddenInput} type="radio" name="radio" id={`${id}`} />
-      <label className={styles.label} title={`Answer ${id}`} htmlFor={`${id}`}>
+      <label className={styles.label} title={`${answer}`} htmlFor={`${id}`}>
         {answer}
       </label>
     </div>

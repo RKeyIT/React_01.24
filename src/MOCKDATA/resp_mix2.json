@@ -1,0 +1,177 @@
+{
+    "response_code": 0,
+    "results": [
+        {
+            "type": "boolean",
+            "difficulty": "medium",
+            "category": "General Knowledge",
+            "question": "There are 86400 seconds in a day.",
+            "correct_answer": "True",
+            "incorrect_answers": [
+                "False"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Entertainment: Video Games",
+            "question": "Killing Floor started as a mod for which Unreal Engine 2 game?",
+            "correct_answer": "Unreal Tournament 2004",
+            "incorrect_answers": [
+                "Deus Ex: Invisible War",
+                "Unreal Tournament 3",
+                "Postal"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Entertainment: Television",
+            "question": "In Battlestar Galactica (2004), what is the name of the President of the Twelve Colonies?",
+            "correct_answer": "Laura Roslin",
+            "incorrect_answers": [
+                "William Adama",
+                "Tricia Helfer",
+                "Harry Stills"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "easy",
+            "category": "Sports",
+            "question": "Who won the premier league title in the 2015-2016 season following a fairy tale run?",
+            "correct_answer": "Leicester City",
+            "incorrect_answers": [
+                "Tottenham Hotspur",
+                "Watford",
+                "Stoke City"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Entertainment: Video Games",
+            "question": "In the 2002 video game &quot;Kingdom Hearts&quot;, how many playable worlds were there?",
+            "correct_answer": "14",
+            "incorrect_answers": [
+                "13",
+                "16",
+                "11"
+            ]
+        },
+        {
+            "type": "boolean",
+            "difficulty": "hard",
+            "category": "General Knowledge",
+            "question": "Stagecoach owned &quot;South West Trains&quot; before losing the rights to FirstGroup and MTR in March of 2017.",
+            "correct_answer": "True",
+            "incorrect_answers": [
+                "False"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "General Knowledge",
+            "question": "Amsterdam Centraal station is twinned with what station?",
+            "correct_answer": "London Liverpool Street",
+            "incorrect_answers": [
+                "Frankfurt (Main) Hauptbahnhof",
+                "Paris Gare du Nord",
+                "Brussels Midi"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "hard",
+            "category": "Entertainment: Music",
+            "question": "Which company did the animation for Peter Gabriel&#039;s Video Sledgehammer (1986)?",
+            "correct_answer": "Aardman Animations",
+            "incorrect_answers": [
+                "HIT Entertainment",
+                "Illumination Entertainment",
+                "VIZ Media"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Sports",
+            "question": "Which team was the 2014-2015 NBA Champions?",
+            "correct_answer": "Golden State Warriors",
+            "incorrect_answers": [
+                "Cleveland Cavaliers",
+                "Houston Rockets",
+                "Atlanta Hawks"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Science: Gadgets",
+            "question": "In what year was the Oculus Rift revealed to the public through a Kickstarter campaign?",
+            "correct_answer": "2012",
+            "incorrect_answers": [
+                "2010",
+                "2011",
+                "2013"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Entertainment: Music",
+            "question": "Which of these is NOT a name of an album released by American rapper Pitbull?",
+            "correct_answer": "Welcome to Miami",
+            "incorrect_answers": [
+                "Dale",
+                "Global Warming",
+                "Armando"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "History",
+            "question": "Which Nazi General was known as the &quot;Desert Fox&quot;?",
+            "correct_answer": "Erwin Rommel",
+            "incorrect_answers": [
+                "Gerd von Rundstadt",
+                "Wilhelm Keitel",
+                "Heinz Guderian "
+            ]
+        },
+        {
+            "type": "boolean",
+            "difficulty": "hard",
+            "category": "History",
+            "question": "The man that shot Alexander Hamilton was named Aaron Burr.",
+            "correct_answer": "True",
+            "incorrect_answers": [
+                "False"
+            ]
+        },
+        {
+            "type": "boolean",
+            "difficulty": "easy",
+            "category": "Entertainment: Board Games",
+            "question": "There is a Donald Trump Board Game, which was made in 1989.",
+            "correct_answer": "True",
+            "incorrect_answers": [
+                "False"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "hard",
+            "category": "Entertainment: Comics",
+            "question": "In what Homestuck Update was [S] Game Over released?",
+            "correct_answer": "October 25th, 2014",
+            "incorrect_answers": [
+                "April 13th, 2009",
+                "April 8th, 2012",
+                "August 28th, 2003"
+            ]
+        }
+    ]
+}

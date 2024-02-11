@@ -1,4 +1,5 @@
 .TextField {
     font-weight: 500;
     overflow: auto;
+    text-align: center;
 }

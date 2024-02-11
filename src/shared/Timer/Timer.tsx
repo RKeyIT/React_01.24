@@ -2,13 +2,14 @@ import styles from './Timer.module.css'
 import { FC, useEffect, useState } from 'react'
 
 interface IProps {
-  seconds?: number
+  seconds?: number,
+  timeoutCallback?: () => void
 }
 
-export const Timer: FC<IProps> = ({ seconds = 20 }) => {
+export const Timer: FC<IProps> = ({ seconds = 120, timeoutCallback = () => {} }) => {
   const [time, setTime] = useState({
     minutes: getMinutes(seconds),
-    seconds: getMinutes(seconds) <= 0 ? seconds : getMinutes(seconds) % 60
+    seconds: seconds % 60
   })
 
   useEffect(() => {
@@ -33,6 +34,11 @@ export const Timer: FC<IProps> = ({ seconds = 20 }) => {
 
     return () => clearInterval(interval)
   }, [])
+
+  // REVIEW - is it clear usage?
+  useEffect(() => {
+    if (time.minutes === 0 && time.seconds === 0) timeoutCallback()
+  }, [time])
 
   function getMinutes(seconds: number) {
     return Math.floor(seconds / 60)

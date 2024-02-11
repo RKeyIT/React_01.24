@@ -12,5 +12,4 @@ const lorem =
 
 export const TextField: FC<IProps> = ({ children = lorem }) => {
   return <p className={styles.TextField}>{children}</p>
-
 }

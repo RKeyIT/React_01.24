@@ -1,25 +1,23 @@
-import { PageNames } from '../../context/GameContext.types'
-import { useGameContext } from '../../context/useGameContext'
+import { NavLink } from 'react-router-dom'
+import { PageNames } from '../../context/GameContext/GameContext.types'
+import { URLS } from '../../router/router.types'
 import styles from './NavButton.module.css'
 import { FC } from 'react'
 
 interface IProps {
-  children: PageNames
+  content: PageNames
+  navLink: URLS
 }
 
-export const NavButton: FC<IProps> = ({ children }) => {
-  const [, setContext] = useGameContext()
-
-  const changePage = () => {
-    setContext((prev) => ({
-      ...prev,
-      currentPage: children
-    }))
-  }
+export const NavButton: FC<IProps> = ({ navLink, content }) => {
+  const navLinkClass = `${styles.a}`
+  const activeNav = `${styles.a} ${styles.active}`
 
   return (
-    <button onClick={changePage} className={styles.NavButton}>
-      {children}
-    </button>
+    <NavLink to={navLink} className={({ isActive }) => (isActive ? activeNav : navLinkClass)}>
+      <button type="button" className={styles.NavButton}>
+        {content}
+      </button>
+    </NavLink>
   )
 }

@@ -1,6 +1,5 @@
 .Result {
     display: grid;
-    grid-template-rows: auto auto auto;
 }
 
 .congratulations {
@@ -32,4 +31,8 @@
     flex-direction: row;
     align-items: flex-end;
     gap: var(--ui-element-padding);
+}
+
+.buttons a {
+    width: 100%;
 }

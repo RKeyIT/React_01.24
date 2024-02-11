@@ -1,6 +1,5 @@
 .ContentContainer {
     display: grid;
-    grid-template-rows: auto 1fr;
     position: relative;
     width: 1000px;
     height: 500px;

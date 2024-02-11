@@ -3,26 +3,34 @@ import styles from './Answers.module.css'
 import { SingleAnswer } from './SingleAnswer/SingleAnswer'
 
 interface IProps {
-  type: 'boolean' | 'multiply'
+  type: 'boolean' | 'multiple',
+  correct: string,
+  incorrect: string | string[],
 }
 
-export const Answers: FC<IProps> = ({ type }) => {
+export const Answers: FC<IProps> = ({ type, correct, incorrect }) => {
+  const incorrectAnswers = Array.isArray(incorrect) ? incorrect : [incorrect]
+  const answerstArr = fillAnswersArrRandomely()
+
+  function fillAnswersArrRandomely() {
+    const arr: string[] = []
+
+    incorrectAnswers.forEach(el => {
+      Math.round(Math.random()) ? arr.push(el) : arr.unshift(el)
+    })
+
+    const randomIndex = Math.round(Math.random() * arr.length)
+    
+    arr.splice(randomIndex, 0, correct)
+
+    return arr
+  }
+
   return (
-    <div className={type === 'multiply' ? styles.Multiple : styles.Boolean}>
-      {type === 'multiply' && (
-        <>
-          <SingleAnswer id={1} answer="answer 1" />
-          <SingleAnswer id={2} answer="answer 2" />
-          <SingleAnswer id={3} answer="answer 3" />
-          <SingleAnswer id={4} answer="answer 4" />
-        </>
-      )}
-      {type === 'boolean' && (
-        <>
-          <SingleAnswer id={1} answer="True" />
-          <SingleAnswer id={2} answer="False" />
-        </>
-      )}
+    <div className={type === 'multiple' ? styles.Multiple : styles.Boolean}>
+      {answerstArr.map((answer, index) => {
+        return <SingleAnswer key={'SingleAnswer ' + index} id={index} answer={answer} />
+      })}
     </div>
   )
 }
