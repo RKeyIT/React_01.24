@@ -13,20 +13,12 @@ import { ActionTypeEnum } from '../../context/QuizConfigContext/QuizConfigContex
 export const Home = () => {
   const [ctx, dispatch] = useQuizConfigDispatcherContext()
 
-  const setQuestionAmount = (id: number) => {
-    dispatch({type: ActionTypeEnum.AMOUNT, payload: id})
-  }
-  const setCategory = (id: string) => {
-    dispatch({type: ActionTypeEnum.CATEGORY, payload: id})
-  }
-  const setDiff = (id: string) => {
-    dispatch({type: ActionTypeEnum.DIFFICULTY, payload: id})
-  }
-  const setType = (id: string) => {
-    dispatch({type: ActionTypeEnum.TYPE, payload: id})
-  }
-  const setTime = (id: string) => {
-    dispatch({type: ActionTypeEnum.TIME, payload: id})
+  const configSetter = {
+    questAmount: (id: number) => dispatch({type: ActionTypeEnum.AMOUNT, payload: id}),
+    category: (id: string) => dispatch({type: ActionTypeEnum.CATEGORY, payload: id}),
+    difficulty: (id: string) => dispatch({type: ActionTypeEnum.DIFFICULTY, payload: id}),
+    type: (id: string) => dispatch({type: ActionTypeEnum.TYPE, payload: id}),
+    time: (id: string) => dispatch({type: ActionTypeEnum.TIME, payload: id}),
   }
 
   return (
@@ -35,14 +27,14 @@ export const Home = () => {
         <Heading pageName={PageNames.HOME} />
       </div>
       <div className={styles.selects}>
-        <Select domId={'CategorySelect'} callback={setCategory} optionObject={QuizCategories} />
-        <Select domId={'DifficultySelect'} callback={setDiff} optionObject={QuizDifficulties} />
-        <Select domId={'TypeSelect'} callback={setType} optionObject={QuizType} />
-        <Select domId={'TimeSelect'} callback={setTime} optionObject={QuizTime} />
+        <Select domId={'CategorySelect'} callback={configSetter.category} optionObject={QuizCategories} />
+        <Select domId={'DifficultySelect'} callback={configSetter.difficulty} optionObject={QuizDifficulties} />
+        <Select domId={'TypeSelect'} callback={configSetter.type} optionObject={QuizType} />
+        <Select domId={'TimeSelect'} callback={configSetter.time} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
         <NumberInput
-          callback={setQuestionAmount}
+          callback={configSetter.questAmount}
           min={ctx.minQuestionsCount}
           max={ctx.maxQuestionsCount}
           label="Count of questions: "
