@@ -8,45 +8,24 @@ import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { Link } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
+import { useQuizConfigDispatcherContext } from '../../context/QuizConfigContext/QuizConfigContext'
+import { ActionTypeEnum } from '../../context/QuizConfigContext/QuizConfigContext.types'
 
 export const Home = () => {
   const [context, setContext] = useGameContext()
+  const [ctx, dispatch] = useQuizConfigDispatcherContext()
 
   const setQuestionAmount = (id: number) => {
-    setContext((prev) => ({
-      ...prev,
-      gameSettings: {
-        ...prev.gameSettings,
-        questionAmount: id
-      }
-    }))
+    dispatch({type: ActionTypeEnum.AMOUNT, payload: id})
   }
   const setCategory = (id: string) => {
-    setContext((prev) => ({
-      ...prev,
-      gameSettings: {
-        ...prev.gameSettings,
-        ['category']: id
-      }
-    }))
+    dispatch({type: ActionTypeEnum.CATEGORY, payload: id})
   }
   const setDiff = (id: string) => {
-    setContext((prev) => ({
-      ...prev,
-      gameSettings: {
-        ...prev.gameSettings,
-        difficulty: id
-      }
-    }))
+    dispatch({type: ActionTypeEnum.DIFFICULTY, payload: id})
   }
   const setType = (id: string) => {
-    setContext((prev) => ({
-      ...prev,
-      gameSettings: {
-        ...prev.gameSettings,
-        type: id
-      }
-    }))
+    dispatch({type: ActionTypeEnum.TYPE, payload: id})
   }
   const setTime = (id: string) => {
     setContext((prev) => ({
@@ -72,8 +51,8 @@ export const Home = () => {
       <div className={styles.input}>
         <NumberInput
           callback={setQuestionAmount}
-          min={context.minQuestionsCount}
-          max={context.maxQuestionsCount}
+          min={ctx.minQuestionsCount}
+          max={ctx.maxQuestionsCount}
           label="Count of questions: "
         />
       </div>
