@@ -3,7 +3,6 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { useGameContext } from '../../context/GameContext/useGameContext'
 import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { Link } from 'react-router-dom'
@@ -12,7 +11,6 @@ import { useQuizConfigDispatcherContext } from '../../context/QuizConfigContext/
 import { ActionTypeEnum } from '../../context/QuizConfigContext/QuizConfigContext.types'
 
 export const Home = () => {
-  const [context, setContext] = useGameContext()
   const [ctx, dispatch] = useQuizConfigDispatcherContext()
 
   const setQuestionAmount = (id: number) => {
@@ -28,13 +26,7 @@ export const Home = () => {
     dispatch({type: ActionTypeEnum.TYPE, payload: id})
   }
   const setTime = (id: string) => {
-    setContext((prev) => ({
-      ...prev,
-      gameSettings: {
-        ...prev.gameSettings,
-        time: id
-      }
-    }))
+    dispatch({type: ActionTypeEnum.TIME, payload: id})
   }
 
   return (
