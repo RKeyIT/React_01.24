@@ -1,52 +1,57 @@
-import { Button } from '../../shared/Button/Button'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
-import { Answers } from '../../shared/Answers/Answers'
 import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
-import { FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, useEffect } from 'react'
 import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
+import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
+import { GameReducerActionTypes, useGameReducer } from '../../reducers/GameReducer'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
 
   const navigate = useNavigate()
+  const [gameState, gameDispatch] = useGameReducer()
 
-  const [answersType, setAnswersType] = useState<'boolean' | 'multiple'>('boolean')
-  const [questionObjArray, setQuestionObjArray] = useState<any[]>([])
-  const [currentQuestIndex, setCurrentQuestIndex] = useState(0);
-  const [currentQuest, setCurrentQuest] = useState('')
-  const [correct, setCorrect] = useState('')
-  const [incorrect, setIncorrect] = useState('')
+  const { questionCollection, question, currentIndex, correct_answer, incorrect_answers } = gameState
+
+  let playerAnswer: string | null = null
 
   useEffect(() => {
    (async () => {
         await getRandomData().then(data => {
-          setQuestionObjArray(data.results)
+          gameDispatch({type: GameReducerActionTypes.COLLECTION, payload: data.results})
+          // setQuestionObjArray(data.results)
         })
         .catch(e => console.error(e))
     })()
   }, [])
 
   useEffect(() => {
-    if(questionObjArray[currentQuestIndex]) {
-      const currentQuestObject = questionObjArray[currentQuestIndex]
+    if(questionCollection[currentIndex]) {
+      const currentState = questionCollection[currentIndex]
 
-      const {question, type, correct_answer, incorrect_answers} = currentQuestObject
+      const {question, correct_answer, incorrect_answers} = currentState
 
-      setCurrentQuest(question)
-      setAnswersType(type)
-      setCorrect(correct_answer)
-      setIncorrect(incorrect_answers)
+      gameDispatch({type: GameReducerActionTypes.QUEST, payload: question})
+      gameDispatch({type: GameReducerActionTypes.CORRECT, payload: correct_answer})
+      gameDispatch({type: GameReducerActionTypes.INCORRECT, payload: incorrect_answers})
     }
-  }, [questionObjArray, currentQuestIndex])
+  }, [questionCollection, currentIndex])
 
-  const acceptHandler = () => {
-    setAnswersType(answersType === 'boolean' ? 'multiple' : 'boolean')
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    playerAnswer = e.target.value
+    console.log(playerAnswer === correct_answer)
+  }
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (playerAnswer === null) return
   }
 
   const timeoutCallback = () => {
@@ -62,16 +67,10 @@ export const Game: FC = () => {
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
       <Timer timeoutCallback={timeoutCallback}/>
-      <ProgressBar barsCount={questionObjArray.length} />
-      <div className={styles.question}>
-        <TextField>
-          {currentQuest}
-        </TextField>
-      </div>
-      <div className={styles.answers}>
-        <Answers type={answersType} correct={correct} incorrect={incorrect} />
-      </div>
-      <Button content="Accept" style="green" callback={acceptHandler} />
+      <ProgressBar barsCount={questionCollection.length} />
+      <TextField children={question} />
+      <AnswersForm answers={[correct_answer, ...incorrect_answers]}
+                   onSubmit={onSubmit} onChange={onChange} />
     </div>
   )
 }

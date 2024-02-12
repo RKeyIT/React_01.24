@@ -9,10 +9,10 @@ interface IProps {
 }
 
 export const Answers: FC<IProps> = ({ type, correct, incorrect }) => {
-  const incorrectAnswers = Array.isArray(incorrect) ? incorrect : [incorrect]
   const answerstArr = fillAnswersArrRandomely()
-
+  
   function fillAnswersArrRandomely() {
+    const incorrectAnswers = Array.isArray(incorrect) ? incorrect : [incorrect]
     const arr: string[] = []
 
     incorrectAnswers.forEach(el => {
