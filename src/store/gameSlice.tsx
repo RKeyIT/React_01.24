@@ -31,15 +31,15 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        collection: (state, action) => { state.questionCollection = action.payload },
-        index: (state, action) => { state.currentIndex = action.payload },
-        question: (state, action) => { state.question = action.payload },
-        correct: (state, action) => { state.correct_answer = action.payload },
-        incorrect: (state, action) => { state.incorrect_answers = action.payload },
-        reset: (state) => { state = initialState }
+        collectionAC: (state, action) => { state.questionCollection = action.payload },
+        indexAC: (state, action) => { state.currentIndex = action.payload },
+        questionAC: (state, action) => { state.question = action.payload },
+        correctAC: (state, action) => { state.correct_answer = action.payload },
+        incorrectAC: (state, action) => { state.incorrect_answers = action.payload },
+        resetAC: (state) => { state = initialState }
     }
 })
 
 export const gameReducer = gameSlice.reducer
 
-export const { collection, index, correct, incorrect, question, reset } = gameSlice.actions
+export const { collectionAC, indexAC, correctAC, incorrectAC, questionAC, resetAC } = gameSlice.actions

@@ -9,22 +9,30 @@ import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
-import { useGameReducer, GameAC } from '../../reducers/GameReducer'
+import { useAppDispatch, useAppSelector } from '../../store'
+import { collectionAC, correctAC, incorrectAC, indexAC, questionAC } from '../../store/gameSlice'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
 
   const navigate = useNavigate()
-  const [gameState, gameDispatch] = useGameReducer()
 
-  const { questionCollection, question, currentIndex, correct_answer, incorrect_answers } = gameState
+  const game = useAppSelector(store => store.game)
+  const dispatch = useAppDispatch()
+
+  const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
+  const dispatchCollection = (payload: any) => dispatch(collectionAC(payload))
+  const dispatchIndex = (payload: number) => dispatch(indexAC(payload))
+  const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
+  const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
+  const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
 
   let playerAnswer: string | null = null
 
   useEffect(() => {
    (async () => {
         await getRandomData().then(data => {
-          gameDispatch(GameAC.collection(data.results))
+          dispatchCollection(data.results)
         })
         .catch(e => console.error(e))
     })()
@@ -36,9 +44,9 @@ export const Game: FC = () => {
 
       const {question, correct_answer, incorrect_answers} = currentState
 
-      gameDispatch(GameAC.question(question))
-      gameDispatch(GameAC.correct_answer(correct_answer))
-      gameDispatch(GameAC.incorrect_answers(incorrect_answers))
+      dispatchQuestion(question)
+      dispatchCorrect(correct_answer)
+      dispatchIncorrect(incorrect_answers)
     }
   }, [questionCollection, currentIndex])
 
@@ -53,7 +61,7 @@ export const Game: FC = () => {
 
     if (currentIndex < questionCollection.length - 1) {
       console.log(playerAnswer === correct_answer)
-      gameDispatch(GameAC.index(currentIndex + 1))
+      dispatchIndex(currentIndex + 1)
     } else {
       navigate(URLS.RESULT)
     }
@@ -63,7 +71,7 @@ export const Game: FC = () => {
     if (currentIndex === questionCollection.length - 1) {
       navigate(URLS.RESULT)
     } else {
-      gameDispatch(GameAC.index(currentIndex + 1))
+      dispatchIndex(currentIndex + 1)
     }
   }
 
