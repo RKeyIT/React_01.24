@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Button } from '../../shared/Button/Button'
 import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
@@ -8,6 +7,7 @@ import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
 import { FC } from 'react'
 import { URLS } from '../../router/router.types'
+import { PageNames } from '../../global.types'
 
 export const Result: FC = () => {
   return (

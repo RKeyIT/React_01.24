@@ -1,3 +1,10 @@
+export enum PageNames {
+  GAME = 'Game',
+  HOME = 'Home',
+  RESULT = 'Result',
+  STATISTICS = 'Statistics'
+}
+
 export interface ISelectOption {
   id: string
   name: string

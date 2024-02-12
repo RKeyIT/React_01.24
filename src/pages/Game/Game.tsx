@@ -3,7 +3,6 @@ import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
 import { ChangeEvent, FC, FormEvent, useEffect } from 'react'
-import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
@@ -11,6 +10,7 @@ import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { collectionAC, correctAC, incorrectAC, indexAC, questionAC } from '../../store/gameSlice'
+import { PageNames } from '../../global.types'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
