@@ -25,7 +25,6 @@ export const Game: FC = () => {
    (async () => {
         await getRandomData().then(data => {
           gameDispatch({type: GameReducerActionTypes.COLLECTION, payload: data.results})
-          // setQuestionObjArray(data.results)
         })
         .catch(e => console.error(e))
     })()
