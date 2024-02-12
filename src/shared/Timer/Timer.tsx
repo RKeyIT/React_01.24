@@ -6,7 +6,7 @@ interface IProps {
   timeoutCallback?: () => void
 }
 
-export const Timer: FC<IProps> = ({ seconds = 1, timeoutCallback = () => {} }) => { 
+export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) => { 
   const initialState = {
     minutes: getMinutes(seconds),
     seconds: seconds % 60

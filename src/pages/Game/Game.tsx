@@ -9,7 +9,7 @@ import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
-import { collectionAC, correctAC, incorrectAC, indexAC, questionAC } from '../../store/gameSlice'
+import { answerAC, collectionAC, correctAC, incorrectAC, indexAC, questionAC } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 
 export const Game: FC = () => {
@@ -26,6 +26,7 @@ export const Game: FC = () => {
   const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
   const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
   const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
+  const dispatchAnswer = (payload: boolean) => dispatch(answerAC(payload))
 
   let playerAnswer: string | null = null
 
@@ -50,29 +51,20 @@ export const Game: FC = () => {
     }
   }, [questionCollection, currentIndex])
 
+  const submitAnswer = () => {
+    dispatchAnswer(playerAnswer === correct_answer)
+    dispatchIndex()
+
+    if (currentIndex === questionCollection.length - 1) navigate(URLS.RESULT)
+  }
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     playerAnswer = e.target.value
   }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (playerAnswer === null) return
-
-    if (currentIndex < questionCollection.length - 1) {
-      console.log(playerAnswer === correct_answer)
-      dispatchIndex()
-    } else {
-      navigate(URLS.RESULT)
-    }
-  }
-
-  const timeoutCallback = () => {
-    if (currentIndex === questionCollection.length - 1) {
-      navigate(URLS.RESULT)
-    } else {
-      dispatchIndex()
-    }
+    submitAnswer()
   }
 
   async function getRandomData() {
@@ -83,7 +75,7 @@ export const Game: FC = () => {
   return (
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
-      <Timer timeoutCallback={timeoutCallback}/>
+      <Timer timeoutCallback={submitAnswer}/>
       <ProgressBar />
       <TextField children={question} />
       <AnswersForm answers={[correct_answer, ...incorrect_answers]}

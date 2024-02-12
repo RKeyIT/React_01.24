@@ -48,13 +48,11 @@ const gameSlice = createSlice({
             state.player_answers.fill(null!)
          },
         answerAC: (state, action) => { 
-            action.payload === state.correct_answer
-            ? state.player_answers[state.currentIndex] = true
-            : state.player_answers[state.currentIndex] = false
+            state.player_answers[state.currentIndex] = action.payload
         },
     }
 })
 
 export const gameReducer = gameSlice.reducer
 
-export const { collectionAC, indexAC, correctAC, incorrectAC, questionAC, resetAC } = gameSlice.actions
+export const { collectionAC, indexAC, correctAC, incorrectAC, questionAC, resetAC, answerAC } = gameSlice.actions
