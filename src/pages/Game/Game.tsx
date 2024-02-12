@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
-import { GameReducerActionTypes, useGameReducer } from '../../reducers/GameReducer'
+import { useGameReducer, GameAC } from '../../reducers/GameReducer'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
@@ -24,7 +24,7 @@ export const Game: FC = () => {
   useEffect(() => {
    (async () => {
         await getRandomData().then(data => {
-          gameDispatch({type: GameReducerActionTypes.COLLECTION, payload: data.results})
+          gameDispatch(GameAC.collection(data.results))
         })
         .catch(e => console.error(e))
     })()
@@ -36,9 +36,9 @@ export const Game: FC = () => {
 
       const {question, correct_answer, incorrect_answers} = currentState
 
-      gameDispatch({type: GameReducerActionTypes.QUEST, payload: question})
-      gameDispatch({type: GameReducerActionTypes.CORRECT, payload: correct_answer})
-      gameDispatch({type: GameReducerActionTypes.INCORRECT, payload: incorrect_answers})
+      gameDispatch(GameAC.question(question))
+      gameDispatch(GameAC.correct_answer(correct_answer))
+      gameDispatch(GameAC.incorrect_answers(incorrect_answers))
     }
   }, [questionCollection, currentIndex])
 

@@ -29,8 +29,13 @@ interface IIndexAction {
     payload: number
 }
 
-interface IQuestOrCorrectAction {
+interface IQuestionAction {
     type: GameReducerActionTypes.QUEST | GameReducerActionTypes.CORRECT,
+    payload: string
+}
+
+interface ICorrectAction {
+    type: GameReducerActionTypes.CORRECT,
     payload: string
 }
 
@@ -39,7 +44,15 @@ interface IIncorrectAction {
     payload: string[]
 }
 
-type ActionType = ICollectionAction | IIndexAction | IQuestOrCorrectAction | IIncorrectAction
+type ActionType = ICollectionAction | IIndexAction | IQuestionAction | ICorrectAction | IIncorrectAction
+
+interface GameActionCreator {
+    collection: (collection: ICollectionActionPayloadItem[]) => ICollectionAction
+    index: (current: number) => IIndexAction
+    question: (question: string) => IQuestionAction
+    correct_answer: (answer: string) => ICorrectAction
+    incorrect_answers: (incorrects: string[]) => IIncorrectAction
+}
 
 interface IState {
     questionCollection: ICollectionActionPayloadItem[]
@@ -54,7 +67,30 @@ const initialState: IState = {
     currentIndex: 0,
     question: '',
     correct_answer: '',
-    incorrect_answers: ['']
+    incorrect_answers: [''],
+}
+
+export const GameAC: GameActionCreator = {
+    collection: (collection) => ({
+        type: GameReducerActionTypes.COLLECTION,
+        payload: collection
+    }),
+    index: (current) => ({
+        type: GameReducerActionTypes.INDEX,
+        payload: current
+    }),
+    question: (question) => ({
+        type: GameReducerActionTypes.QUEST,
+        payload: question
+    }),
+    correct_answer: (answer) => ({
+        type: GameReducerActionTypes.CORRECT,
+        payload: answer
+    }),
+    incorrect_answers: (incorrects) => ({
+        type: GameReducerActionTypes.INCORRECT,
+        payload: incorrects
+    }),
 }
 
 const reducer = (state: IState, action: ActionType): IState => {
@@ -69,7 +105,7 @@ const reducer = (state: IState, action: ActionType): IState => {
                 currentIndex: 0,
                 question: question,
                 correct_answer: correct_answer,
-                incorrect_answers: incorrect_answers
+                incorrect_answers: incorrect_answers,
             }
 
         case GameReducerActionTypes.INDEX:
