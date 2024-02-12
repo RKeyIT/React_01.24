@@ -17,6 +17,7 @@ interface IState {
     question: string
     correct_answer: string
     incorrect_answers: string[]
+    player_answers: boolean[] | null[]
 }
 
 const initialState: IState = {
@@ -24,19 +25,33 @@ const initialState: IState = {
     currentIndex: 0,
     question: '',
     correct_answer: '',
-    incorrect_answers: [''],
+    incorrect_answers: [],
+    player_answers: []
 }
 
 const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        collectionAC: (state, action) => { state.questionCollection = action.payload },
-        indexAC: (state, action) => { state.currentIndex = action.payload },
+        indexAC: (state) => { state.currentIndex += 1 },
         questionAC: (state, action) => { state.question = action.payload },
         correctAC: (state, action) => { state.correct_answer = action.payload },
         incorrectAC: (state, action) => { state.incorrect_answers = action.payload },
-        resetAC: (state) => { state = initialState }
+        resetAC: (state) => { state = initialState },
+        collectionAC: (state, action) => { 
+            state.questionCollection = action.payload;
+            state.currentIndex = 0;
+            state.question = state.questionCollection[0].question
+            state.correct_answer = state.questionCollection[0].correct_answer
+            state.incorrect_answers = state.questionCollection[0].incorrect_answers
+            state.player_answers.length = state.questionCollection.length
+            state.player_answers.fill(null!)
+         },
+        answerAC: (state, action) => { 
+            action.payload === state.correct_answer
+            ? state.player_answers[state.currentIndex] = true
+            : state.player_answers[state.currentIndex] = false
+        },
     }
 })
 

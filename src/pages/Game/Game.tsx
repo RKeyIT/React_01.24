@@ -22,7 +22,7 @@ export const Game: FC = () => {
 
   const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
   const dispatchCollection = (payload: any) => dispatch(collectionAC(payload))
-  const dispatchIndex = (payload: number) => dispatch(indexAC(payload))
+  const dispatchIndex = () => dispatch(indexAC())
   const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
   const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
   const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
@@ -61,7 +61,7 @@ export const Game: FC = () => {
 
     if (currentIndex < questionCollection.length - 1) {
       console.log(playerAnswer === correct_answer)
-      dispatchIndex(currentIndex + 1)
+      dispatchIndex()
     } else {
       navigate(URLS.RESULT)
     }
@@ -71,7 +71,7 @@ export const Game: FC = () => {
     if (currentIndex === questionCollection.length - 1) {
       navigate(URLS.RESULT)
     } else {
-      dispatchIndex(currentIndex + 1)
+      dispatchIndex()
     }
   }
 
