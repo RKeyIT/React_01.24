@@ -84,7 +84,7 @@ export const Game: FC = () => {
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
       <Timer timeoutCallback={timeoutCallback}/>
-      <ProgressBar barsCount={questionCollection.length} />
+      <ProgressBar />
       <TextField children={question} />
       <AnswersForm answers={[correct_answer, ...incorrect_answers]}
                    onSubmit={onSubmit} onChange={onChange} />
