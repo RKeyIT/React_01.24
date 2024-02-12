@@ -50,6 +50,13 @@ export const Game: FC = () => {
     e.preventDefault()
 
     if (playerAnswer === null) return
+
+    if (currentIndex < questionCollection.length - 1) {
+      console.log(playerAnswer === correct_answer)
+      gameDispatch(GameAC.index(currentIndex + 1))
+    } else {
+      navigate(URLS.RESULT)
+    }
   }
 
   const timeoutCallback = () => {
