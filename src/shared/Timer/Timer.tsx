@@ -6,11 +6,13 @@ interface IProps {
   timeoutCallback?: () => void
 }
 
-export const Timer: FC<IProps> = ({ seconds = 120, timeoutCallback = () => {} }) => {
-  const [time, setTime] = useState({
+export const Timer: FC<IProps> = ({ seconds = 1, timeoutCallback = () => {} }) => { 
+  const initialState = {
     minutes: getMinutes(seconds),
     seconds: seconds % 60
-  })
+  }
+
+  const [time, setTime] = useState(initialState)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,7 +39,10 @@ export const Timer: FC<IProps> = ({ seconds = 120, timeoutCallback = () => {} })
 
   // REVIEW - is it clear usage?
   useEffect(() => {
-    if (time.minutes === 0 && time.seconds === 0) timeoutCallback()
+    if (time.minutes === 0 && time.seconds === 0) {
+      timeoutCallback()
+      setTime(initialState)
+    }
   }, [time])
 
   function getMinutes(seconds: number) {
