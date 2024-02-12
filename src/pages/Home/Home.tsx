@@ -7,19 +7,19 @@ import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { Link } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
-import { useQuizConfigDispatcherContext } from '../../context/QuizConfigContext/QuizConfigContext'
-import { ActionTypeEnum } from '../../context/QuizConfigContext/QuizConfigContext.types'
+import { useAppDispatch, useAppSelector } from '../../store'
+import { amountAC, categoryAC, difficultyAC, timeAC, typeAC } from '../../store/configSlice'
 
 export const Home = () => {
-  const [ctx, dispatch] = useQuizConfigDispatcherContext()
+  const config = useAppSelector(store => store.config)
 
-  const configSetter = {
-    questAmount: (id: number) => dispatch({type: ActionTypeEnum.AMOUNT, payload: id}),
-    category: (id: string) => dispatch({type: ActionTypeEnum.CATEGORY, payload: id}),
-    difficulty: (id: string) => dispatch({type: ActionTypeEnum.DIFFICULTY, payload: id}),
-    type: (id: string) => dispatch({type: ActionTypeEnum.TYPE, payload: id}),
-    time: (id: string) => dispatch({type: ActionTypeEnum.TIME, payload: id}),
-  }
+  const dispatch = useAppDispatch()
+
+  const dispatchAmount = (payload: number) => dispatch(amountAC(payload));
+  const dispatchCategory = (payload: string) => dispatch(categoryAC(payload));
+  const dispatchDifficulty = (payload: string) => dispatch(difficultyAC(payload));
+  const dispatchType = (payload: string) => dispatch(typeAC(payload));
+  const dispatchTime = (payload: string) => dispatch(timeAC(payload));
 
   return (
     <div className={styles.Home}>
@@ -27,16 +27,16 @@ export const Home = () => {
         <Heading pageName={PageNames.HOME} />
       </div>
       <div className={styles.selects}>
-        <Select domId={'CategorySelect'} callback={configSetter.category} optionObject={QuizCategories} />
-        <Select domId={'DifficultySelect'} callback={configSetter.difficulty} optionObject={QuizDifficulties} />
-        <Select domId={'TypeSelect'} callback={configSetter.type} optionObject={QuizType} />
-        <Select domId={'TimeSelect'} callback={configSetter.time} optionObject={QuizTime} />
+        <Select domId={'CategorySelect'} callback={dispatchCategory} optionObject={QuizCategories} />
+        <Select domId={'DifficultySelect'} callback={dispatchDifficulty} optionObject={QuizDifficulties} />
+        <Select domId={'TypeSelect'} callback={dispatchType} optionObject={QuizType} />
+        <Select domId={'TimeSelect'} callback={dispatchTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
         <NumberInput
-          callback={configSetter.questAmount}
-          min={ctx.minQuestsCount}
-          max={ctx.maxQuestsCount}
+          callback={dispatchAmount}
+          min={config.minQuestionsCount}
+          max={config.maxQuestionsCount}
           label="Count of questions: "
         />
       </div>
