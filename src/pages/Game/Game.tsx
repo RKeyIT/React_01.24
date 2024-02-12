@@ -44,7 +44,6 @@ export const Game: FC = () => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     playerAnswer = e.target.value
-    console.log(playerAnswer === correct_answer)
   }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -54,7 +53,11 @@ export const Game: FC = () => {
   }
 
   const timeoutCallback = () => {
-    navigate(URLS.RESULT)
+    if (currentIndex === questionCollection.length - 1) {
+      navigate(URLS.RESULT)
+    } else {
+      gameDispatch(GameAC.index(currentIndex + 1))
+    }
   }
 
   async function getRandomData() {
