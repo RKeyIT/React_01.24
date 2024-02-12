@@ -129,7 +129,7 @@ const reducer = (state: IState, action: ActionType): IState => {
                 incorrect_answers: action.payload
             }
         default:
-            throw new Error('Default case casued!')
+            return state
     }
 }
 
