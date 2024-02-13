@@ -26,6 +26,8 @@ const statistics = {
   element: <Statistics />
 }
 
+// TODO - Create private routes for scenarios when the game has been started and when was not.
+
 const root = [
   {
     path: '/',
