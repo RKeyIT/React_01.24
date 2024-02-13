@@ -8,8 +8,8 @@ export enum PageNames {
 }
 
 export interface IGameData {
-  currQuestIndex: number,
-  lastQuestIndex: number,
+  currQuestIndex: number
+  lastQuestIndex: number
 }
 
 export interface IGameSettings {

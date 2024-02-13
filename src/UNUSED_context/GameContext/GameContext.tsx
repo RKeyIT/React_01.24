@@ -11,7 +11,7 @@ const defaultContext: IGameContext = {
   isInGame: false,
   inGameData: {
     currQuestIndex: 0,
-    lastQuestIndex: 9,
+    lastQuestIndex: 9
   },
   minQuestionsCount: 5,
   maxQuestionsCount: 15,

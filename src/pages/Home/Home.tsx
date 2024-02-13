@@ -2,25 +2,35 @@ import { Button } from '../../shared/Button/Button'
 import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
-import { PageNames, QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 import { Heading } from '../../shared/Heading/Heading'
 import { Link } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { useAppDispatch, useAppSelector } from '../../store'
-import { amountAC, categoryAC, difficultyAC, resetConfigAC, timeAC, typeAC } from '../../store/configSlice'
+import {
+  amountAC,
+  categoryAC,
+  difficultyAC,
+  resetConfigAC,
+  timeAC,
+  typeAC
+} from '../../store/configSlice'
 import { useEffect } from 'react'
+import { PageNames } from '../../global.types'
+import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
 
 export const Home = () => {
-  const config = useAppSelector(store => store.config)
+  const config = useAppSelector((store) => store.config)
   const dispatch = useAppDispatch()
 
-  useEffect(() => { dispatch(resetConfigAC()) }, [])
+  useEffect(() => {
+    dispatch(resetConfigAC())
+  }, [dispatch])
 
-  const dispatchAmount = (payload: number) => dispatch(amountAC(payload));
-  const dispatchCategory = (payload: string) => dispatch(categoryAC(payload));
-  const dispatchDifficulty = (payload: string) => dispatch(difficultyAC(payload));
-  const dispatchType = (payload: string) => dispatch(typeAC(payload));
-  const dispatchTime = (payload: string) => dispatch(timeAC(payload));
+  const dispatchAmount = (payload: number) => dispatch(amountAC(payload))
+  const dispatchCategory = (payload: string) => dispatch(categoryAC(payload))
+  const dispatchDifficulty = (payload: string) => dispatch(difficultyAC(payload))
+  const dispatchType = (payload: string) => dispatch(typeAC(payload))
+  const dispatchTime = (payload: string) => dispatch(timeAC(payload))
 
   return (
     <div className={styles.Home}>
@@ -28,8 +38,16 @@ export const Home = () => {
         <Heading pageName={PageNames.HOME} />
       </div>
       <div className={styles.selects}>
-        <Select domId={'CategorySelect'} callback={dispatchCategory} optionObject={QuizCategories} />
-        <Select domId={'DifficultySelect'} callback={dispatchDifficulty} optionObject={QuizDifficulties} />
+        <Select
+          domId={'CategorySelect'}
+          callback={dispatchCategory}
+          optionObject={QuizCategories}
+        />
+        <Select
+          domId={'DifficultySelect'}
+          callback={dispatchDifficulty}
+          optionObject={QuizDifficulties}
+        />
         <Select domId={'TypeSelect'} callback={dispatchType} optionObject={QuizType} />
         <Select domId={'TimeSelect'} callback={dispatchTime} optionObject={QuizTime} />
       </div>

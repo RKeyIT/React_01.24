@@ -1,26 +1,26 @@
-import { Dispatch } from "react"
+import { Dispatch } from 'react'
 
 export interface IQuizContext {
-    questsAmount: number | string
-    category: string
-    difficulty: string
-    type: string
-    time: string
-    minQuestsCount: number
-    maxQuestsCount: number
+  questsAmount: number | string
+  category: string
+  difficulty: string
+  type: string
+  time: string
+  minQuestsCount: number
+  maxQuestsCount: number
 }
 
 export enum ActionTypeEnum {
-    AMOUNT = 'AMOUNT',
-    CATEGORY = 'CATEGORY',
-    DIFFICULTY = 'DIFFICULTY',
-    TYPE = 'TYPE',
-    TIME = 'TIME',
+  AMOUNT = 'AMOUNT',
+  CATEGORY = 'CATEGORY',
+  DIFFICULTY = 'DIFFICULTY',
+  TYPE = 'TYPE',
+  TIME = 'TIME'
 }
 
 export interface IAction {
-    type: ActionTypeEnum,
-    payload: string | number
+  type: ActionTypeEnum
+  payload: string | number
 }
 
 export type QuizContextReducerType = (state: IQuizContext, action: IAction) => IQuizContext

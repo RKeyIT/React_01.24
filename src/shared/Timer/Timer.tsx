@@ -1,16 +1,21 @@
 import styles from './Timer.module.css'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 interface IProps {
-  seconds?: number,
+  seconds?: number
   timeoutCallback?: () => void
 }
 
-export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) => { 
-  const initialState = {
-    minutes: getMinutes(seconds),
-    seconds: seconds % 60
-  }
+export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) => {
+  // FIXME - Learn it deeper!
+  // NOTE - IDK what is it =D - It's the linter hint, that I must to do it.
+  const initialState = useMemo(
+    () => ({
+      minutes: getMinutes(seconds),
+      seconds: seconds % 60
+    }),
+    [seconds]
+  )
 
   const [time, setTime] = useState(initialState)
 
@@ -38,7 +43,7 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       setTime(initialState)
       return clearInterval(interval)
     }
-  }, [timeoutCallback])
+  }, [timeoutCallback, initialState])
 
   // REVIEW - is it clear usage?
   useEffect(() => {
@@ -46,7 +51,7 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       timeoutCallback()
       setTime(initialState)
     }
-  }, [time])
+  }, [time, initialState, timeoutCallback])
 
   function getMinutes(seconds: number) {
     return Math.floor(seconds / 60)

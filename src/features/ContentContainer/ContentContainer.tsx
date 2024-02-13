@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 
 export const ContentContainer: FC = () => {
   return (
-    <div className={styles.ContentContainer} id='ContentContainer'>
+    <div className={styles.ContentContainer} id="ContentContainer">
       <Navigation />
       <CloseButton />
       <Outlet />

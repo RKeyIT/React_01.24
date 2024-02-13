@@ -43,12 +43,17 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
 
   const ModalWithProps = <ModalGameEnder cancel={onCancelModal} close={onEndGame} />
 
-  
-  return <>
-    <button disabled={disabled} onClick={onCloseButton} 
-          type="button" title={title} className={styles.CloseButton}>
-    x
-  </button>
-  {isModalVisible && portalTarget && createPortal(ModalWithProps, portalTarget)}
-</>
+  return (
+    <>
+      <button
+        disabled={disabled}
+        onClick={onCloseButton}
+        type="button"
+        title={title}
+        className={styles.CloseButton}>
+        x
+      </button>
+      {isModalVisible && portalTarget && createPortal(ModalWithProps, portalTarget)}
+    </>
+  )
 }
