@@ -6,7 +6,7 @@ const initialState = {
     category: QuizCategories.ANY.id,
     difficulty: QuizDifficulties.ANY.id,
     type: QuizType.ANY.id,
-    time: QuizTime.ANY.id,
+    time: QuizTime.one.id,
     minQuestionsCount: 5,
     maxQuestionsCount: 15,
 }
@@ -20,10 +20,10 @@ const configSlice = createSlice({
         difficultyAC: (state, action) => { state.difficulty = action.payload },
         typeAC: (state, action) => { state.type = action.payload },
         timeAC: (state, action) => { state.time = action.payload },
-        resetAC: (state) => { state = initialState }
+        resetConfigAC: (state) => { state = initialState }
     }
 })
 
 export const configReducer = configSlice.reducer
 
-export const { amountAC, categoryAC, difficultyAC, resetAC, timeAC, typeAC } = configSlice.actions
+export const { amountAC, categoryAC, difficultyAC, resetConfigAC, timeAC, typeAC } = configSlice.actions

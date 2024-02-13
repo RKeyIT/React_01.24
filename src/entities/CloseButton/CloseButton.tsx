@@ -21,11 +21,9 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
     if (isModalVisible && path !== URLS.GAME) {
       setModalVisible(false)
     }
-  }, [path])
+  }, [isModalVisible, path])
 
   const onCloseButton = () => {
-    if(path === URLS.HOME) return
-
     if (path !== URLS.GAME) {
       return navigate(URLS.HOME)
     }

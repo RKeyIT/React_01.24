@@ -37,7 +37,7 @@ const gameSlice = createSlice({
         questionAC: (state, action) => { state.question = action.payload },
         correctAC: (state, action) => { state.correct_answer = action.payload },
         incorrectAC: (state, action) => { state.incorrect_answers = action.payload },
-        resetAC: (state) => { state = initialState },
+        resetGameAC: (state) => { state = initialState },
         collectionAC: (state, action) => { 
             state.questionCollection = action.payload;
             state.currentIndex = 0;
@@ -55,4 +55,4 @@ const gameSlice = createSlice({
 
 export const gameReducer = gameSlice.reducer
 
-export const { collectionAC, indexAC, correctAC, incorrectAC, questionAC, resetAC, answerAC } = gameSlice.actions
+export const { collectionAC, indexAC, correctAC, incorrectAC, questionAC, resetGameAC, answerAC } = gameSlice.actions

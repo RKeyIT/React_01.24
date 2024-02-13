@@ -34,8 +34,11 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       })
     }, 1000)
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => {
+      setTime(initialState)
+      return clearInterval(interval)
+    }
+  }, [timeoutCallback])
 
   // REVIEW - is it clear usage?
   useEffect(() => {

@@ -62,7 +62,6 @@ export const QuizType: IObjectWithOptions = Object.freeze({
 })
 
 export const QuizTime: IObjectWithOptions = Object.freeze({
-  ANY: { id: 'any', name: 'Any Time' },
   one: { id: '1', name: 'One Minute' },
   two: { id: '2', name: 'Two Minutes' },
   five: { id: '5', name: 'Five Minutes' }

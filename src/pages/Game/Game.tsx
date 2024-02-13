@@ -18,6 +18,7 @@ export const Game: FC = () => {
   const navigate = useNavigate()
 
   const game = useAppSelector(store => store.game)
+  const time = useAppSelector(store => store.config.time)
   const dispatch = useAppDispatch()
 
   const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
@@ -75,7 +76,7 @@ export const Game: FC = () => {
   return (
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
-      <Timer timeoutCallback={submitAnswer}/>
+      <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer}/>
       <ProgressBar />
       <TextField children={question} />
       <AnswersForm answers={[correct_answer, ...incorrect_answers]}
