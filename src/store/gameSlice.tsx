@@ -37,7 +37,7 @@ const gameSlice = createSlice({
         questionAC: (state, action) => { state.question = action.payload },
         correctAC: (state, action) => { state.correct_answer = action.payload },
         incorrectAC: (state, action) => { state.incorrect_answers = action.payload },
-        resetGameAC: (state) => { state = initialState },
+        resetGameAC: () => ({ ...initialState }),
         collectionAC: (state, action) => { 
             state.questionCollection = action.payload;
             state.currentIndex = 0;

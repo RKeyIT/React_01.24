@@ -20,7 +20,7 @@ const configSlice = createSlice({
         difficultyAC: (state, action) => { state.difficulty = action.payload },
         typeAC: (state, action) => { state.type = action.payload },
         timeAC: (state, action) => { state.time = action.payload },
-        resetConfigAC: (state) => { state = initialState }
+        resetConfigAC: () => ({ ...initialState })
     }
 })
 

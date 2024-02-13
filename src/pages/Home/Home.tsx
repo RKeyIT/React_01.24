@@ -4,7 +4,7 @@ import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { PageNames, QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
 import { Heading } from '../../shared/Heading/Heading'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { amountAC, categoryAC, difficultyAC, resetConfigAC, timeAC, typeAC } from '../../store/configSlice'
@@ -13,17 +13,14 @@ import { useEffect } from 'react'
 export const Home = () => {
   const config = useAppSelector(store => store.config)
   const dispatch = useAppDispatch()
-  const path = useLocation().pathname
+
+  useEffect(() => { dispatch(resetConfigAC()) }, [])
 
   const dispatchAmount = (payload: number) => dispatch(amountAC(payload));
   const dispatchCategory = (payload: string) => dispatch(categoryAC(payload));
   const dispatchDifficulty = (payload: string) => dispatch(difficultyAC(payload));
   const dispatchType = (payload: string) => dispatch(typeAC(payload));
   const dispatchTime = (payload: string) => dispatch(timeAC(payload));
-
-  // TODO - Returning to the Home page should trigger config resetting
-  // FIXME - Is useEffect without dependencies will reset config after any dispatch?
-  useEffect(() => { path === URLS.HOME && dispatch(resetConfigAC()) })
 
   return (
     <div className={styles.Home}>
