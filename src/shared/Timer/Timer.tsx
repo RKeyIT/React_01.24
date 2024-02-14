@@ -11,7 +11,7 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
   // NOTE - IDK what is it =D - It's the linter hint, that I must to do it.
   const initialState = useMemo(
     () => ({
-      minutes: getMinutes(seconds),
+      minutes: Math.floor(seconds / 60),
       seconds: seconds % 60
     }),
     [seconds]
@@ -52,10 +52,6 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       setTime(initialState)
     }
   }, [time, initialState, timeoutCallback])
-
-  function getMinutes(seconds: number) {
-    return Math.floor(seconds / 60)
-  }
 
   function getFormattedTime() {
     const mins: string = time.minutes < 10 ? `0${time.minutes}` : String(time.minutes)
