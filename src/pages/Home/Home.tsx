@@ -3,7 +3,7 @@ import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { Heading } from '../../shared/Heading/Heading'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import {
@@ -17,10 +17,13 @@ import {
 import { useEffect } from 'react'
 import { PageNames } from '../../global.types'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
+import { startGameAC } from '../../store/gameSlice'
 
 export const Home = () => {
-  const config = useAppSelector((store) => store.config)
+  const config = useAppSelector((state) => state.config)
+  const game = useAppSelector(state => state.game)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(resetConfigAC())
@@ -31,6 +34,19 @@ export const Home = () => {
   const dispatchDifficulty = (payload: string) => dispatch(difficultyAC(payload))
   const dispatchType = (payload: string) => dispatch(typeAC(payload))
   const dispatchTime = (payload: string) => dispatch(timeAC(payload))
+
+  const onStartGame = () => {
+    if (game.isGameStarted) {
+      throw new Error('Game already started!')
+    }
+
+    dispatch(startGameAC())
+    navigate(URLS.GAME)
+  }
+
+  const onGoStatistics = () => {
+    navigate(URLS.STATISTICS)
+  }
 
   return (
     <div className={styles.Home}>
@@ -60,12 +76,8 @@ export const Home = () => {
         />
       </div>
       <div className={styles.buttons}>
-        <Link to={URLS.STATISTICS}>
-          <Button content="See my statistics" style="white" />
-        </Link>
-        <Link to={URLS.GAME}>
-          <Button content="Start quiz" style="green" />
-        </Link>
+        <Button callback={onGoStatistics} content="See my statistics" style="white" />
+        <Button callback={onStartGame} content="Start quiz" style="green" />
       </div>
     </div>
   )

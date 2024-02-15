@@ -12,6 +12,7 @@ interface ICollectionActionPayloadItem {
 }
 
 interface IState {
+  isGameStarted: boolean
   questionCollection: ICollectionActionPayloadItem[]
   currentIndex: number
   question: string
@@ -21,6 +22,7 @@ interface IState {
 }
 
 const initialState: IState = {
+  isGameStarted: false,
   questionCollection: [],
   currentIndex: 0,
   question: '',
@@ -33,6 +35,8 @@ const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    startGameAC: (state) => { state.isGameStarted = true }, 
+    closeGameAC: (state) => { state.isGameStarted = false },
     indexAC: (state) => {
       state.currentIndex += 1
     },
@@ -63,5 +67,8 @@ const gameSlice = createSlice({
 
 export const gameReducer = gameSlice.reducer
 
-export const { collectionAC, indexAC, correctAC, incorrectAC, questionAC, resetGameAC, answerAC } =
+export const { 
+  collectionAC, indexAC, correctAC,
+  incorrectAC, questionAC, resetGameAC,
+  answerAC, startGameAC, closeGameAC } =
   gameSlice.actions
