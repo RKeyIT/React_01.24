@@ -5,25 +5,26 @@ import { Result } from '../pages/Result/Result'
 import { Statistics } from '../pages/Statistics/Statistics'
 import { ContentContainer } from '../features/ContentContainer/ContentContainer'
 import { URLS } from './router.types'
+import { RouteProtector } from './RouteProtector'
 
 const home = {
   path: URLS.HOME,
-  element: <Home />
+  element: <RouteProtector><Home /></RouteProtector>
 }
 
 const game = {
   path: URLS.GAME,
-  element: <Game />
+  element: <RouteProtector><Game /></RouteProtector>
 }
 
 const result = {
   path: URLS.RESULT,
-  element: <Result />
+  element: <RouteProtector><Result /></RouteProtector>
 }
 
 const statistics = {
   path: URLS.STATISTICS,
-  element: <Statistics />
+  element: <RouteProtector><Statistics /></RouteProtector>
 }
 
 // TODO - Create private routes for scenarios when the game has been started and when was not.
