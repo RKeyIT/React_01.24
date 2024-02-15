@@ -21,7 +21,7 @@ import { startGameAC } from '../../store/gameSlice'
 
 export const Home = () => {
   const config = useAppSelector((state) => state.config)
-  const game = useAppSelector(state => state.game)
+  const game = useAppSelector((state) => state.game)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 

@@ -11,9 +11,9 @@ import { PageNames } from '../../global.types'
 import { useAppSelector } from '../../store'
 
 export const Result: FC = () => {
-  const {player_answers, timeResult} = useAppSelector(store => store.game)
+  const { player_answers, timeResult } = useAppSelector((store) => store.game)
 
-  let rightAnswers = 0;
+  let rightAnswers = 0
 
   player_answers.forEach((el) => {
     if (el) rightAnswers++

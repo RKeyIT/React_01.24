@@ -53,7 +53,7 @@ export const Game: FC = () => {
   let playerAnswer: string | null = null
 
   useEffect(() => {
-    let timerCounter = 0;
+    let timerCounter = 0
 
     const timer = setInterval(() => {
       timerCounter++
@@ -66,7 +66,7 @@ export const Game: FC = () => {
   }, [])
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       async function getRandomData() {
         const index = Math.round(Math.random() * 3)
         return MOCKDATA[index]

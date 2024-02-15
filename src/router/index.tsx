@@ -9,22 +9,38 @@ import { RouteProtector } from './RouteProtector'
 
 const home = {
   path: URLS.HOME,
-  element: <RouteProtector><Home /></RouteProtector>
+  element: (
+    <RouteProtector>
+      <Home />
+    </RouteProtector>
+  )
 }
 
 const game = {
   path: URLS.GAME,
-  element: <RouteProtector><Game /></RouteProtector>
+  element: (
+    <RouteProtector>
+      <Game />
+    </RouteProtector>
+  )
 }
 
 const result = {
   path: URLS.RESULT,
-  element: <RouteProtector><Result /></RouteProtector>
+  element: (
+    <RouteProtector>
+      <Result />
+    </RouteProtector>
+  )
 }
 
 const statistics = {
   path: URLS.STATISTICS,
-  element: <RouteProtector><Statistics /></RouteProtector>
+  element: (
+    <RouteProtector>
+      <Statistics />
+    </RouteProtector>
+  )
 }
 
 // TODO - Create private routes for scenarios when the game has been started and when was not.

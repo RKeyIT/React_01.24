@@ -24,7 +24,11 @@ export const Navigation: FC = () => {
   return (
     <nav className={styles.Navigation}>
       <NavButton disabled={isHomeDisabled} navLink={URLS.HOME} content={PageNames.HOME} />
-      <NavButton disabled={isStatisticsDisabled} navLink={URLS.STATISTICS} content={PageNames.STATISTICS} />
+      <NavButton
+        disabled={isStatisticsDisabled}
+        navLink={URLS.STATISTICS}
+        content={PageNames.STATISTICS}
+      />
     </nav>
   )
 }

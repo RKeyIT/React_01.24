@@ -1,4 +1,9 @@
-import { getCategoryName, getDifficultyName, getTimeName, getTypeName } from '../../global.contsants'
+import {
+  getCategoryName,
+  getDifficultyName,
+  getTimeName,
+  getTypeName
+} from '../../global.contsants'
 import { useAppSelector } from '../../store'
 import styles from './Table.module.css'
 import { FC } from 'react'
@@ -11,7 +16,7 @@ interface IProps {
 }
 
 export const Table: FC<IProps> = ({ name = 'Table' }) => {
-  const {category, difficulty, type, time} = useAppSelector(store => store.config)
+  const { category, difficulty, type, time } = useAppSelector((store) => store.config)
   const categoryName = getCategoryName(category)
   const difficultyName = getDifficultyName(difficulty)
   const typeName = getTypeName(type)
