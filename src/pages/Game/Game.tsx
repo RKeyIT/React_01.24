@@ -11,6 +11,7 @@ import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
 import {
   answerAC,
+  closeGameAC,
   collectionAC,
   correctAC,
   incorrectAC,
@@ -51,7 +52,7 @@ export const Game: FC = () => {
   let playerAnswer: string | null = null
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       async function getRandomData() {
         const index = Math.round(Math.random() * 3)
         return MOCKDATA[index]
@@ -81,7 +82,10 @@ export const Game: FC = () => {
     dispatchAnswer(playerAnswer === correct_answer)
     dispatchIndex()
 
-    if (currentIndex === questionCollection.length - 1) navigate(URLS.RESULT)
+    if (currentIndex === questionCollection.length - 1) {
+      dispatch(closeGameAC())
+      navigate(URLS.RESULT)
+    }
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

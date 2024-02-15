@@ -4,6 +4,8 @@ import { FC, useEffect, useState } from 'react'
 import { URLS } from '../../router/router.types'
 import { createPortal } from 'react-dom'
 import { ModalGameEnder } from '../ModalGameEnder/ModalGameEnder'
+import { useAppDispatch } from '../../store'
+import { closeGameAC } from '../../store/gameSlice'
 
 interface IProps {
   title?: string
@@ -13,6 +15,7 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   const [isModalVisible, setModalVisible] = useState<boolean>(false)
   const path = useLocation().pathname
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const portalTarget = document.getElementById('ContentContainer')
   const disabled = path === URLS.HOME ? true : false
@@ -38,6 +41,7 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   }
   const onEndGame = () => {
     setModalVisible(false)
+    dispatch(closeGameAC())
     return navigate(URLS.HOME)
   }
 
