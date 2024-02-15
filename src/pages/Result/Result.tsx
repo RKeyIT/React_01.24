@@ -11,12 +11,23 @@ import { PageNames } from '../../global.types'
 import { useAppSelector } from '../../store'
 
 export const Result: FC = () => {
-  const answers = useAppSelector(store => store.game.player_answers)
+  const {player_answers, timeResult} = useAppSelector(store => store.game)
 
   let rightAnswers = 0;
-  answers.forEach((el) => {
+
+  player_answers.forEach((el) => {
     if (el) rightAnswers++
   })
+
+  function getFormattedTime() {
+    const mins = Math.floor(timeResult / 60)
+    const secs = timeResult % 60
+
+    const minutes = mins < 10 ? `0${mins}` : String(mins)
+    const seconds = secs < 10 ? `0${secs}` : String(secs)
+
+    return minutes + ':' + seconds
+  }
 
   return (
     <div className={styles.Result}>
@@ -26,8 +37,10 @@ export const Result: FC = () => {
         <Table name="Quiz configuration" />
       </div>
       <div className={styles.summary}>
-        <TextField>You answered {rightAnswers} out of {answers.length} questions correctly</TextField>
-        <TextField>Time spent: 05:29</TextField>
+        <TextField>
+          You answered {rightAnswers} out of {player_answers.length} questions correctly
+        </TextField>
+        <TextField>Time result: {getFormattedTime()}</TextField>
         <ProgressBar />
       </div>
       <div className={styles.buttons}>

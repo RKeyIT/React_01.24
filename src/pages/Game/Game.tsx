@@ -16,7 +16,8 @@ import {
   correctAC,
   incorrectAC,
   indexAC,
-  questionAC
+  questionAC,
+  saveTimeResult
 } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 
@@ -50,6 +51,19 @@ export const Game: FC = () => {
   const dispatchAnswer = useCallback((payload: boolean) => dispatch(answerAC(payload)), [dispatch])
 
   let playerAnswer: string | null = null
+
+  useEffect(() => {
+    let timerCounter = 0;
+
+    const timer = setInterval(() => {
+      timerCounter++
+    }, 1000)
+
+    return () => {
+      clearInterval(timer)
+      dispatch(saveTimeResult(timerCounter))
+    }
+  }, [])
 
   useEffect(() => {
     (async () => {
