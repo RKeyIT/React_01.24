@@ -63,7 +63,7 @@ export const Game: FC = () => {
       clearInterval(timer)
       dispatch(saveTimeResult(timerCounter))
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     ;(async () => {
@@ -98,7 +98,7 @@ export const Game: FC = () => {
 
     if (currentIndex === questionCollection.length - 1) {
       dispatch(closeGameAC())
-      navigate(URLS.RESULT)
+      navigate(URLS.RESULT, { replace: true })
     }
   }
 
