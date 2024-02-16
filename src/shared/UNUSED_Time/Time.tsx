@@ -23,7 +23,5 @@ export const Time: FC<IProps> = ({ seconds }) => {
 
   const getTime = () => `${formatToTimeUnit(mins)}:${formatToTimeUnit(secs)}`
 
-  return <span className={getClassName()}>
-  {getTime()}
-</span>
+  return <span className={getClassName()}>{getTime()}</span>
 }

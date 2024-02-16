@@ -6,6 +6,7 @@ import { Statistics } from '../pages/Statistics/Statistics'
 import { ContentContainer } from '../features/ContentContainer/ContentContainer'
 import { URLS } from './router.types'
 import { RouteProtector } from './RouteProtector'
+import { NotFound404 } from '../pages/NotFound404/NotFound404'
 
 const home = {
   path: URLS.HOME,
@@ -43,13 +44,18 @@ const statistics = {
   )
 }
 
+const not_found = {
+  path: URLS.NOT_FOUND,
+  element: <NotFound404 />
+}
+
 // TODO - Create private routes for scenarios when the game has been started and when was not.
 
 const root = [
   {
     path: '/',
     element: <ContentContainer />,
-    children: [home, game, result, statistics]
+    children: [not_found, home, game, result, statistics]
   }
 ]
 

@@ -35,7 +35,7 @@ export const RouteProtector: FC<IRouteProtector> = ({ children }) => {
     if (path === URLS.STATISTICS) {
       console.log('We are on STATISTICS page!')
     }
-  }, [])
+  }, [isGameStarted, path, navigate])
 
   return children
 }
