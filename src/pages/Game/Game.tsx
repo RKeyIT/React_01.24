@@ -20,6 +20,7 @@ import {
   saveTimeResult
 } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
+import { fetchGameData } from '../../store/configSlice'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
@@ -27,10 +28,12 @@ export const Game: FC = () => {
   const navigate = useNavigate()
 
   const game = useAppSelector((store) => store.game)
-  const time = useAppSelector((store) => store.config.time)
+  const config = useAppSelector((store) => store.config)
   const dispatch = useAppDispatch()
 
   const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
+  const { questionAmount, category, difficulty, type, time } = config
+
 
   const dispatchIndex = () => dispatch(indexAC())
   const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
@@ -43,6 +46,7 @@ export const Game: FC = () => {
 
   useEffect(() => {
     let timerCounter = 0
+    dispatch(fetchGameData({questionAmount, category, difficulty, type}))
 
     const timer = setInterval(() => {
       timerCounter++
@@ -102,7 +106,7 @@ export const Game: FC = () => {
   return (
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
-      <Timer seconds={Number(time) * 1} timeoutCallback={submitAnswer} />
+      <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer} />
       <ProgressBar />
       <TextField>{question}</TextField>
       <AnswersForm
