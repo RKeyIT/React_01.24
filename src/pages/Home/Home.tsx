@@ -17,7 +17,7 @@ import {
 import { useEffect } from 'react'
 import { PageNames } from '../../global.types'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
-import { startGameAC } from '../../store/gameSlice'
+import { setGameStartAsTrueAC } from '../../store/gameSlice'
 
 export const Home = () => {
   const config = useAppSelector((state) => state.config)
@@ -35,12 +35,14 @@ export const Home = () => {
   const dispatchType = (payload: string) => dispatch(typeAC(payload))
   const dispatchTime = (payload: string) => dispatch(timeAC(payload))
 
+  // LINK - ../Result/Result.tsx#RepeatableLogic-GAME_START
+  //ANCHOR[id=RepeatableLogic-GAME_START]
   const onStartGame = () => {
     if (game.isGameStarted) {
       throw new Error('Game already started!')
     }
 
-    dispatch(startGameAC())
+    dispatch(setGameStartAsTrueAC())
     navigate(URLS.GAME)
   }
 

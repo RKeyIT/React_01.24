@@ -2,7 +2,7 @@ import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
-import { ChangeEvent, FC, FormEvent, useCallback, useEffect, useMemo } from 'react'
+import { ChangeEvent, FC, FormEvent, useEffect } from 'react'
 import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
@@ -11,7 +11,7 @@ import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
 import {
   answerAC,
-  closeGameAC,
+  setGameStartAsFalseAC,
   collectionAC,
   correctAC,
   incorrectAC,
@@ -22,7 +22,7 @@ import {
 import { PageNames } from '../../global.types'
 
 export const Game: FC = () => {
-  const MOCKDATA = useMemo(() => [bool, mult, mix1, mix2], [])
+  const MOCKDATA = [bool, mult, mix1, mix2]
 
   const navigate = useNavigate()
 
@@ -35,20 +35,11 @@ export const Game: FC = () => {
   // FIXME - Learn it deeper!
   // NOTE - IDK what is it =D - It's the linter hint, that I must to do it.
   const dispatchIndex = () => dispatch(indexAC())
-  const dispatchCollection = useCallback(
-    (payload: object[]) => dispatch(collectionAC(payload)),
-    [dispatch]
-  )
-  const dispatchQuestion = useCallback(
-    (payload: string) => dispatch(questionAC(payload)),
-    [dispatch]
-  )
-  const dispatchCorrect = useCallback((payload: string) => dispatch(correctAC(payload)), [dispatch])
-  const dispatchIncorrect = useCallback(
-    (payload: string[]) => dispatch(incorrectAC(payload)),
-    [dispatch]
-  )
-  const dispatchAnswer = useCallback((payload: boolean) => dispatch(answerAC(payload)), [dispatch])
+  const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
+  const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
+  const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
+  const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
+  const dispatchAnswer = (payload: boolean) => dispatch(answerAC(payload))
 
   let playerAnswer: string | null = null
 
@@ -63,22 +54,21 @@ export const Game: FC = () => {
       clearInterval(timer)
       dispatch(saveTimeResult(timerCounter))
     }
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
-    ;(async () => {
       async function getRandomData() {
         const index = Math.round(Math.random() * 3)
         return MOCKDATA[index]
       }
 
-      await getRandomData()
+      getRandomData()
         .then((data) => {
           dispatchCollection(data.results)
         })
         .catch((e) => console.error(e))
-    })()
-  }, [MOCKDATA, dispatchCollection])
+
+  }, [])
 
   useEffect(() => {
     if (questionCollection[currentIndex]) {
@@ -90,20 +80,20 @@ export const Game: FC = () => {
       dispatchCorrect(correct_answer)
       dispatchIncorrect(incorrect_answers)
     }
-  }, [questionCollection, currentIndex, dispatchQuestion, dispatchCorrect, dispatchIncorrect])
+  }, [questionCollection, currentIndex])
 
   const submitAnswer = () => {
     dispatchAnswer(playerAnswer === correct_answer)
     dispatchIndex()
 
     if (currentIndex === questionCollection.length - 1) {
-      dispatch(closeGameAC())
       navigate(URLS.RESULT, { replace: true })
+      dispatch(setGameStartAsFalseAC())
     }
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    playerAnswer = e.target.value
+    playerAnswer = e.target.value 
   }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -114,7 +104,7 @@ export const Game: FC = () => {
   return (
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
-      <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer} />
+      <Timer seconds={Number(time) * 1} timeoutCallback={submitAnswer} />
       <ProgressBar />
       <TextField>{question}</TextField>
       <AnswersForm

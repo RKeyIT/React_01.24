@@ -53,66 +53,66 @@ export const QuizTime: IObjectWithOptions = Object.freeze({
   five: { id: '5', name: 'Five Minutes' }
 })
 
-// export const getCategoryName = (id: string) => {
-//   for (const key in QuizCategories) {
-//     if (QuizCategories[key].id === id) return QuizCategories[key].name
-//   }
+export const getCategoryName = (id: string) => {
+  for (const key in QuizCategories) {
+    if (QuizCategories[key].id === id) return QuizCategories[key].name
+  }
 
-//   return 'RECEIVED ID WAS NOT FOUND!'
-// }
+  return 'RECEIVED ID WAS NOT FOUND!'
+}
 
-// export const getCategoryId = (name: string) => {
-//   for (const key in QuizCategories) {
-//     if (QuizCategories[key].name === name) return QuizCategories[key].id
-//   }
+export const getCategoryId = (name: string) => {
+  for (const key in QuizCategories) {
+    if (QuizCategories[key].name === name) return QuizCategories[key].id
+  }
 
-//   return 'RECEIVED NAME WAS NOT FOUND!'
-// }
+  return 'RECEIVED NAME WAS NOT FOUND!'
+}
 
-// export const getDifficultyName = (id: string) => {
-//   for (const key in QuizDifficulties) {
-//     if (QuizDifficulties[key].id === id) return QuizDifficulties[key].name
-//   }
+export const getDifficultyName = (id: string) => {
+  for (const key in QuizDifficulties) {
+    if (QuizDifficulties[key].id === id) return QuizDifficulties[key].name
+  }
 
-//   return 'RECEIVED ID WAS NOT FOUND!'
-// }
+  return 'RECEIVED ID WAS NOT FOUND!'
+}
 
-// export const getDifficultyId = (name: string) => {
-//   for (const key in QuizDifficulties) {
-//     if (QuizDifficulties[key].name === name) return QuizDifficulties[key].id
-//   }
+export const getDifficultyId = (name: string) => {
+  for (const key in QuizDifficulties) {
+    if (QuizDifficulties[key].name === name) return QuizDifficulties[key].id
+  }
 
-//   return 'RECEIVED NAME WAS NOT FOUND!'
-// }
+  return 'RECEIVED NAME WAS NOT FOUND!'
+}
 
-// export const getTypeName = (id: string) => {
-//   for (const key in QuizType) {
-//     if (QuizType[key].id === id) return QuizType[key].name
-//   }
+export const getTypeName = (id: string) => {
+  for (const key in QuizType) {
+    if (QuizType[key].id === id) return QuizType[key].name
+  }
 
-//   return 'RECEIVED ID WAS NOT FOUND!'
-// }
+  return 'RECEIVED ID WAS NOT FOUND!'
+}
 
-// export const getTypeId = (name: string) => {
-//   for (const key in QuizType) {
-//     if (QuizType[key].name === name) return QuizType[key].id
-//   }
+export const getTypeId = (name: string) => {
+  for (const key in QuizType) {
+    if (QuizType[key].name === name) return QuizType[key].id
+  }
 
-//   return 'RECEIVED NAME WAS NOT FOUND!'
-// }
+  return 'RECEIVED NAME WAS NOT FOUND!'
+}
 
-// export const getTimeName = (id: string) => {
-//   for (const key in QuizTime) {
-//     if (QuizTime[key].id === id) return QuizTime[key].name
-//   }
+export const getTimeName = (id: string) => {
+  for (const key in QuizTime) {
+    if (QuizTime[key].id === id) return QuizTime[key].name
+  }
 
-//   return 'RECEIVED ID WAS NOT FOUND!'
-// }
+  return 'RECEIVED ID WAS NOT FOUND!'
+}
 
-// export const getTimeId = (name: string) => {
-//   for (const key in QuizTime) {
-//     if (QuizTime[key].name === name) return QuizTime[key].id
-//   }
+export const getTimeId = (name: string) => {
+  for (const key in QuizTime) {
+    if (QuizTime[key].name === name) return QuizTime[key].id
+  }
 
-//   return 'RECEIVED NAME WAS NOT FOUND!'
-// }
+  return 'RECEIVED NAME WAS NOT FOUND!'
+}

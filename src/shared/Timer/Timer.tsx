@@ -1,5 +1,5 @@
 import styles from './Timer.module.css'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 interface IProps {
   seconds?: number
@@ -7,15 +7,10 @@ interface IProps {
 }
 
 export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) => {
-  // FIXME - Learn it deeper!
-  // NOTE - IDK what is it =D - It's the linter hint, that I must to do it.
-  const initialState = useMemo(
-    () => ({
+  const initialState = {
       minutes: Math.floor(seconds / 60),
       seconds: seconds % 60
-    }),
-    [seconds]
-  )
+  }
 
   const [time, setTime] = useState(initialState)
 
@@ -39,19 +34,15 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       })
     }, 1000)
 
-    return () => {
-      setTime(initialState)
-      return clearInterval(interval)
-    }
-  }, [timeoutCallback, initialState])
+    return () => clearInterval(interval)
+  }, [timeoutCallback])
 
-  // REVIEW - is it clear usage?
   useEffect(() => {
     if (time.minutes === 0 && time.seconds === 0) {
       timeoutCallback()
       setTime(initialState)
     }
-  }, [time, initialState, timeoutCallback])
+  }, [time])
 
   function getFormattedTime() {
     const mins: string = time.minutes < 10 ? `0${time.minutes}` : String(time.minutes)

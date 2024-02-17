@@ -5,7 +5,7 @@ import { URLS } from '../../router/router.types'
 import { createPortal } from 'react-dom'
 import { ModalGameEnder } from '../ModalGameEnder/ModalGameEnder'
 import { useAppDispatch } from '../../store'
-import { closeGameAC } from '../../store/gameSlice'
+import { setGameStartAsFalseAC } from '../../store/gameSlice'
 
 interface IProps {
   title?: string
@@ -41,7 +41,7 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   }
   const onEndGame = () => {
     setModalVisible(false)
-    dispatch(closeGameAC())
+    dispatch(setGameStartAsFalseAC())
     return navigate(URLS.HOME)
   }
 

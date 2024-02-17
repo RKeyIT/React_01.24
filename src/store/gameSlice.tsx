@@ -40,10 +40,10 @@ const gameSlice = createSlice({
     saveTimeResult: (state, action) => {
       state.timeResult = action.payload
     },
-    startGameAC: (state) => {
+    setGameStartAsTrueAC: (state) => {
       state.isGameStarted = true
     },
-    closeGameAC: (state) => {
+    setGameStartAsFalseAC: (state) => {
       state.isGameStarted = false
     },
     indexAC: (state) => {
@@ -84,7 +84,7 @@ export const {
   questionAC,
   resetGameAC,
   answerAC,
-  startGameAC,
-  closeGameAC,
+  setGameStartAsTrueAC,
+  setGameStartAsFalseAC,
   saveTimeResult
 } = gameSlice.actions
