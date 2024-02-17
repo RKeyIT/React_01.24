@@ -32,8 +32,6 @@ export const Game: FC = () => {
 
   const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
 
-  // FIXME - Learn it deeper!
-  // NOTE - IDK what is it =D - It's the linter hint, that I must to do it.
   const dispatchIndex = () => dispatch(indexAC())
   const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
   const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
