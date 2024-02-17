@@ -1,14 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../global.contsants'
 
-const initialState = {
+const resetableState = {
   questionAmount: 5,
   category: QuizCategories.ANY.id,
   difficulty: QuizDifficulties.ANY.id,
   type: QuizType.ANY.id,
   time: QuizTime.one.id,
+}
+
+const initialState = {
+  ...resetableState,
   minQuestionsCount: 5,
-  maxQuestionsCount: 15
+  maxQuestionsCount: 15,
 }
 
 const configSlice = createSlice({
@@ -30,7 +34,7 @@ const configSlice = createSlice({
     timeAC: (state, action) => {
       state.time = action.payload
     },
-    resetConfigAC: () => ({ ...initialState })
+    resetConfigAC: (state) => ({ ...state, ...resetableState })
   }
 })
 
