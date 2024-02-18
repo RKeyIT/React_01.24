@@ -7,16 +7,11 @@ import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
 import { FC } from 'react'
 import { URLS } from '../../router/router.types'
-import { PageNames } from '../../global.types'
+import { ITableRow, PageNames } from '../../global.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
 import { resetConfigAC } from '../../store/configSlice'
 import { getCategoryName, getDifficultyName, getTimeName, getTypeName } from '../../global.contsants'
-
-interface IRow {
-  category: string
-  description: string
-}
 
 export const Result: FC = () => {
   const dispatch = useAppDispatch()
@@ -30,7 +25,7 @@ export const Result: FC = () => {
   const typeName = getTypeName(type)
   const timeName = getTimeName(time)
 
-  const tableRows: IRow[] = [
+  const tableRows: ITableRow[] = [
     { category: 'category', description: categoryName },
     { category: 'difficulty', description: difficultyName},
     { category: 'type', description: typeName},

@@ -5,6 +5,11 @@ export enum PageNames {
   STATISTICS = 'Statistics'
 }
 
+export interface ITableRow {
+  category: string
+  description: string
+}
+
 export interface ISelectOption {
   id: string
   name: string
