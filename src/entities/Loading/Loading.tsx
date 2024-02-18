@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import styles from './Loading.module.css';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useAppSelector } from '../../store';
 
 export const Loading: FC = () => {
