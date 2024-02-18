@@ -2,10 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { gameReducer } from './gameSlice'
 import { configReducer } from './configSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { loaderReducer } from './loaderSlice'
 
 const rootReducer = combineReducers({
+  loader: loaderReducer,
   config: configReducer,
-  game: gameReducer
+  game: gameReducer,
 })
 
 export const store = configureStore({
