@@ -11,11 +11,31 @@ import { PageNames } from '../../global.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
 import { resetConfigAC } from '../../store/configSlice'
+import { getCategoryName, getDifficultyName, getTimeName, getTypeName } from '../../global.contsants'
+
+interface IRow {
+  category: string
+  description: string
+}
 
 export const Result: FC = () => {
-  const { player_answers, timeResult, isGameStarted } = useAppSelector((store) => store.game)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
+  const { player_answers, timeResult, isGameStarted } = useAppSelector((store) => store.game)
+  const { category, difficulty, type, time } = useAppSelector((store) => store.config)
+
+  const categoryName = getCategoryName(category)
+  const difficultyName = getDifficultyName(difficulty)
+  const typeName = getTypeName(type)
+  const timeName = getTimeName(time)
+
+  const tableRows: IRow[] = [
+    { category: 'category', description: categoryName },
+    { category: 'difficulty', description: difficultyName},
+    { category: 'type', description: typeName},
+    { category: 'time', description: timeName},
+  ]
 
   let rightAnswers = 0
 
@@ -54,7 +74,7 @@ export const Result: FC = () => {
       <Heading pageName={PageNames.RESULT} />
       <div className={styles.congratulations}>
         <TextField>Thank you for completing this quiz. Here are your results</TextField>
-        <Table name="Quiz configuration" />
+        <Table name="Quiz configuration" rows={tableRows} />
       </div>
       <div className={styles.summary}>
         <TextField>
