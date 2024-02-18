@@ -46,9 +46,10 @@ export const fetchGameData = createAsyncThunk(
 
     if (response.status < 200 || response.status >= 300) {
       console.error('REJECTED with status:', response.status)
-      return thunkAPI.rejectWithValue(data)
-    }
+      thunkAPI.rejectWithValue(data)
+    } 
 
+    // There is an array of collection with question and answers (data.results)
     return data.results
   }
 )
@@ -105,13 +106,13 @@ const gameSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchGameData.pending, (state, action) => {
-      console.log('Fetching...', action)
+      console.log('Fetching...', action, state)
     })
     builder.addCase(fetchGameData.rejected, (state, action) => {
-      console.log('Rejected...', action)
+      console.log('Rejected...', action, state)
     })
     builder.addCase(fetchGameData.fulfilled, (state, action) => {
-      console.log('Fulfilled...', action)
+      console.log('Fulfilled...', action.payload)
       state.questionCollection = action.payload
     })
   }
