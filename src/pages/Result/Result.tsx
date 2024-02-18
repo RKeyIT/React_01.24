@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../shared/Button/Button'
 import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
@@ -10,6 +10,7 @@ import { URLS } from '../../router/router.types'
 import { PageNames } from '../../global.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
+import { resetConfigAC } from '../../store/configSlice'
 
 export const Result: FC = () => {
   const { player_answers, timeResult, isGameStarted } = useAppSelector((store) => store.game)
@@ -43,6 +44,11 @@ export const Result: FC = () => {
     navigate(URLS.GAME, { replace: true })
   }
 
+  const onAnotherQuiz = () => {
+    dispatch(resetConfigAC())
+    navigate(URLS.HOME, { replace: true })
+  }
+
   return (
     <div className={styles.Result}>
       <Heading pageName={PageNames.RESULT} />
@@ -59,9 +65,7 @@ export const Result: FC = () => {
       </div>
       <div className={styles.buttons}>
         <Button callback={onRestart} content="Restart" />
-        <Link to={URLS.HOME}>
-          <Button content="Chose another quiz" />
-        </Link>
+        <Button callback={onAnotherQuiz} content="Chose another quiz" />
       </div>
     </div>
   )
