@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import { IObjectWithOptions } from './global.types'
 
 export const QuizCategories: IObjectWithOptions = Object.freeze({

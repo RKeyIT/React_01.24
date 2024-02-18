@@ -7,7 +7,7 @@ import { loaderReducer } from './loaderSlice'
 const rootReducer = combineReducers({
   loader: loaderReducer,
   config: configReducer,
-  game: gameReducer,
+  game: gameReducer
 })
 
 export const store = configureStore({

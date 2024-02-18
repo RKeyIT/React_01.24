@@ -45,7 +45,7 @@ export const Game: FC = () => {
 
   useEffect(() => {
     let timerCounter = 0
-    dispatch(fetchGameData({questionAmount, category, difficulty, type}))
+    dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
 
     const timer = setInterval(() => {
       timerCounter++
@@ -55,11 +55,13 @@ export const Game: FC = () => {
       clearInterval(timer)
       dispatch(saveTimeResult(timerCounter))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     const index = Math.round(Math.random() * 3)
     dispatchCollection(MOCKDATA[index].results)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -72,6 +74,7 @@ export const Game: FC = () => {
       dispatchCorrect(correct_answer)
       dispatchIncorrect(incorrect_answers)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questionCollection, currentIndex])
 
   const submitAnswer = () => {
@@ -85,7 +88,7 @@ export const Game: FC = () => {
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    playerAnswer = e.target.value 
+    playerAnswer = e.target.value
   }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {

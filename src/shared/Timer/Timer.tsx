@@ -8,8 +8,8 @@ interface IProps {
 
 export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) => {
   const initialState = {
-      minutes: Math.floor(seconds / 60),
-      seconds: seconds % 60
+    minutes: Math.floor(seconds / 60),
+    seconds: seconds % 60
   }
 
   const [time, setTime] = useState(initialState)
@@ -38,6 +38,7 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       clearInterval(interval)
       setTime(initialState)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeoutCallback])
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) 
       timeoutCallback()
       setTime(initialState)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time])
 
   function getFormattedTime() {

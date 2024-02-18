@@ -1,10 +1,10 @@
-import { createPortal } from 'react-dom';
-import styles from './Loading.module.css';
-import { FC } from 'react';
-import { useAppSelector } from '../../store';
+import { createPortal } from 'react-dom'
+import styles from './Loading.module.css'
+import { FC } from 'react'
+import { useAppSelector } from '../../store'
 
 export const Loading: FC = () => {
-  const isLoading = useAppSelector(state => state.loader.isLoadedSomething)
+  const isLoading = useAppSelector((state) => state.loader.isLoadedSomething)
 
   const portalTarget = document.getElementById('ContentContainer')
 
@@ -14,5 +14,5 @@ export const Loading: FC = () => {
     </div>
   )
 
-  return <>{isLoading && portalTarget && createPortal(markup, portalTarget)}</>;
-};
+  return <>{isLoading && portalTarget && createPortal(markup, portalTarget)}</>
+}

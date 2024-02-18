@@ -12,8 +12,6 @@ export const RouteProtector: FC<IRouteProtector> = ({ children }) => {
   const path = useLocation().pathname
   const navigate = useNavigate()
 
-  // FIXME - if we're put the path directly in the browser we'll catch the warning and empty page!
-
   useEffect(() => {
     if (path === URLS.HOME) {
       console.log('We are on HOME page!')
@@ -35,6 +33,7 @@ export const RouteProtector: FC<IRouteProtector> = ({ children }) => {
     if (path === URLS.STATISTICS) {
       console.log('We are on STATISTICS page!')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path])
 
   return children

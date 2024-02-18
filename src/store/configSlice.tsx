@@ -6,15 +6,14 @@ const resetableState = {
   category: QuizCategories.ANY.id,
   difficulty: QuizDifficulties.ANY.id,
   type: QuizType.ANY.id,
-  time: QuizTime.one.id,
+  time: QuizTime.one.id
 }
 
 const initialState = {
   ...resetableState,
   minQuestionsCount: 5,
-  maxQuestionsCount: 15,
+  maxQuestionsCount: 15
 }
-
 
 const configSlice = createSlice({
   name: 'config',

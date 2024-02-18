@@ -49,8 +49,6 @@ const not_found = {
   element: <NotFound404 />
 }
 
-// TODO - Create private routes for scenarios when the game has been started and when was not.
-
 const root = [
   {
     path: '/',
