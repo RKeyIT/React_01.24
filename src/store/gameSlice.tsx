@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { QuizCategories, QuizDifficulties, QuizType } from '../global.contsants'
 
 interface ICollectionActionPayloadItem {
   // type: 'boolean' | 'multiple',
@@ -21,6 +22,36 @@ interface IState {
   incorrect_answers: string[]
   player_answers: boolean[] | null[]
 }
+
+interface IParameters {
+  questionAmount: number,
+  category?: string,
+  difficulty?: string,
+  type?: string
+}
+
+export const fetchGameData = createAsyncThunk(
+  'config/dataFetching',
+  async (params: IParameters, thunkAPI) => {
+    // Request example: https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple
+    const { questionAmount, category, difficulty, type } = params
+    let baseURL = `https://opentdb.com/api.php?amount=${questionAmount}`
+
+    if (category !== QuizCategories.ANY.id) baseURL += `&category=${category}`
+    if (difficulty !== QuizDifficulties.ANY.id) baseURL += `&difficulty=${difficulty}`
+    if (type !== QuizType.ANY.id) baseURL += `&type=${type}`
+
+    const response = await fetch(baseURL)
+    const data = await response.json()
+
+    if (response.status < 200 || response.status >= 300) {
+      console.error('REJECTED with status:', response.status)
+      return thunkAPI.rejectWithValue(data)
+    }
+
+    return data.results
+  }
+)
 
 const initialState: IState = {
   isGameStarted: false,
@@ -71,6 +102,18 @@ const gameSlice = createSlice({
     answerAC: (state, action) => {
       state.player_answers[state.currentIndex] = action.payload
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchGameData.pending, (state, action) => {
+      console.log('Fetching...', action)
+    })
+    builder.addCase(fetchGameData.rejected, (state, action) => {
+      console.log('Rejected...', action)
+    })
+    builder.addCase(fetchGameData.fulfilled, (state, action) => {
+      console.log('Fulfilled...', action)
+      state.questionCollection = action.payload
+    })
   }
 })
 

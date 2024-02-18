@@ -20,7 +20,7 @@ import {
   saveTimeResult
 } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
-import { fetchGameData } from '../../store/configSlice'
+import { fetchGameData } from '../../store/gameSlice'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
@@ -33,7 +33,6 @@ export const Game: FC = () => {
 
   const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
   const { questionAmount, category, difficulty, type, time } = config
-
 
   const dispatchIndex = () => dispatch(indexAC())
   const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
@@ -59,17 +58,8 @@ export const Game: FC = () => {
   }, [])
 
   useEffect(() => {
-      async function getRandomData() {
-        const index = Math.round(Math.random() * 3)
-        return MOCKDATA[index]
-      }
-
-      getRandomData()
-        .then((data) => {
-          dispatchCollection(data.results)
-        })
-        .catch((e) => console.error(e))
-
+    const index = Math.round(Math.random() * 3)
+    dispatchCollection(MOCKDATA[index].results)
   }, [])
 
   useEffect(() => {
@@ -89,8 +79,8 @@ export const Game: FC = () => {
     dispatchIndex()
 
     if (currentIndex === questionCollection.length - 1) {
-      navigate(URLS.RESULT, { replace: true })
       dispatch(setGameStartAsFalseAC())
+      navigate(URLS.RESULT, { replace: true })
     }
   }
 
