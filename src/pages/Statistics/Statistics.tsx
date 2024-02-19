@@ -19,12 +19,22 @@ export const Statistics: FC = () => {
     DifficultiesCount,
     TypeCount
   } = useAppSelector(state => state.persistor)
+
+  const getFormattedTime = (sec: number) => {
+    const mins = Math.floor(sec / 60)
+    const secs = sec % 60
+
+    const minutes = mins < 10 ? `0${mins}` : String(mins)
+    const seconds = secs < 10 ? `0${secs}` : String(secs)
+
+    return minutes + ':' + seconds
+  }
   
   const OveralTableRows: ITableRow[] = [
     { category: 'Overal count of questions', description: OverallQuestionCount },
     { category: 'Count of correct answers', description: CorrectAnswerCount },
     { category: 'Correct answers percentage', description: CorrectAnswerPercentage },
-    { category: 'Overal time in quiz app', description: OverallTimeSpent },
+    { category: 'Overal time in quiz app', description: getFormattedTime(OverallTimeSpent) },
   ]
 
   const DifficultyTableRows: ITableRow[] = [

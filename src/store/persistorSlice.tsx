@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ICollectionActionPayloadItem } from "../global.types";
+import { saveTimeResult } from "./gameSlice";
 
 interface ICategoriesCount {
     [key: string]: number
@@ -19,7 +20,6 @@ interface ITypeCount {
 interface IPersistedDataActionPayload {
     questionCollection: ICollectionActionPayloadItem[], 
     player_answers: boolean[], 
-    timerCounter: number,
 }
 
 interface IPersistorState {
@@ -55,13 +55,12 @@ const persistorSlice = createSlice({
     reducers: {
         persistData: (state, action) => {
             const {
-                questionCollection, player_answers, timerCounter
+                questionCollection, player_answers
             } = action.payload as IPersistedDataActionPayload
 
             const getPercentage = (a: number, b: number) => parseFloat((100 / a * b).toFixed(2)) + '%'
 
             state.OverallQuestionCount += questionCollection.length
-            state.OverallTimeSpent += timerCounter
             state.CorrectAnswerCount += player_answers.filter((el: boolean) => el).length
             state.CorrectAnswerPercentage = getPercentage(state.OverallQuestionCount, state.CorrectAnswerCount)
 
@@ -80,6 +79,11 @@ const persistorSlice = createSlice({
 
         } 
     },
+    extraReducers: (builder) => {
+        builder.addCase(saveTimeResult, (state, action) => {
+            state.OverallTimeSpent += action.payload
+        })
+    }
 })
 
 export const persistorReducer = persistorSlice.reducer

@@ -43,10 +43,9 @@ export const Game: FC = () => {
   const dispatchAnswer = (payload: boolean) => dispatch(answerAC(payload))
 
   let playerAnswer: string | null = null
-  let timerCounter = 0
-
+  
   useEffect(() => {
-    timerCounter = 0
+    let timerCounter = 0
     dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
 
     const timer = setInterval(() => {
@@ -84,7 +83,7 @@ export const Game: FC = () => {
     dispatchIndex()
 
     if (currentIndex === questionCollection.length - 1) {
-      dispatch(persistData({questionCollection, player_answers, timerCounter}))
+      dispatch(persistData({questionCollection, player_answers}))
       dispatch(setGameStartAsFalseAC())
       navigate(URLS.RESULT, { replace: true })
     }
