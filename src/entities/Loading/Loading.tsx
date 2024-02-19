@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { useAppSelector } from '../../store'
 
 export const Loading: FC = () => {
-  const isLoading = useAppSelector((state) => state.loader.isLoadedSomething)
+  const isLoading = useAppSelector((state) => state.loader.isLoadingSomething)
 
   const portalTarget = document.getElementById('ContentContainer')
 
