@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchGameData } from "./gameSlice";
+import { ICollectionActionPayloadItem } from "../global.types";
 
 interface ICategoriesCount {
     [key: string]: number
@@ -14,6 +14,12 @@ interface IDifficultiesCount {
 interface ITypeCount {
     boolean: number,
     multiple: number
+}
+
+interface IPersistedDataActionPayload {
+    questionCollection: ICollectionActionPayloadItem[], 
+    player_answers: boolean[], 
+    timerCounter: number,
 }
 
 interface IPersistorState {
@@ -46,12 +52,36 @@ const initialState: IPersistorState = {
 const persistorSlice = createSlice({
     name: 'persistorSlice',
     initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(fetchGameData.pending, (state) => {
-            state.CategoriesCount['SOME FIELD'] = 0
-        })
+    reducers: {
+        persistData: (state, action) => {
+            const {
+                questionCollection, player_answers, timerCounter
+            } = action.payload as IPersistedDataActionPayload
+
+            const getPercentage = (a: number, b: number) => parseFloat((a / 100 * b).toFixed(2))
+
+            state.OverallQuestionCount += questionCollection.length
+            state.OverallTimeSpent += timerCounter
+            state.CorrectAnswerCount += player_answers.filter((el: boolean) => el).length
+            state.CorrectAnswerPercentage = getPercentage(state.OverallQuestionCount, state.CorrectAnswerCount)
+
+            questionCollection.forEach((element, index) => {
+                const { category, difficulty, type } = element
+
+                if (player_answers[index]) {
+                    state.CategoriesCount[category]
+                        ? state.CategoriesCount[category]++
+                        : state.CategoriesCount[category] = 1
+
+                    state.DifficultiesCount[difficulty]++
+                    state.TypeCount[type]++
+                }
+            });
+
+        } 
     },
+    extraReducers: () => {},
 })
 
 export const persistorReducer = persistorSlice.reducer
+export const { persistData } = persistorSlice.actions
