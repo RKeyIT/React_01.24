@@ -64,17 +64,15 @@ const persistorSlice = createSlice({
             state.CorrectAnswerCount += player_answers.filter((el: boolean) => el).length
             state.CorrectAnswerPercentage = getPercentage(state.OverallQuestionCount, state.CorrectAnswerCount)
 
-            questionCollection.forEach((element, index) => {
+            questionCollection.forEach((element) => {
                 const { category, difficulty, type } = element
 
-                if (player_answers[index]) {
-                    state.CategoriesCount[category]
-                        ? state.CategoriesCount[category]++
-                        : state.CategoriesCount[category] = 1
+                state.CategoriesCount[category]
+                    ? state.CategoriesCount[category]++
+                    : state.CategoriesCount[category] = 1
 
-                    state.DifficultiesCount[difficulty]++
-                    state.TypeCount[type]++
-                }
+                state.DifficultiesCount[difficulty]++
+                state.TypeCount[type]++
             });
 
         } 
