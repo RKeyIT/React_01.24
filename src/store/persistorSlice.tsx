@@ -44,7 +44,7 @@ const initialState: IPersistorState = {
 }
 
 const persistorSlice = createSlice({
-    name: 'persistor',
+    name: 'persistorSlice',
     initialState,
     reducers: {},
     extraReducers: (builder) => {

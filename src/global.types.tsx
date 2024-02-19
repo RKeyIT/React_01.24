@@ -7,7 +7,7 @@ export enum PageNames {
 
 export interface ITableRow {
   category: string
-  description: string
+  description: string | number
 }
 
 export interface ISelectOption {
