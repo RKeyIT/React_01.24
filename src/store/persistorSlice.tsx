@@ -26,7 +26,7 @@ interface IPersistorState {
     OverallQuestionCount: number
     OverallTimeSpent: number
     CorrectAnswerCount: number
-    CorrectAnswerPercentage: number
+    CorrectAnswerPercentage: number | string
     CategoriesCount: ICategoriesCount
     DifficultiesCount: IDifficultiesCount
     TypeCount: ITypeCount
@@ -50,7 +50,7 @@ const initialState: IPersistorState = {
 }
 
 const persistorSlice = createSlice({
-    name: 'persistorSlice',
+    name: 'persistor',
     initialState,
     reducers: {
         persistData: (state, action) => {
@@ -58,7 +58,7 @@ const persistorSlice = createSlice({
                 questionCollection, player_answers, timerCounter
             } = action.payload as IPersistedDataActionPayload
 
-            const getPercentage = (a: number, b: number) => parseFloat((a / 100 * b).toFixed(2))
+            const getPercentage = (a: number, b: number) => parseFloat((100 / a * b).toFixed(2)) + '%'
 
             state.OverallQuestionCount += questionCollection.length
             state.OverallTimeSpent += timerCounter
@@ -80,7 +80,6 @@ const persistorSlice = createSlice({
 
         } 
     },
-    extraReducers: () => {},
 })
 
 export const persistorReducer = persistorSlice.reducer
