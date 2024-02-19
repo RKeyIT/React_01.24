@@ -12,13 +12,8 @@ export const Navigation: FC = () => {
   const [isStatisticsDisabled, setStatisticsDisabled] = useState(false)
 
   useEffect(() => {
-    if (path === URLS.GAME) {
-      setHomeDisabled(true)
-      setStatisticsDisabled(true)
-    } else {
-      setHomeDisabled(false)
-      setStatisticsDisabled(false)
-    }
+    setHomeDisabled(path === URLS.GAME)
+    setStatisticsDisabled(path === URLS.GAME)
   }, [path])
 
   return (

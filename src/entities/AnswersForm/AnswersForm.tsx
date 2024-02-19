@@ -15,8 +15,10 @@ export const AnswersForm: FC<IProps> = (props) => {
   return (
     <form onSubmit={onSubmit} className={styles.AnswersForm}>
       {randomSortedAnswers.map((answer, index) => {
+        const key = 'SingleAnswer' + index + answer.length + answer[0]
+
         return (
-          <div key={'SingleAnswer' + index}>
+          <div key={key}>
             <input
               onChange={onChange}
               className={styles.hiddenInput}

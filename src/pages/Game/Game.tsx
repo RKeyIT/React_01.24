@@ -93,6 +93,8 @@ export const Game: FC = () => {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (playerAnswer === null) return
     submitAnswer()
   }
 

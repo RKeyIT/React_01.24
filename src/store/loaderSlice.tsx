@@ -3,18 +3,18 @@ import { fetchGameData } from './gameSlice'
 
 const loaderSlice = createSlice({
   name: 'loader',
-  initialState: { isLoadedSomething: false },
+  initialState: { isLoadingSomething: false },
   reducers: {},
   extraReducers: (builder) => {
     // SECTION - Data fetching section
     builder.addCase(fetchGameData.pending, (state) => {
-      state.isLoadedSomething = true
+      state.isLoadingSomething = true
     })
     builder.addCase(fetchGameData.rejected, (state) => {
-      state.isLoadedSomething = false
+      state.isLoadingSomething = false
     })
     builder.addCase(fetchGameData.fulfilled, (state) => {
-      state.isLoadedSomething = false
+      state.isLoadingSomething = false
     })
     // !SECTION
   }

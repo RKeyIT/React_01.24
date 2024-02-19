@@ -109,6 +109,12 @@ const gameSlice = createSlice({
     builder.addCase(fetchGameData.rejected, () => {})
     builder.addCase(fetchGameData.fulfilled, (state, action) => {
       state.questionCollection = action.payload
+      state.currentIndex = 0
+      state.question = state.questionCollection[0].question
+      state.correct_answer = state.questionCollection[0].correct_answer
+      state.incorrect_answers = state.questionCollection[0].incorrect_answers
+      state.player_answers.length = state.questionCollection.length
+      state.player_answers.fill(null!)
     })
   }
 })
