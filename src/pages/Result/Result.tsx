@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { PageNames } from '../../context/GameContext/GameContext.types'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../shared/Button/Button'
 import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
@@ -8,8 +7,48 @@ import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
 import { FC } from 'react'
 import { URLS } from '../../router/router.types'
+import { PageNames } from '../../global.types'
+import { useAppDispatch, useAppSelector } from '../../store'
+import { setGameStartAsTrueAC } from '../../store/gameSlice'
+import { resetConfigAC } from '../../store/configSlice'
 
 export const Result: FC = () => {
+  const { player_answers, timeResult, isGameStarted } = useAppSelector((store) => store.game)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  let rightAnswers = 0
+
+  player_answers.forEach((el) => {
+    if (el) rightAnswers++
+  })
+
+  const getFormattedTime = () => {
+    const mins = Math.floor(timeResult / 60)
+    const secs = timeResult % 60
+
+    const minutes = mins < 10 ? `0${mins}` : String(mins)
+    const seconds = secs < 10 ? `0${secs}` : String(secs)
+
+    return minutes + ':' + seconds
+  }
+
+  // LINK - ../Home/Home.tsx#RepeatableLogic-GAME_START
+  //ANCHOR[id=RepeatableLogic-GAME_START]
+  const onRestart = () => {
+    if (isGameStarted) {
+      throw new Error('Game already started!')
+    }
+
+    dispatch(setGameStartAsTrueAC())
+    navigate(URLS.GAME, { replace: true })
+  }
+
+  const onAnotherQuiz = () => {
+    dispatch(resetConfigAC())
+    navigate(URLS.HOME, { replace: true })
+  }
+
   return (
     <div className={styles.Result}>
       <Heading pageName={PageNames.RESULT} />
@@ -18,17 +57,15 @@ export const Result: FC = () => {
         <Table name="Quiz configuration" />
       </div>
       <div className={styles.summary}>
-        <TextField>You answered 5 out of 10 questions correctly</TextField>
-        <TextField>Time spent: 05:29</TextField>
+        <TextField>
+          You answered {rightAnswers} out of {player_answers.length} questions correctly
+        </TextField>
+        <TextField>Time result: {getFormattedTime()}</TextField>
         <ProgressBar />
       </div>
       <div className={styles.buttons}>
-        <Link to={URLS.GAME}>
-          <Button content="Restart" />
-        </Link>
-        <Link to={URLS.HOME}>
-          <Button content="Chose another quiz" />
-        </Link>
+        <Button callback={onRestart} content="Restart" />
+        <Button callback={onAnotherQuiz} content="Chose another quiz" />
       </div>
     </div>
   )

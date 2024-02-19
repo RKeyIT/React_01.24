@@ -1,0 +1,33 @@
+.Loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+
+    background-color: var(--color-main-modal);
+    border-radius: var(--border-rad-font);
+}
+
+.circle {
+    width: 2em;
+    height: 2em;
+    border: 0.5em solid transparent;
+    border-top: 0.5em solid var(--color-green-light);
+    border-left: 0.5em solid var(--color-green-light);
+    border-right: 0.5em solid var(--color-green-light);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

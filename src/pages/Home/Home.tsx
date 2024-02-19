@@ -2,23 +2,52 @@ import { Button } from '../../shared/Button/Button'
 import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
-import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.types'
-import { PageNames } from '../../context/GameContext/GameContext.types'
 import { Heading } from '../../shared/Heading/Heading'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
-import { useQuizConfigDispatcherContext } from '../../context/QuizConfigContext/QuizConfigContext'
-import { ActionTypeEnum } from '../../context/QuizConfigContext/QuizConfigContext.types'
+import { useAppDispatch, useAppSelector } from '../../store'
+import {
+  amountAC,
+  categoryAC,
+  difficultyAC,
+  resetConfigAC,
+  timeAC,
+  typeAC
+} from '../../store/configSlice'
+import { useEffect } from 'react'
+import { PageNames } from '../../global.types'
+import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
+import { setGameStartAsTrueAC } from '../../store/gameSlice'
 
 export const Home = () => {
-  const [ctx, dispatch] = useQuizConfigDispatcherContext()
+  const config = useAppSelector((state) => state.config)
+  const game = useAppSelector((state) => state.game)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-  const configSetter = {
-    questAmount: (id: number) => dispatch({type: ActionTypeEnum.AMOUNT, payload: id}),
-    category: (id: string) => dispatch({type: ActionTypeEnum.CATEGORY, payload: id}),
-    difficulty: (id: string) => dispatch({type: ActionTypeEnum.DIFFICULTY, payload: id}),
-    type: (id: string) => dispatch({type: ActionTypeEnum.TYPE, payload: id}),
-    time: (id: string) => dispatch({type: ActionTypeEnum.TIME, payload: id}),
+  useEffect(() => {
+    dispatch(resetConfigAC())
+  }, [dispatch])
+
+  const dispatchAmount = (payload: number) => dispatch(amountAC(payload))
+  const dispatchCategory = (payload: string) => dispatch(categoryAC(payload))
+  const dispatchDifficulty = (payload: string) => dispatch(difficultyAC(payload))
+  const dispatchType = (payload: string) => dispatch(typeAC(payload))
+  const dispatchTime = (payload: string) => dispatch(timeAC(payload))
+
+  // LINK - ../Result/Result.tsx#RepeatableLogic-GAME_START
+  //ANCHOR[id=RepeatableLogic-GAME_START]
+  const onStartGame = () => {
+    if (game.isGameStarted) {
+      throw new Error('Game already started!')
+    }
+
+    dispatch(setGameStartAsTrueAC())
+    navigate(URLS.GAME)
+  }
+
+  const onGoStatistics = () => {
+    navigate(URLS.STATISTICS)
   }
 
   return (
@@ -27,26 +56,30 @@ export const Home = () => {
         <Heading pageName={PageNames.HOME} />
       </div>
       <div className={styles.selects}>
-        <Select domId={'CategorySelect'} callback={configSetter.category} optionObject={QuizCategories} />
-        <Select domId={'DifficultySelect'} callback={configSetter.difficulty} optionObject={QuizDifficulties} />
-        <Select domId={'TypeSelect'} callback={configSetter.type} optionObject={QuizType} />
-        <Select domId={'TimeSelect'} callback={configSetter.time} optionObject={QuizTime} />
+        <Select
+          domId={'CategorySelect'}
+          callback={dispatchCategory}
+          optionObject={QuizCategories}
+        />
+        <Select
+          domId={'DifficultySelect'}
+          callback={dispatchDifficulty}
+          optionObject={QuizDifficulties}
+        />
+        <Select domId={'TypeSelect'} callback={dispatchType} optionObject={QuizType} />
+        <Select domId={'TimeSelect'} callback={dispatchTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
         <NumberInput
-          callback={configSetter.questAmount}
-          min={ctx.minQuestsCount}
-          max={ctx.maxQuestsCount}
+          callback={dispatchAmount}
+          min={config.minQuestionsCount}
+          max={config.maxQuestionsCount}
           label="Count of questions: "
         />
       </div>
       <div className={styles.buttons}>
-        <Link to={URLS.STATISTICS}>
-          <Button content="See my statistics" style="white" />
-        </Link>
-        <Link to={URLS.GAME}>
-          <Button content="Start quiz" style="green" />
-        </Link>
+        <Button callback={onGoStatistics} content="See my statistics" style="white" />
+        <Button callback={onStartGame} content="Start quiz" style="green" />
       </div>
     </div>
   )

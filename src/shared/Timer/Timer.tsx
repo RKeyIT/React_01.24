@@ -2,13 +2,13 @@ import styles from './Timer.module.css'
 import { FC, useEffect, useState } from 'react'
 
 interface IProps {
-  seconds?: number,
+  seconds?: number
   timeoutCallback?: () => void
 }
 
-export const Timer: FC<IProps> = ({ seconds = 1, timeoutCallback = () => {} }) => { 
+export const Timer: FC<IProps> = ({ seconds = 60, timeoutCallback = () => {} }) => {
   const initialState = {
-    minutes: getMinutes(seconds),
+    minutes: Math.floor(seconds / 60),
     seconds: seconds % 60
   }
 
@@ -34,20 +34,20 @@ export const Timer: FC<IProps> = ({ seconds = 1, timeoutCallback = () => {} }) =
       })
     }, 1000)
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => {
+      clearInterval(interval)
+      setTime(initialState)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeoutCallback])
 
-  // REVIEW - is it clear usage?
   useEffect(() => {
     if (time.minutes === 0 && time.seconds === 0) {
       timeoutCallback()
       setTime(initialState)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time])
-
-  function getMinutes(seconds: number) {
-    return Math.floor(seconds / 60)
-  }
 
   function getFormattedTime() {
     const mins: string = time.minutes < 10 ? `0${time.minutes}` : String(time.minutes)

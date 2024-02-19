@@ -8,7 +8,12 @@ interface IButtonProps {
   type?: 'button' | 'submit' | 'reset'
 }
 
-export const Button: FC<IButtonProps> = ({ content, callback, style = 'white', type = 'button' }) => {
+export const Button: FC<IButtonProps> = ({
+  content,
+  callback,
+  style = 'white',
+  type = 'button'
+}) => {
   return (
     <button onClick={callback} type={type} className={`${styles.Button} ${styles[style]}`}>
       {content}
