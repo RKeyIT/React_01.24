@@ -54,7 +54,7 @@ export const Statistics: FC = () => {
     CategoryTableRows.push({ category: key, description: CategoriesCount[key] })
   }
 
-  CategoryTableRows.sort((a, b) => +a.description - +b.description)
+  CategoryTableRows.sort((a, b) => +b.description - +a.description)
   
   const toHome = () => {
     navigate(URLS.HOME)
