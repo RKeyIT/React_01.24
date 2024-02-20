@@ -58,6 +58,8 @@ const persistorSlice = createSlice({
                 questionCollection, player_answers
             } = action.payload as IPersistedDataActionPayload
 
+            console.log(player_answers)
+
             const getPercentage = (a: number, b: number) => parseFloat((100 / a * b).toFixed(2)) + '%'
 
             state.OverallQuestionCount += questionCollection.length
