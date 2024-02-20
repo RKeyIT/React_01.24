@@ -56,12 +56,17 @@ export const Result: FC = () => {
     }
 
     dispatch(setGameStartAsTrueAC())
-    navigate(URLS.GAME, { replace: true })
+    navigate(URLS.GAME) // { replace: true }
   }
 
   const onAnotherQuiz = () => {
     dispatch(resetConfigAC())
-    navigate(URLS.HOME, { replace: true })
+    navigate(URLS.HOME) // { replace: true }
+  }
+
+  const onStatistics = () => {
+    dispatch(resetConfigAC())
+    navigate(URLS.STATISTICS) // { replace: true }
   }
 
   return (
@@ -80,7 +85,8 @@ export const Result: FC = () => {
       </div>
       <div className={styles.buttons}>
         <Button callback={onRestart} content="Restart" />
-        <Button callback={onAnotherQuiz} content="Chose another quiz" />
+        <Button callback={onAnotherQuiz} style='green' content="Chose another quiz" />
+        <Button callback={onStatistics} content="Overall statistics" />
       </div>
     </div>
   )
