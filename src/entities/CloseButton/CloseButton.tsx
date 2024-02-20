@@ -3,7 +3,7 @@ import styles from './CloseButton.module.css'
 import { FC, useEffect, useState } from 'react'
 import { URLS } from '../../router/router.types'
 import { createPortal } from 'react-dom'
-import { ModalGameEnder } from '../ModalGameEnder/ModalGameEnder'
+import { FullSizeModal } from '../FullSizeModal/FullSizeModal'
 import { useAppDispatch } from '../../store'
 import { setGameStartAsFalseAC } from '../../store/gameSlice'
 
@@ -45,7 +45,8 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
     return navigate(URLS.HOME)
   }
 
-  const ModalWithProps = <ModalGameEnder cancel={onCancelModal} close={onEndGame} />
+  const ModalWithProps = <FullSizeModal textContent='Are you sure want to end the game?'
+                confirmationColor='red'  cancel={onCancelModal} confirm={onEndGame} />
 
   return (
     <>
