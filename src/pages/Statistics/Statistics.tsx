@@ -2,12 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import { ITableRow, PageNames } from '../../global.types'
 import { Heading } from '../../shared/Heading/Heading'
 import styles from './Statistics.module.css'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { URLS } from '../../router/router.types'
 import { Button } from '../../shared/Button/Button'
 import { Table } from '../../shared/Table/Table'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { resetPersistor } from '../../store/persistorSlice'
+import { createPortal } from 'react-dom'
+import { FullSizeModal } from '../../entities/FullSizeModal/FullSizeModal'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
@@ -22,6 +24,8 @@ export const Statistics: FC = () => {
   } = useAppSelector(state => state.persistor)
 
   const dispatch = useAppDispatch()
+  const [isModalVisible, setModalVisible] = useState<boolean>(false)
+  const portalTarget = document.getElementById('ContentContainer')
 
   const getFormattedTime = (sec: number) => {
     const mins = Math.floor(sec / 60)
@@ -63,9 +67,23 @@ export const Statistics: FC = () => {
     navigate(URLS.HOME)
   }
 
-  const resetPersistedData = () => {
-    dispatch(resetPersistor())
+  const onResetStats = () => {
+    setModalVisible(true)
   }
+
+  const onCancelModal = () => {
+    setModalVisible(false)
+  }
+
+  const onStatRemove = () => {
+    dispatch(resetPersistor())
+    setModalVisible(false)
+  }
+
+  
+  const ModalWithProps = <FullSizeModal 
+    textContent='Are you sure want to delete all of your statistic data?'
+    confirmationColor='red' cancel={onCancelModal} confirm={onStatRemove} />
 
   return (
     <div className={styles.Statistics}>
@@ -78,8 +96,9 @@ export const Statistics: FC = () => {
       </div>
       <div className={styles.buttons}>
         <Button callback={toHome} content='To home page'/>
-        <Button callback={resetPersistedData} content='Reset stats' style='red'/>
+        <Button callback={onResetStats} content='Reset stats' style='red'/>
       </div>
+      {isModalVisible && portalTarget && createPortal(ModalWithProps, portalTarget)}
     </div>
   )
 }
