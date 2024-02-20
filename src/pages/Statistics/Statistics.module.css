@@ -9,3 +9,10 @@
     /* TODO: Think about more flexible variant */
     max-height: 250px;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+}

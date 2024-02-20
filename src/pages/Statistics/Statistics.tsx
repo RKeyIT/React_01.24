@@ -6,7 +6,8 @@ import { FC } from 'react'
 import { URLS } from '../../router/router.types'
 import { Button } from '../../shared/Button/Button'
 import { Table } from '../../shared/Table/Table'
-import { useAppSelector } from '../../store'
+import { useAppDispatch, useAppSelector } from '../../store'
+import { resetPersistor } from '../../store/persistorSlice'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
@@ -19,6 +20,8 @@ export const Statistics: FC = () => {
     DifficultiesCount,
     TypeCount
   } = useAppSelector(state => state.persistor)
+
+  const dispatch = useAppDispatch()
 
   const getFormattedTime = (sec: number) => {
     const mins = Math.floor(sec / 60)
@@ -60,6 +63,10 @@ export const Statistics: FC = () => {
     navigate(URLS.HOME)
   }
 
+  const resetPersistedData = () => {
+    dispatch(resetPersistor())
+  }
+
   return (
     <div className={styles.Statistics}>
       <Heading pageName={PageNames.STATISTICS} />
@@ -69,7 +76,10 @@ export const Statistics: FC = () => {
         <Table name='Types' rows={TypeTableRows} />
         <Table name='Categories' rows={CategoryTableRows} />
       </div>
-      <Button callback={toHome} content='To home page'/>
+      <div className={styles.buttons}>
+        <Button callback={toHome} content='To home page'/>
+        <Button callback={resetPersistedData} content='Reset stats' style='red'/>
+      </div>
     </div>
   )
 }

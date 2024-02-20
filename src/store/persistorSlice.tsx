@@ -74,8 +74,8 @@ const persistorSlice = createSlice({
                 state.DifficultiesCount[difficulty]++
                 state.TypeCount[type]++
             });
-
-        } 
+        },
+        resetPersistor: () => ({ ...initialState })
     },
     extraReducers: (builder) => {
         builder.addCase(saveTimeResult, (state, action) => {
@@ -85,4 +85,4 @@ const persistorSlice = createSlice({
 })
 
 export const persistorReducer = persistorSlice.reducer
-export const { persistData } = persistorSlice.actions
+export const { persistData, resetPersistor } = persistorSlice.actions
