@@ -18,7 +18,7 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
   const dispatch = useAppDispatch()
 
   const portalTarget = document.getElementById('ContentContainer')
-  const disabled = path === URLS.HOME ? true : false
+  const disabled = path === URLS.HOME
 
   useEffect(() => {
     if (isModalVisible && path !== URLS.GAME) {
