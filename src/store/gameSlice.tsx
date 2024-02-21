@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { QuizCategories, QuizDifficulties, QuizType } from '../global.contsants'
-import { ICollectionActionPayloadItem } from '../global.types'
+import { ICollection } from '../global.types'
+import { decode } from 'html-entities'
 
 interface IState {
   isGameStarted: boolean
   timeResult: number
-  questionCollection: ICollectionActionPayloadItem[]
+  questionCollection: ICollection[]
   currentIndex: number
   question: string
   correct_answer: string
@@ -39,8 +40,15 @@ export const fetchGameData = createAsyncThunk(
       thunkAPI.rejectWithValue(data)
     }
 
-    // There is an array of collection with question and answers (data.results)
-    return data.results
+    const results = data.results.map((collection: ICollection) => {
+      collection.correct_answer = decode(collection.correct_answer)
+      collection.incorrect_answers = collection.incorrect_answers.map(el => decode(el))
+      collection.question = decode(collection.question)
+
+      return collection
+    })
+
+    return results
   }
 )
 

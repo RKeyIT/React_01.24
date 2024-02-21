@@ -14,7 +14,7 @@ export type QuestionType = 'boolean' | 'multiple'
 export type DifficultyType = 'easy' | 'medium' | 'hard'
 export type ButtonColorType = 'red' | 'green' | 'white'
 
-export interface ICollectionActionPayloadItem {
+export interface ICollection {
   type: QuestionType
   difficulty: DifficultyType
   category: string

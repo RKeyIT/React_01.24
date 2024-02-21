@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ICollectionActionPayloadItem } from "../global.types";
+import { ICollection } from "../global.types";
 import { saveTimeResult } from "./gameSlice";
 
 interface ICategoriesCount {
@@ -18,7 +18,7 @@ interface ITypeCount {
 }
 
 interface IPersistedDataActionPayload {
-    questionCollection: ICollectionActionPayloadItem[], 
+    questionCollection: ICollection[], 
     player_answers: boolean[], 
 }
 
