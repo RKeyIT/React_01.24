@@ -2,7 +2,7 @@ import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
-import { ChangeEvent, FC, FormEvent, useEffect } from 'react'
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
@@ -26,6 +26,8 @@ export const Game: FC = () => {
   const config = useAppSelector((store) => store.config)
   const dispatch = useAppDispatch()
 
+  const [ isFetched, setFetched ] = useState(false)
+
   const { 
     questionCollection, question, correct_answer, 
     incorrect_answers, currentIndex 
@@ -37,9 +39,12 @@ export const Game: FC = () => {
   let playerAnswer: string | null = null
   
   useEffect(() => {
-    dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
+    if (!isFetched) {
+      dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
+      setFetched(true)
+      return
+    }
 
-    if (!questionCollection.length) return
     let timerCounter = 0
 
     const timer = setInterval(() => {
@@ -51,7 +56,7 @@ export const Game: FC = () => {
       dispatch(saveTimeResult(timerCounter))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [questionCollection])
 
   const submitAnswer = () => {
     dispatchAnswer(playerAnswer!)
