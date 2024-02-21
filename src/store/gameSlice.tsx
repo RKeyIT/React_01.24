@@ -90,6 +90,12 @@ const gameSlice = createSlice({
     setAnswerAndNextIndex: (state, action) => {
       state.player_answers[state.currentIndex] = action.payload === state.correct_answer
       state.currentIndex += 1
+
+      if (state.currentIndex === state.questionCollection.length) return
+
+      state.question = state.questionCollection[state.currentIndex].question
+      state.correct_answer = state.questionCollection[state.currentIndex].correct_answer
+      state.incorrect_answers = state.questionCollection[state.currentIndex].incorrect_answers
     }
   },
   extraReducers: (builder) => {

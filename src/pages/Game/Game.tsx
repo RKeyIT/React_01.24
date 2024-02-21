@@ -12,9 +12,6 @@ import { useAppDispatch, useAppSelector } from '../../store'
 import {
   setGameStartAsFalseAC,
   collectionAC,
-  correctAC,
-  incorrectAC,
-  questionAC,
   saveTimeResult,
   setAnswerAndNextIndex
 } from '../../store/gameSlice'
@@ -35,9 +32,6 @@ export const Game: FC = () => {
   const { questionAmount, category, difficulty, type, time } = config
 
   const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
-  const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
-  const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
-  const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
   const dispatchAnswer = (payload: string) => dispatch(setAnswerAndNextIndex(payload))
 
   let playerAnswer: string | null = null
@@ -62,19 +56,6 @@ export const Game: FC = () => {
     dispatchCollection(MOCKDATA[index].results)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  useEffect(() => {
-    if (questionCollection[currentIndex]) {
-      const currentState = questionCollection[currentIndex]
-
-      const { question, correct_answer, incorrect_answers } = currentState
-
-      dispatchQuestion(question)
-      dispatchCorrect(correct_answer)
-      dispatchIncorrect(incorrect_answers)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questionCollection, currentIndex])
 
   const submitAnswer = () => {
     dispatchAnswer(playerAnswer!)
