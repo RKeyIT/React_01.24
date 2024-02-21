@@ -10,14 +10,13 @@ import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
 import {
-  answerAC,
   setGameStartAsFalseAC,
   collectionAC,
   correctAC,
   incorrectAC,
-  indexAC,
   questionAC,
-  saveTimeResult
+  saveTimeResult,
+  setAnswerAndNextIndex
 } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 import { fetchGameData } from '../../store/gameSlice'
@@ -35,12 +34,11 @@ export const Game: FC = () => {
   const { questionCollection, question, correct_answer, incorrect_answers, currentIndex, player_answers } = game
   const { questionAmount, category, difficulty, type, time } = config
 
-  const dispatchIndex = () => dispatch(indexAC())
   const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
   const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
   const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
   const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
-  const dispatchAnswer = (payload: boolean) => dispatch(answerAC(payload))
+  const dispatchAnswer = (payload: string) => dispatch(setAnswerAndNextIndex(payload))
 
   let playerAnswer: string | null = null
   
@@ -79,8 +77,7 @@ export const Game: FC = () => {
   }, [questionCollection, currentIndex])
 
   const submitAnswer = () => {
-    dispatchAnswer(playerAnswer === correct_answer)
-    dispatchIndex()
+    dispatchAnswer(playerAnswer!)
 
     if (currentIndex === questionCollection.length - 1) {
       dispatch(persistData({questionCollection, player_answers}))
@@ -97,6 +94,7 @@ export const Game: FC = () => {
     e.preventDefault()
 
     if (playerAnswer === null) return
+
     submitAnswer()
   }
 
