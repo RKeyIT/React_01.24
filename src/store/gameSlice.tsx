@@ -90,12 +90,9 @@ const gameSlice = createSlice({
     setAnswerAndNextIndex: (state, action) => {
       state.player_answers[state.currentIndex] = action.payload === state.correct_answer
       state.currentIndex += 1
-
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchGameData.pending, () => {})
-    builder.addCase(fetchGameData.rejected, () => {})
     builder.addCase(fetchGameData.fulfilled, (state, action) => {
       state.questionCollection = action.payload
       state.currentIndex = 0
