@@ -21,6 +21,7 @@ import {
 } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 import { fetchGameData } from '../../store/gameSlice'
+import { persistData } from '../../store/persistorSlice'
 
 export const Game: FC = () => {
   const MOCKDATA = [bool, mult, mix1, mix2]
@@ -31,7 +32,7 @@ export const Game: FC = () => {
   const config = useAppSelector((store) => store.config)
   const dispatch = useAppDispatch()
 
-  const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
+  const { questionCollection, question, correct_answer, incorrect_answers, currentIndex, player_answers } = game
   const { questionAmount, category, difficulty, type, time } = config
 
   const dispatchIndex = () => dispatch(indexAC())
@@ -42,7 +43,7 @@ export const Game: FC = () => {
   const dispatchAnswer = (payload: boolean) => dispatch(answerAC(payload))
 
   let playerAnswer: string | null = null
-
+  
   useEffect(() => {
     let timerCounter = 0
     dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
@@ -82,6 +83,7 @@ export const Game: FC = () => {
     dispatchIndex()
 
     if (currentIndex === questionCollection.length - 1) {
+      dispatch(persistData({questionCollection, player_answers}))
       dispatch(setGameStartAsFalseAC())
       navigate(URLS.RESULT, { replace: true })
     }

@@ -1,16 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { QuizCategories, QuizDifficulties, QuizType } from '../global.contsants'
-
-interface ICollectionActionPayloadItem {
-  // type: 'boolean' | 'multiple',
-  // difficulty: "easy" | "medium" | "hard",
-  type: string
-  difficulty: string
-  category: string
-  question: string
-  correct_answer: string
-  incorrect_answers: string[]
-}
+import { ICollectionActionPayloadItem } from '../global.types'
 
 interface IState {
   isGameStarted: boolean

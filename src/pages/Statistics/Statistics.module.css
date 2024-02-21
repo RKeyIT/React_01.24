@@ -1,0 +1,11 @@
+.Statistics {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1em
+}
+
+.tables {
+    overflow-y: auto;
+    /* TODO: Think about more flexible variant */
+    max-height: 250px;
+}

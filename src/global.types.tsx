@@ -5,6 +5,23 @@ export enum PageNames {
   STATISTICS = 'Statistics'
 }
 
+export interface ITableRow {
+  category: string
+  description: string | number
+}
+
+export type QuestionType = 'boolean' | 'multiple'
+export type DifficultyType = 'easy' | 'medium' | 'hard'
+
+export interface ICollectionActionPayloadItem {
+  type: QuestionType
+  difficulty: DifficultyType
+  category: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
+}
+
 export interface ISelectOption {
   id: string
   name: string
