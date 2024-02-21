@@ -5,20 +5,27 @@ import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { Table } from '../../shared/Table/Table'
 import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { URLS } from '../../router/router.types'
 import { ITableRow, PageNames } from '../../global.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
 import { resetConfigAC } from '../../store/configSlice'
 import { getCategoryName, getDifficultyName, getTimeName, getTypeName } from '../../global.contsants'
+import { persistData } from '../../store/persistorSlice'
 
 export const Result: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const { player_answers, timeResult, isGameStarted } = useAppSelector((store) => store.game)
+  const { questionCollection, player_answers, timeResult, isGameStarted } = useAppSelector((store) => store.game)
   const { category, difficulty, type, time } = useAppSelector((store) => store.config)
+
+  useEffect(() => {
+    if (questionCollection.length && player_answers.length) {
+      dispatch(persistData({questionCollection, player_answers}))
+    }
+  }, [])
 
   const categoryName = getCategoryName(category)
   const difficultyName = getDifficultyName(difficulty)

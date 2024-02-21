@@ -68,15 +68,6 @@ const gameSlice = createSlice({
     setGameStartAsFalseAC: (state) => {
       state.isGameStarted = false
     },
-    questionAC: (state, action) => {
-      state.question = action.payload
-    },
-    correctAC: (state, action) => {
-      state.correct_answer = action.payload
-    },
-    incorrectAC: (state, action) => {
-      state.incorrect_answers = action.payload
-    },
     resetGameAC: () => ({ ...initialState }),
     collectionAC: (state, action) => {
       state.questionCollection = action.payload
@@ -91,7 +82,10 @@ const gameSlice = createSlice({
       state.player_answers[state.currentIndex] = action.payload === state.correct_answer
       state.currentIndex += 1
 
-      if (state.currentIndex === state.questionCollection.length) return
+      if (state.currentIndex === state.questionCollection.length) {
+        state.isGameStarted = false
+        return
+      }
 
       state.question = state.questionCollection[state.currentIndex].question
       state.correct_answer = state.questionCollection[state.currentIndex].correct_answer
@@ -115,9 +109,6 @@ export const gameReducer = gameSlice.reducer
 
 export const {
   collectionAC,
-  correctAC,
-  incorrectAC,
-  questionAC,
   resetGameAC,
   setAnswerAndNextIndex,
   setGameStartAsTrueAC,
