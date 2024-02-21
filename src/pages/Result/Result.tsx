@@ -98,3 +98,5 @@ export const Result: FC = () => {
     </div>
   )
 }
+
+export default Result

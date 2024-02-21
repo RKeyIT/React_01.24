@@ -92,3 +92,5 @@ export const Game: FC = () => {
     </div>
   )
 }
+
+export default Game

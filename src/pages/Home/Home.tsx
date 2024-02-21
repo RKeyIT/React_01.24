@@ -14,12 +14,12 @@ import {
   timeAC,
   typeAC
 } from '../../store/configSlice'
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { PageNames } from '../../global.types'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
 
-export const Home = () => {
+export const Home: FC = () => {
   const config = useAppSelector((state) => state.config)
   const game = useAppSelector((state) => state.game)
   const dispatch = useAppDispatch()
@@ -84,3 +84,5 @@ export const Home = () => {
     </div>
   )
 }
+
+export default Home
