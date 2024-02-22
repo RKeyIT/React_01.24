@@ -1,5 +1,5 @@
 import styles from './App.module.css'
-import { AppTitles } from '../entities/AppBackground/AppTitles'
+import { AppTitles } from '../entities/AppTitles/AppTitles'
 import { RouterProvider } from 'react-router-dom'
 import { ROUTER } from '../router'
 import { Provider } from 'react-redux'

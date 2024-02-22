@@ -25,6 +25,22 @@
     animation: footer-color-anim 6s ease infinite;
 }
 
+@media (orientation: landscape) {
+
+    .AppNameHeader,
+    .AppNameFooter {
+        font-size: 4rem;
+    }
+}
+
+@media (orientation: portrait) {
+
+    .AppNameHeader,
+    .AppNameFooter {
+        font-size: 3rem;
+    }
+}
+
 
 @keyframes header-color-anim {
     0% {

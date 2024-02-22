@@ -1,8 +1,6 @@
 .Navigation {
-    /* font-family: 'Sixtyfour', sans-serif; */
     position: absolute;
     top: 0;
-    left: 2em;
     border: 0.1em outset var(--color-border-main);
     border-radius: 0 0 0.5em 0.5em;
     background-color: var(--color-darker-main);
@@ -12,4 +10,16 @@
     gap: 0.2em;
     padding-left: 0.2em;
     padding-right: 0.2em;
+}
+
+@media (orientation: landscape) {
+    .Navigation {
+        left: 2em;
+    }
+}
+
+@media (orientation: portrait) {
+    .Navigation {
+        left: 0;
+    }
 }
