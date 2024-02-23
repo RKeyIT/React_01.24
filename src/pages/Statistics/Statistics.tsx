@@ -13,7 +13,7 @@ import { FullSizeModal } from '../../entities/FullSizeModal/FullSizeModal'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
-  const { 
+  const {
     OverallQuestionCount,
     OverallTimeSpent,
     CorrectAnswerCount,
@@ -21,7 +21,7 @@ export const Statistics: FC = () => {
     CategoriesCount,
     DifficultiesCount,
     TypeCount
-  } = useAppSelector(state => state.persistor)
+  } = useAppSelector((state) => state.persistor)
 
   const dispatch = useAppDispatch()
   const [isModalVisible, setModalVisible] = useState<boolean>(false)
@@ -36,23 +36,23 @@ export const Statistics: FC = () => {
 
     return minutes + ':' + seconds
   }
-  
+
   const OveralTableRows: ITableRow[] = [
     { category: 'Overal count of questions', description: OverallQuestionCount },
     { category: 'Count of correct answers', description: CorrectAnswerCount },
     { category: 'Correct answers percentage', description: CorrectAnswerPercentage },
-    { category: 'Overal time in quiz app', description: getFormattedTime(OverallTimeSpent) },
+    { category: 'Overal time in quiz app', description: getFormattedTime(OverallTimeSpent) }
   ]
 
   const DifficultyTableRows: ITableRow[] = [
     { category: 'easy', description: DifficultiesCount.easy },
     { category: 'medium', description: DifficultiesCount.medium },
-    { category: 'hard', description: DifficultiesCount.hard },
+    { category: 'hard', description: DifficultiesCount.hard }
   ]
 
   const TypeTableRows: ITableRow[] = [
     { category: 'boolean', description: TypeCount.boolean },
-    { category: 'multiple', description: TypeCount.multiple },
+    { category: 'multiple', description: TypeCount.multiple }
   ]
 
   const CategoryTableRows: ITableRow[] = []
@@ -62,7 +62,7 @@ export const Statistics: FC = () => {
   }
 
   CategoryTableRows.sort((a, b) => +b.description - +a.description)
-  
+
   const toHome = () => {
     navigate(URLS.HOME)
   }
@@ -80,28 +80,31 @@ export const Statistics: FC = () => {
     setModalVisible(false)
   }
 
-  
-  const ModalWithProps = <FullSizeModal 
-    textContent='Are you sure want to delete all of your statistic data?'
-    confirmationColor='red' cancel={onCancelModal} confirm={onStatRemove} />
+  const ModalWithProps = (
+    <FullSizeModal
+      textContent="Are you sure want to delete all of your statistic data?"
+      confirmationColor="red"
+      cancel={onCancelModal}
+      confirm={onStatRemove}
+    />
+  )
 
   return (
     <div className={styles.Statistics}>
       <Heading pageName={PageNames.STATISTICS} />
       <div className={styles.tables}>
-        <Table name='Overal stats' rows={OveralTableRows} />
-        <Table name='Difficulties' rows={DifficultyTableRows} />
-        <Table name='Types' rows={TypeTableRows} />
-        <Table name='Categories' rows={CategoryTableRows} />
+        <Table name="Overal stats" rows={OveralTableRows} />
+        <Table name="Difficulties" rows={DifficultyTableRows} />
+        <Table name="Types" rows={TypeTableRows} />
+        <Table name="Categories" rows={CategoryTableRows} />
       </div>
       <div className={styles.buttons}>
-        <Button callback={toHome} content='To home page'/>
-        <Button callback={onResetStats} content='Reset stats' style='red'/>
+        <Button callback={toHome} content="To home page" />
+        <Button callback={onResetStats} content="Reset stats" style="red" />
       </div>
       {isModalVisible && portalTarget && createPortal(ModalWithProps, portalTarget)}
     </div>
   )
 }
-
 
 export default Statistics

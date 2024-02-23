@@ -42,7 +42,7 @@ export const fetchGameData = createAsyncThunk(
 
     const results = data.results.map((collection: ICollection) => {
       collection.correct_answer = decode(collection.correct_answer)
-      collection.incorrect_answers = collection.incorrect_answers.map(el => decode(el))
+      collection.incorrect_answers = collection.incorrect_answers.map((el) => decode(el))
       collection.question = decode(collection.question)
 
       return collection

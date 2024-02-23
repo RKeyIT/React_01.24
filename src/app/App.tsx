@@ -11,7 +11,7 @@ export const App = () => {
     <div className={styles.App}>
       <AppTitles />
       <Provider store={store}>
-        <PersistGate persistor={persistor} >
+        <PersistGate persistor={persistor}>
           <RouterProvider router={ROUTER} />
         </PersistGate>
       </Provider>

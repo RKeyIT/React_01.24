@@ -26,18 +26,15 @@ export const Game: FC = () => {
   const config = useAppSelector((store) => store.config)
   const dispatch = useAppDispatch()
 
-  const [ isFetched, setFetched ] = useState(false)
+  const [isFetched, setFetched] = useState(false)
 
-  const { 
-    questionCollection, question, correct_answer, 
-    incorrect_answers, currentIndex 
-  } = game
+  const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
   const { questionAmount, category, difficulty, type, time } = config
 
   const dispatchAnswer = (payload: string) => dispatch(setAnswerAndNextIndex(payload))
 
   let playerAnswer: string | null = null
-  
+
   useEffect(() => {
     if (!isFetched) {
       dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
@@ -76,7 +73,7 @@ export const Game: FC = () => {
 
   const correct = correct_answer || MOCK_CORRECT_ANSWER
   const incorrects = incorrect_answers.length ? incorrect_answers : MOCK_INCORRECT_ANSWERS
-  const answers = [ correct, ...incorrects ]
+  const answers = [correct, ...incorrects]
 
   return (
     <div className={styles.Game}>
@@ -84,11 +81,7 @@ export const Game: FC = () => {
       <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer} />
       <ProgressBar />
       <TextField>{question || MOCK_QUESTION}</TextField>
-      <AnswersForm
-        answers={answers}
-        onSubmit={onSubmit}
-        onChange={onChange}
-      />
+      <AnswersForm answers={answers} onSubmit={onSubmit} onChange={onChange} />
     </div>
   )
 }

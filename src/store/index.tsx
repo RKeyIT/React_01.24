@@ -3,16 +3,24 @@ import { gameReducer } from './gameSlice'
 import { configReducer } from './configSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { loaderReducer } from './loaderSlice'
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { persistorReducer } from './persistorSlice'
- 
 
 const rootReducer = combineReducers({
   loader: loaderReducer,
   config: configReducer,
   game: gameReducer,
-  persistor: persistorReducer,
+  persistor: persistorReducer
 })
 
 const persistConfig = {
@@ -20,17 +28,17 @@ const persistConfig = {
   storage,
   whitelist: ['persistor']
 }
- 
+
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    })
 })
 
 export const persistor = persistStore(store)
