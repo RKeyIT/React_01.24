@@ -9,7 +9,7 @@ import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
-import { saveTimeResult, setAnswerAndNextIndex } from '../../store/gameSlice'
+import { saveTimeResult, setPlayerAnswer } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 import { fetchGameData } from '../../store/gameSlice'
 
@@ -28,10 +28,11 @@ export const Game: FC = () => {
 
   const [isFetched, setFetched] = useState(false)
 
-  const { questionCollection, question, correct_answer, incorrect_answers, currentIndex } = game
+  const { questionCollection, question, correct_answer, 
+    incorrect_answers, currentIndex, isMockGame } = game
   const { questionAmount, category, difficulty, type, time } = config
 
-  const dispatchAnswer = (payload: string) => dispatch(setAnswerAndNextIndex(payload))
+  const dispatchAnswer = (payload: string) => dispatch(setPlayerAnswer(payload))
 
   let playerAnswer: string | null = null
 
@@ -73,7 +74,7 @@ export const Game: FC = () => {
 
   const correct = correct_answer || MOCK_CORRECT_ANSWER
   const incorrects = incorrect_answers.length ? incorrect_answers : MOCK_INCORRECT_ANSWERS
-  const answers = [correct, ...incorrects]
+  const answers = [correct, ...incorrects].sort(() => Math.random() - 0.5)
 
   return (
     <div className={styles.Game}>
@@ -82,6 +83,9 @@ export const Game: FC = () => {
       <ProgressBar />
       <TextField>{question || MOCK_QUESTION}</TextField>
       <AnswersForm answers={answers} onSubmit={onSubmit} onChange={onChange} />
+      {isMockGame && <div className={styles.warning}>
+        The mock game with local data is started! <u>Results won't be saved!</u>
+        </div>}
     </div>
   )
 }

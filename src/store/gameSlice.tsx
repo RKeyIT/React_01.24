@@ -5,6 +5,7 @@ import { decode } from 'html-entities'
 
 interface IState {
   isGameStarted: boolean
+  isMockGame: boolean
   timeResult: number
   questionCollection: ICollection[]
   currentIndex: number
@@ -54,6 +55,7 @@ export const fetchGameData = createAsyncThunk(
 
 const initialState: IState = {
   isGameStarted: false,
+  isMockGame: false,
   timeResult: 0,
   questionCollection: [],
   currentIndex: 0,
@@ -77,6 +79,7 @@ const gameSlice = createSlice({
       state.isGameStarted = false
     },
     resetGameAC: () => ({ ...initialState }),
+    mockGameOff: (state) => {state.isMockGame = false},
     collectionAC: (state, action) => {
       state.questionCollection = action.payload
       state.currentIndex = 0
@@ -86,7 +89,7 @@ const gameSlice = createSlice({
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     },
-    setAnswerAndNextIndex: (state, action) => {
+    setPlayerAnswer: (state, action) => {
       state.player_answers[state.currentIndex] = action.payload === state.correct_answer
       state.currentIndex += 1
 
@@ -118,8 +121,9 @@ export const gameReducer = gameSlice.reducer
 export const {
   collectionAC,
   resetGameAC,
-  setAnswerAndNextIndex,
+  setPlayerAnswer,
   setGameStartAsTrueAC,
   setGameStartAsFalseAC,
-  saveTimeResult
+  saveTimeResult,
+  mockGameOff
 } = gameSlice.actions

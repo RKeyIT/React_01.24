@@ -9,7 +9,7 @@ import { FC, useEffect } from 'react'
 import { URLS } from '../../router/router.types'
 import { ITableRow, PageNames } from '../../global.types'
 import { useAppDispatch, useAppSelector } from '../../store'
-import { setGameStartAsTrueAC } from '../../store/gameSlice'
+import { mockGameOff, setGameStartAsTrueAC } from '../../store/gameSlice'
 import { resetConfigAC } from '../../store/configSlice'
 import {
   getCategoryName,
@@ -23,14 +23,17 @@ export const Result: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const { questionCollection, player_answers, timeResult, isGameStarted } = useAppSelector(
-    (store) => store.game
-  )
+  const { 
+    questionCollection, player_answers, timeResult, 
+    isGameStarted, isMockGame
+   } = useAppSelector((store) => store.game)
   const { category, difficulty, type, time } = useAppSelector((store) => store.config)
 
   useEffect(() => {
     if (questionCollection.length && player_answers.length) {
-      dispatch(persistData({ questionCollection, player_answers }))
+      isMockGame 
+        ? dispatch(mockGameOff())
+        : dispatch(persistData({ questionCollection, player_answers }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

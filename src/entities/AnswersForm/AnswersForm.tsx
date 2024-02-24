@@ -8,14 +8,11 @@ interface IProps {
   answers: string[]
 }
 
-export const AnswersForm: FC<IProps> = (props) => {
-  const { onSubmit, onChange, answers } = props
-  const randomSortedAnswers = answers.sort(() => Math.random() - 0.5)
-
+export const AnswersForm: FC<IProps> = ({ onSubmit, onChange, answers }) => {
   return (
     <form onSubmit={onSubmit} className={styles.AnswersForm}>
-      {randomSortedAnswers.map((answer, index) => {
-        const key = 'SingleAnswer' + index + answer.length + answer[0]
+      {answers.map((answer, index) => {
+        const key = answer + index + answer.length + answer[0]
 
         return (
           <div key={key}>

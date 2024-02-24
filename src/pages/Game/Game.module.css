@@ -3,3 +3,7 @@
     grid-template-rows: auto auto auto 4em auto;
     align-content: space-between;
 }
+
+.warning {
+    color: red;
+}
