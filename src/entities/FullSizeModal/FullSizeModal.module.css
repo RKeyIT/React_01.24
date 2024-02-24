@@ -16,6 +16,7 @@
 }
 
 .confirmation {
+    max-width: 75%;
     background-color: var(--color-main-light);
     padding: 1em;
     box-sizing: border-box;

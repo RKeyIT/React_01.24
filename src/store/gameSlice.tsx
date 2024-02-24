@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { QuizCategories, QuizDifficulties, QuizType } from '../global.contsants'
 import { ICollection } from '../global.types'
 import { decode } from 'html-entities'
+import { bool, mix1, mix2, mult } from '../MOCKDATA'
 
 interface IState {
   isGameStarted: boolean
@@ -41,15 +42,7 @@ export const fetchGameData = createAsyncThunk(
       thunkAPI.rejectWithValue(data)
     }
 
-    const results = data.results.map((collection: ICollection) => {
-      collection.correct_answer = decode(collection.correct_answer)
-      collection.incorrect_answers = collection.incorrect_answers.map((el) => decode(el))
-      collection.question = decode(collection.question)
-
-      return collection
-    })
-
-    return results
+    return data.results
   }
 )
 
@@ -104,14 +97,32 @@ const gameSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchGameData.fulfilled, (state, action) => {
-      state.questionCollection = action.payload
+    const decodeData = (collections: ICollection[]) => collections.map((collection: ICollection) => ({
+      ...collection,
+      correct_answer: decode(collection.correct_answer),
+      incorrect_answers: collection.incorrect_answers.map((el) => decode(el)),
+      question: decode(collection.question)
+    }))
+    
+    const setupNewState = (state: IState, payload: ICollection[]) => {
+      state.questionCollection = payload
       state.currentIndex = 0
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
+    }
+
+    builder.addCase(fetchGameData.rejected, (state) => {
+      state.isMockGame = true;
+
+      const MOCK_DATA = [bool, mult, mix1, mix2][Math.round(Math.random() * 3)].results
+
+      setupNewState(state, decodeData(MOCK_DATA as ICollection[]))
+    })
+    builder.addCase(fetchGameData.fulfilled, (state, action) => {
+      setupNewState(state, decodeData(action.payload))
     })
   }
 })

@@ -83,9 +83,9 @@ export const Game: FC = () => {
       <ProgressBar />
       <TextField>{question || MOCK_QUESTION}</TextField>
       <AnswersForm answers={answers} onSubmit={onSubmit} onChange={onChange} />
-      {isMockGame && <div className={styles.warning}>
-        The mock game with local data is started! <u>Results won't be saved!</u>
-        </div>}
+      {isMockGame && <p className={styles.warning}>
+          Data requesting was failed. The mock game has been started without results saving!
+        </p>}
     </div>
   )
 }
