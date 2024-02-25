@@ -13,6 +13,7 @@ interface IState {
   question: string
   correct_answer: string
   incorrect_answers: string[]
+  possible_answers: string[]
   player_answers: boolean[] | null[]
 }
 
@@ -22,6 +23,13 @@ interface IParameters {
   difficulty?: string
   type?: string
 }
+
+const MOCK_DATA = [bool, mult, mix1, mix2]
+const GET_MOCK_COLLECTION = () => MOCK_DATA[Math.round(Math.random() * 3)].results as ICollection[]
+const MOCK_COLLECTION = GET_MOCK_COLLECTION()
+const MOCK_QUESTION = decode(MOCK_COLLECTION[0].question)
+const MOCK_CORRECT_ANSWER = decode(MOCK_COLLECTION[0].correct_answer)
+const MOCK_INCORRECT_ANSWERS = MOCK_COLLECTION[0].incorrect_answers.map(el => decode(el))
 
 export const fetchGameData = createAsyncThunk(
   'config/dataFetching',
@@ -48,39 +56,33 @@ export const fetchGameData = createAsyncThunk(
 
 const initialState: IState = {
   isGameStarted: false,
-  isMockGame: false,
+  isMockGame: true,
   timeResult: 0,
-  questionCollection: [],
+  questionCollection: MOCK_COLLECTION,
   currentIndex: 0,
-  question: '',
-  correct_answer: '',
-  incorrect_answers: [],
-  player_answers: []
+  question: MOCK_QUESTION,
+  correct_answer: MOCK_CORRECT_ANSWER,
+  incorrect_answers: MOCK_INCORRECT_ANSWERS,
+  possible_answers: [MOCK_CORRECT_ANSWER, ...MOCK_INCORRECT_ANSWERS].sort(() => Math.random() - 0.5),
+  player_answers: new Array().fill(null, 0, MOCK_COLLECTION.length),
 }
 
 const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    saveTimeResult: (state, action) => {
-      state.timeResult = action.payload
-    },
-    setGameStartAsTrueAC: (state) => {
-      state.isGameStarted = true
-    },
-    setGameStartAsFalseAC: (state) => {
-      state.isGameStarted = false
-    },
+    saveTimeResult: (state, action) => { state.timeResult = action.payload },
+    setGameStartAsTrueAC: (state) => { state.isGameStarted = true },
+    setGameStartAsFalseAC: (state) => { state.isGameStarted = false },
     resetGameAC: () => ({ ...initialState }),
-    mockGameOff: (state) => {
-      state.isMockGame = false
-    },
+    mockGameOff: (state) => { state.isMockGame = false },
     collectionAC: (state, action) => {
       state.questionCollection = action.payload
       state.currentIndex = 0
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
+      state.possible_answers = [state.correct_answer, ...state.incorrect_answers]
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     },
@@ -96,6 +98,7 @@ const gameSlice = createSlice({
       state.question = state.questionCollection[state.currentIndex].question
       state.correct_answer = state.questionCollection[state.currentIndex].correct_answer
       state.incorrect_answers = state.questionCollection[state.currentIndex].incorrect_answers
+      state.possible_answers = [state.correct_answer, ...state.incorrect_answers]
     }
   },
   extraReducers: (builder) => {
@@ -113,6 +116,7 @@ const gameSlice = createSlice({
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
+      state.possible_answers = [state.correct_answer, ...state.incorrect_answers].sort(() => Math.random() - 0.5)
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     }
@@ -120,11 +124,13 @@ const gameSlice = createSlice({
     builder.addCase(fetchGameData.rejected, (state) => {
       state.isMockGame = true
 
-      const MOCK_DATA = [bool, mult, mix1, mix2][Math.round(Math.random() * 3)].results
+      const MOCK_DATA = GET_MOCK_COLLECTION()
 
-      setupNewState(state, decodeData(MOCK_DATA as ICollection[]))
+      setupNewState(state, decodeData(MOCK_DATA))
     })
     builder.addCase(fetchGameData.fulfilled, (state, action) => {
+      state.isMockGame = false
+
       setupNewState(state, decodeData(action.payload))
     })
   }
