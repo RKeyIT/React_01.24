@@ -13,26 +13,18 @@ export const RouteProtector: FC<IRouteProtector> = ({ children }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (path === URLS.HOME) {
-      console.log('We are on HOME page!')
-    }
+    if (path === URLS.HOME) {}
+    if (path === URLS.RESULT) {}
+    if (path === URLS.STATISTICS) {}
 
     if (path === URLS.GAME) {
       if (isGameStarted) {
-        console.log('We are on GAME page!')
       } else {
         console.error('Game should be start from the interface!')
         navigate(URLS.HOME)
       }
     }
 
-    if (path === URLS.RESULT) {
-      console.log('We are on RESULT page!')
-    }
-
-    if (path === URLS.STATISTICS) {
-      console.log('We are on STATISTICS page!')
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path])
 
