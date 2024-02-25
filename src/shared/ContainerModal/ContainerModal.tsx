@@ -1,7 +1,7 @@
 import { ButtonColorType } from '../../global.types'
-import { Button } from '../../shared/Button/Button'
-import { TextField } from '../../shared/TextField/TextField'
-import styles from './FullSizeModal.module.css'
+import { Button } from '../Button/Button'
+import { TextField } from '../TextField/TextField'
+import styles from './ContainerModal.module.css'
 import { FC } from 'react'
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
   cancelColor?: ButtonColorType
 }
 
-export const FullSizeModal: FC<IProps> = ({
+export const ContainerModal: FC<IProps> = ({
   textContent,
   confirmationColor,
   cancelColor,
@@ -20,7 +20,7 @@ export const FullSizeModal: FC<IProps> = ({
   cancel
 }) => {
   return (
-    <div className={styles.FullSizeModal}>
+    <div className={styles.ContainerModal}>
       <div className={styles.confirmation}>
         <TextField>{textContent}</TextField>
         {cancel && <Button content="Cancel" style={cancelColor || 'white'} callback={cancel} />}
