@@ -84,7 +84,7 @@ const gameSlice = createSlice({
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     },
-    setPlayerAnswer: (state, action) => {
+    setPlayerAnswerAC: (state, action) => {
       state.player_answers[state.currentIndex] = action.payload === state.correct_answer
       state.currentIndex += 1
 
@@ -135,7 +135,7 @@ export const gameReducer = gameSlice.reducer
 export const {
   collectionAC,
   resetGameAC,
-  setPlayerAnswer,
+  setPlayerAnswerAC,
   setGameStartAsTrueAC,
   setGameStartAsFalseAC,
   saveTimeResult,

@@ -9,7 +9,7 @@ import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
-import { saveTimeResult, setPlayerAnswer } from '../../store/gameSlice'
+import { saveTimeResult, setPlayerAnswerAC } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 import { fetchGameData } from '../../store/gameSlice'
 
@@ -38,7 +38,7 @@ export const Game: FC = () => {
   } = game
   const { questionAmount, category, difficulty, type, time } = config
 
-  const dispatchAnswer = (payload: string) => dispatch(setPlayerAnswer(payload))
+  const dispatchAnswer = (payload: string) => dispatch(setPlayerAnswerAC(payload))
 
   let playerAnswer: string | null = null
 
