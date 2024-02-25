@@ -28,8 +28,14 @@ export const Game: FC = () => {
 
   const [isFetched, setFetched] = useState(false)
 
-  const { questionCollection, question, correct_answer, 
-    incorrect_answers, currentIndex, isMockGame } = game
+  const {
+    questionCollection,
+    question,
+    correct_answer,
+    incorrect_answers,
+    currentIndex,
+    isMockGame
+  } = game
   const { questionAmount, category, difficulty, type, time } = config
 
   const dispatchAnswer = (payload: string) => dispatch(setPlayerAnswer(payload))
@@ -83,9 +89,11 @@ export const Game: FC = () => {
       <ProgressBar />
       <TextField>{question || MOCK_QUESTION}</TextField>
       <AnswersForm answers={answers} onSubmit={onSubmit} onChange={onChange} />
-      {isMockGame && <p className={styles.warning}>
+      {isMockGame && (
+        <p className={styles.warning}>
           Data requesting was failed. The mock game has been started without results saving!
-        </p>}
+        </p>
+      )}
     </div>
   )
 }

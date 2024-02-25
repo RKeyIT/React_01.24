@@ -23,15 +23,13 @@ export const Result: FC = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const { 
-    questionCollection, player_answers, timeResult, 
-    isGameStarted, isMockGame
-   } = useAppSelector((store) => store.game)
+  const { questionCollection, player_answers, timeResult, isGameStarted, isMockGame } =
+    useAppSelector((store) => store.game)
   const { category, difficulty, type, time } = useAppSelector((store) => store.config)
 
   useEffect(() => {
     if (questionCollection.length && player_answers.length) {
-      isMockGame 
+      isMockGame
         ? dispatch(mockGameOff())
         : dispatch(persistData({ questionCollection, player_answers }))
     }

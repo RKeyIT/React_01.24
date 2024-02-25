@@ -72,7 +72,9 @@ const gameSlice = createSlice({
       state.isGameStarted = false
     },
     resetGameAC: () => ({ ...initialState }),
-    mockGameOff: (state) => {state.isMockGame = false},
+    mockGameOff: (state) => {
+      state.isMockGame = false
+    },
     collectionAC: (state, action) => {
       state.questionCollection = action.payload
       state.currentIndex = 0
@@ -97,13 +99,14 @@ const gameSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    const decodeData = (collections: ICollection[]) => collections.map((collection: ICollection) => ({
-      ...collection,
-      correct_answer: decode(collection.correct_answer),
-      incorrect_answers: collection.incorrect_answers.map((el) => decode(el)),
-      question: decode(collection.question)
-    }))
-    
+    const decodeData = (collections: ICollection[]) =>
+      collections.map((collection: ICollection) => ({
+        ...collection,
+        correct_answer: decode(collection.correct_answer),
+        incorrect_answers: collection.incorrect_answers.map((el) => decode(el)),
+        question: decode(collection.question)
+      }))
+
     const setupNewState = (state: IState, payload: ICollection[]) => {
       state.questionCollection = payload
       state.currentIndex = 0
@@ -115,7 +118,7 @@ const gameSlice = createSlice({
     }
 
     builder.addCase(fetchGameData.rejected, (state) => {
-      state.isMockGame = true;
+      state.isMockGame = true
 
       const MOCK_DATA = [bool, mult, mix1, mix2][Math.round(Math.random() * 3)].results
 

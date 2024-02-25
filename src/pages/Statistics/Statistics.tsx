@@ -8,8 +8,7 @@ import { Button } from '../../shared/Button/Button'
 import { Table } from '../../shared/Table/Table'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { resetPersistor } from '../../store/persistorSlice'
-import { createPortal } from 'react-dom'
-import { FullSizeModal } from '../../entities/FullSizeModal/FullSizeModal'
+import { ContainerPortal } from '../../entities/ContainerPortal/ContainerPortal'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
@@ -25,7 +24,6 @@ export const Statistics: FC = () => {
 
   const dispatch = useAppDispatch()
   const [isModalVisible, setModalVisible] = useState<boolean>(false)
-  const portalTarget = document.getElementById('ContentContainer')
 
   const getFormattedTime = (sec: number) => {
     const mins = Math.floor(sec / 60)
@@ -80,9 +78,10 @@ export const Statistics: FC = () => {
     setModalVisible(false)
   }
 
-  const ModalWithProps = (
-    <FullSizeModal
-      textContent="Are you sure want to delete all of your statistic data?"
+  const modalText = 'Are you sure want to delete all of your statistic data?'
+  const portal = (
+    <ContainerPortal
+      textContent={modalText}
       confirmationColor="red"
       cancel={onCancelModal}
       confirm={onStatRemove}
@@ -102,7 +101,7 @@ export const Statistics: FC = () => {
         <Button callback={toHome} content="To home page" />
         <Button callback={onResetStats} content="Reset stats" style="red" />
       </div>
-      {isModalVisible && portalTarget && createPortal(ModalWithProps, portalTarget)}
+      {isModalVisible && portal}
     </div>
   )
 }
