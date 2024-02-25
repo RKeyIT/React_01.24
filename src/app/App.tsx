@@ -1,5 +1,5 @@
 import styles from './App.module.css'
-import { AppTitles } from '../entities/AppBackground/AppTitles'
+import { AppTitles } from '../entities/AppTitles/AppTitles'
 import { RouterProvider } from 'react-router-dom'
 import { ROUTER } from '../router'
 import { Provider } from 'react-redux'
@@ -11,7 +11,7 @@ export const App = () => {
     <div className={styles.App}>
       <AppTitles />
       <Provider store={store}>
-        <PersistGate persistor={persistor} >
+        <PersistGate persistor={persistor}>
           <RouterProvider router={ROUTER} />
         </PersistGate>
       </Provider>

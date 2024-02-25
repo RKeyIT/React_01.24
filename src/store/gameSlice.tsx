@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { QuizCategories, QuizDifficulties, QuizType } from '../global.contsants'
-import { ICollectionActionPayloadItem } from '../global.types'
+import { ICollection } from '../global.types'
+import { decode } from 'html-entities'
+import { bool, mix1, mix2, mult } from '../MOCKDATA'
 
 interface IState {
   isGameStarted: boolean
+  isMockGame: boolean
   timeResult: number
-  questionCollection: ICollectionActionPayloadItem[]
+  questionCollection: ICollection[]
   currentIndex: number
   question: string
   correct_answer: string
@@ -39,13 +42,13 @@ export const fetchGameData = createAsyncThunk(
       thunkAPI.rejectWithValue(data)
     }
 
-    // There is an array of collection with question and answers (data.results)
     return data.results
   }
 )
 
 const initialState: IState = {
   isGameStarted: false,
+  isMockGame: false,
   timeResult: 0,
   questionCollection: [],
   currentIndex: 0,
@@ -68,19 +71,10 @@ const gameSlice = createSlice({
     setGameStartAsFalseAC: (state) => {
       state.isGameStarted = false
     },
-    indexAC: (state) => {
-      state.currentIndex += 1
-    },
-    questionAC: (state, action) => {
-      state.question = action.payload
-    },
-    correctAC: (state, action) => {
-      state.correct_answer = action.payload
-    },
-    incorrectAC: (state, action) => {
-      state.incorrect_answers = action.payload
-    },
     resetGameAC: () => ({ ...initialState }),
+    mockGameOff: (state) => {
+      state.isMockGame = false
+    },
     collectionAC: (state, action) => {
       state.questionCollection = action.payload
       state.currentIndex = 0
@@ -90,21 +84,48 @@ const gameSlice = createSlice({
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     },
-    answerAC: (state, action) => {
-      state.player_answers[state.currentIndex] = action.payload
+    setPlayerAnswerAC: (state, action) => {
+      state.player_answers[state.currentIndex] = action.payload === state.correct_answer
+      state.currentIndex += 1
+
+      if (state.currentIndex === state.questionCollection.length) {
+        state.isGameStarted = false
+        return
+      }
+
+      state.question = state.questionCollection[state.currentIndex].question
+      state.correct_answer = state.questionCollection[state.currentIndex].correct_answer
+      state.incorrect_answers = state.questionCollection[state.currentIndex].incorrect_answers
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchGameData.pending, () => {})
-    builder.addCase(fetchGameData.rejected, () => {})
-    builder.addCase(fetchGameData.fulfilled, (state, action) => {
-      state.questionCollection = action.payload
+    const decodeData = (collections: ICollection[]) =>
+      collections.map((collection: ICollection) => ({
+        ...collection,
+        correct_answer: decode(collection.correct_answer),
+        incorrect_answers: collection.incorrect_answers.map((el) => decode(el)),
+        question: decode(collection.question)
+      }))
+
+    const setupNewState = (state: IState, payload: ICollection[]) => {
+      state.questionCollection = payload
       state.currentIndex = 0
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
+    }
+
+    builder.addCase(fetchGameData.rejected, (state) => {
+      state.isMockGame = true
+
+      const MOCK_DATA = [bool, mult, mix1, mix2][Math.round(Math.random() * 3)].results
+
+      setupNewState(state, decodeData(MOCK_DATA as ICollection[]))
+    })
+    builder.addCase(fetchGameData.fulfilled, (state, action) => {
+      setupNewState(state, decodeData(action.payload))
     })
   }
 })
@@ -113,13 +134,10 @@ export const gameReducer = gameSlice.reducer
 
 export const {
   collectionAC,
-  indexAC,
-  correctAC,
-  incorrectAC,
-  questionAC,
   resetGameAC,
-  answerAC,
+  setPlayerAnswerAC,
   setGameStartAsTrueAC,
   setGameStartAsFalseAC,
-  saveTimeResult
+  saveTimeResult,
+  mockGameOff
 } = gameSlice.actions

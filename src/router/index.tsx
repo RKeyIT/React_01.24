@@ -1,45 +1,46 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home } from '../pages/Home/Home'
-import { Game } from '../pages/Game/Game'
-import { Result } from '../pages/Result/Result'
-import { Statistics } from '../pages/Statistics/Statistics'
-import { ContentContainer } from '../features/ContentContainer/ContentContainer'
+import { ContentContainer } from '../layout/ContentContainer/ContentContainer'
 import { URLS } from './router.types'
 import { RouteProtector } from './RouteProtector'
 import { NotFound404 } from '../pages/NotFound404/NotFound404'
+import { lazy } from 'react'
 
+const LazyHome = lazy(() => import('../pages/Home/Home'))
 const home = {
   path: URLS.HOME,
   element: (
     <RouteProtector>
-      <Home />
+      <LazyHome />
     </RouteProtector>
   )
 }
 
+const LazyGame = lazy(() => import('../pages/Game/Game'))
 const game = {
   path: URLS.GAME,
   element: (
     <RouteProtector>
-      <Game />
+      <LazyGame />
     </RouteProtector>
   )
 }
 
+const LazyResult = lazy(() => import('../pages/Result/Result'))
 const result = {
   path: URLS.RESULT,
   element: (
     <RouteProtector>
-      <Result />
+      <LazyResult />
     </RouteProtector>
   )
 }
 
+const LazyStatistics = lazy(() => import('../pages/Statistics/Statistics'))
 const statistics = {
   path: URLS.STATISTICS,
   element: (
     <RouteProtector>
-      <Statistics />
+      <LazyStatistics />
     </RouteProtector>
   )
 }

@@ -1,11 +1,9 @@
 .CloseButton {
     position: absolute;
     top: 0;
-    right: 1em;
     background-color: var(--color-red-light);
     transition: var(--anim-fast);
     border: none;
-    border-radius: 0 0 50% 50%;
     width: var(--ui-element-height);
     height: var(--ui-element-height);
     font-family: 'Rubik Glitch Pop', sans-serif;
@@ -30,4 +28,18 @@
 .CloseButton:disabled {
     background-color: var(--color-main-dark);
     cursor: default;
+}
+
+@media (orientation: landscape) {
+    .CloseButton {
+        right: 1em;
+        border-radius: 0 0 50% 50%;
+    }
+}
+
+@media (orientation: portrait) {
+    .CloseButton {
+        right: 0;
+        border-radius: 0 0 0 50%;
+    }
 }

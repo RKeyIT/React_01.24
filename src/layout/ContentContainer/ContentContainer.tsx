@@ -1,9 +1,10 @@
 import { Navigation } from '../Navigation/Navigation'
 import { CloseButton } from '../../entities/CloseButton/CloseButton'
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import styles from './ContentContainer.module.css'
 import { Outlet } from 'react-router-dom'
 import { Loading } from '../../entities/Loading/Loading'
+import { SuspenseLoading } from '../../entities/SuspenseLoading/SuspenseLoading'
 
 export const ContentContainer: FC = () => {
   return (
@@ -11,7 +12,9 @@ export const ContentContainer: FC = () => {
       <Navigation />
       <CloseButton />
       <Loading />
-      <Outlet />
+      <Suspense fallback={<SuspenseLoading />}>
+        <Outlet />
+      </Suspense>
     </div>
   )
 }

@@ -2,15 +2,17 @@ import { useNavigate } from 'react-router-dom'
 import { ITableRow, PageNames } from '../../global.types'
 import { Heading } from '../../shared/Heading/Heading'
 import styles from './Statistics.module.css'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { URLS } from '../../router/router.types'
 import { Button } from '../../shared/Button/Button'
 import { Table } from '../../shared/Table/Table'
-import { useAppSelector } from '../../store'
+import { useAppDispatch, useAppSelector } from '../../store'
+import { resetPersistor } from '../../store/persistorSlice'
+import { ContainerPortal } from '../../entities/ContainerPortal/ContainerPortal'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
-  const { 
+  const {
     OverallQuestionCount,
     OverallTimeSpent,
     CorrectAnswerCount,
@@ -18,7 +20,10 @@ export const Statistics: FC = () => {
     CategoriesCount,
     DifficultiesCount,
     TypeCount
-  } = useAppSelector(state => state.persistor)
+  } = useAppSelector((state) => state.persistor)
+
+  const dispatch = useAppDispatch()
+  const [isModalVisible, setModalVisible] = useState<boolean>(false)
 
   const getFormattedTime = (sec: number) => {
     const mins = Math.floor(sec / 60)
@@ -29,23 +34,23 @@ export const Statistics: FC = () => {
 
     return minutes + ':' + seconds
   }
-  
+
   const OveralTableRows: ITableRow[] = [
     { category: 'Overal count of questions', description: OverallQuestionCount },
     { category: 'Count of correct answers', description: CorrectAnswerCount },
     { category: 'Correct answers percentage', description: CorrectAnswerPercentage },
-    { category: 'Overal time in quiz app', description: getFormattedTime(OverallTimeSpent) },
+    { category: 'Overal time in quiz app', description: getFormattedTime(OverallTimeSpent) }
   ]
 
   const DifficultyTableRows: ITableRow[] = [
     { category: 'easy', description: DifficultiesCount.easy },
     { category: 'medium', description: DifficultiesCount.medium },
-    { category: 'hard', description: DifficultiesCount.hard },
+    { category: 'hard', description: DifficultiesCount.hard }
   ]
 
   const TypeTableRows: ITableRow[] = [
     { category: 'boolean', description: TypeCount.boolean },
-    { category: 'multiple', description: TypeCount.multiple },
+    { category: 'multiple', description: TypeCount.multiple }
   ]
 
   const CategoryTableRows: ITableRow[] = []
@@ -55,21 +60,50 @@ export const Statistics: FC = () => {
   }
 
   CategoryTableRows.sort((a, b) => +b.description - +a.description)
-  
+
   const toHome = () => {
     navigate(URLS.HOME)
   }
+
+  const onResetStats = () => {
+    setModalVisible(true)
+  }
+
+  const onCancelModal = () => {
+    setModalVisible(false)
+  }
+
+  const onStatRemove = () => {
+    dispatch(resetPersistor())
+    setModalVisible(false)
+  }
+
+  const modalText = 'Are you sure want to delete all of your statistic data?'
+  const portal = (
+    <ContainerPortal
+      textContent={modalText}
+      confirmationColor="red"
+      cancel={onCancelModal}
+      confirm={onStatRemove}
+    />
+  )
 
   return (
     <div className={styles.Statistics}>
       <Heading pageName={PageNames.STATISTICS} />
       <div className={styles.tables}>
-        <Table name='Overal stats' rows={OveralTableRows} />
-        <Table name='Difficulties' rows={DifficultyTableRows} />
-        <Table name='Types' rows={TypeTableRows} />
-        <Table name='Categories' rows={CategoryTableRows} />
+        <Table name="Overal stats" rows={OveralTableRows} />
+        <Table name="Difficulties" rows={DifficultyTableRows} />
+        <Table name="Types" rows={TypeTableRows} />
+        <Table name="Categories" rows={CategoryTableRows} />
       </div>
-      <Button callback={toHome} content='To home page'/>
+      <div className={styles.buttons}>
+        <Button callback={toHome} content="To home page" />
+        <Button callback={onResetStats} content="Reset stats" style="red" />
+      </div>
+      {isModalVisible && portal}
     </div>
   )
 }
+
+export default Statistics

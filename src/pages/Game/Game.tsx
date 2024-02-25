@@ -2,29 +2,23 @@ import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
-import { ChangeEvent, FC, FormEvent, useEffect } from 'react'
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
 import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { bool, mult, mix1, mix2 } from '../../MOCKDATA'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
-import {
-  answerAC,
-  setGameStartAsFalseAC,
-  collectionAC,
-  correctAC,
-  incorrectAC,
-  indexAC,
-  questionAC,
-  saveTimeResult
-} from '../../store/gameSlice'
+import { saveTimeResult, setPlayerAnswerAC } from '../../store/gameSlice'
 import { PageNames } from '../../global.types'
 import { fetchGameData } from '../../store/gameSlice'
-import { persistData } from '../../store/persistorSlice'
 
 export const Game: FC = () => {
-  const MOCKDATA = [bool, mult, mix1, mix2]
+  const MOCK_DATA = [bool, mult, mix1, mix2]
+  const MOCK_COLLECTION = MOCK_DATA[Math.round(Math.random() * 3)].results
+  const MOCK_QUESTION = MOCK_COLLECTION[0].question
+  const MOCK_CORRECT_ANSWER = MOCK_COLLECTION[0].correct_answer
+  const MOCK_INCORRECT_ANSWERS = MOCK_COLLECTION[0].incorrect_answers
 
   const navigate = useNavigate()
 
@@ -32,21 +26,30 @@ export const Game: FC = () => {
   const config = useAppSelector((store) => store.config)
   const dispatch = useAppDispatch()
 
-  const { questionCollection, question, correct_answer, incorrect_answers, currentIndex, player_answers } = game
+  const [isFetched, setFetched] = useState(false)
+
+  const {
+    questionCollection,
+    question,
+    correct_answer,
+    incorrect_answers,
+    currentIndex,
+    isMockGame
+  } = game
   const { questionAmount, category, difficulty, type, time } = config
 
-  const dispatchIndex = () => dispatch(indexAC())
-  const dispatchCollection = (payload: object[]) => dispatch(collectionAC(payload))
-  const dispatchQuestion = (payload: string) => dispatch(questionAC(payload))
-  const dispatchCorrect = (payload: string) => dispatch(correctAC(payload))
-  const dispatchIncorrect = (payload: string[]) => dispatch(incorrectAC(payload))
-  const dispatchAnswer = (payload: boolean) => dispatch(answerAC(payload))
+  const dispatchAnswer = (payload: string) => dispatch(setPlayerAnswerAC(payload))
 
   let playerAnswer: string | null = null
-  
+
   useEffect(() => {
+    if (!isFetched) {
+      dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
+      setFetched(true)
+      return
+    }
+
     let timerCounter = 0
-    dispatch(fetchGameData({ questionAmount, category, difficulty, type }))
 
     const timer = setInterval(() => {
       timerCounter++
@@ -57,36 +60,12 @@ export const Game: FC = () => {
       dispatch(saveTimeResult(timerCounter))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    const index = Math.round(Math.random() * 3)
-    dispatchCollection(MOCKDATA[index].results)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    if (questionCollection[currentIndex]) {
-      const currentState = questionCollection[currentIndex]
-
-      const { question, correct_answer, incorrect_answers } = currentState
-
-      dispatchQuestion(question)
-      dispatchCorrect(correct_answer)
-      dispatchIncorrect(incorrect_answers)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questionCollection, currentIndex])
+  }, [questionCollection])
 
   const submitAnswer = () => {
-    dispatchAnswer(playerAnswer === correct_answer)
-    dispatchIndex()
+    dispatchAnswer(playerAnswer!)
 
-    if (currentIndex === questionCollection.length - 1) {
-      dispatch(persistData({questionCollection, player_answers}))
-      dispatch(setGameStartAsFalseAC())
-      navigate(URLS.RESULT, { replace: true })
-    }
+    if (currentIndex === questionCollection.length - 1) navigate(URLS.RESULT, { replace: true })
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -96,21 +75,27 @@ export const Game: FC = () => {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (playerAnswer === null) return
-    submitAnswer()
+    playerAnswer === null || submitAnswer()
   }
+
+  const correct = correct_answer || MOCK_CORRECT_ANSWER
+  const incorrects = incorrect_answers.length ? incorrect_answers : MOCK_INCORRECT_ANSWERS
+  const answers = [correct, ...incorrects].sort(() => Math.random() - 0.5)
 
   return (
     <div className={styles.Game}>
       <Heading pageName={PageNames.GAME} />
       <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer} />
       <ProgressBar />
-      <TextField>{question}</TextField>
-      <AnswersForm
-        answers={[correct_answer, ...incorrect_answers]}
-        onSubmit={onSubmit}
-        onChange={onChange}
-      />
+      <TextField>{question || MOCK_QUESTION}</TextField>
+      <AnswersForm answers={answers} onSubmit={onSubmit} onChange={onChange} />
+      {isMockGame && (
+        <p className={styles.warning}>
+          Data requesting was failed. The mock game has been started without results saving!
+        </p>
+      )}
     </div>
   )
 }
+
+export default Game
