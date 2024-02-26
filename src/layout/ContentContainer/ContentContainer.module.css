@@ -20,6 +20,8 @@
 @media (orientation: portrait) {
     .ContentContainer {
         width: 100vw;
+        padding-left: 5%;
+        padding-right: 5%;
         max-width: 100svw;
         height: 100svh;
         background-color: var(--color-bg-main-tr);

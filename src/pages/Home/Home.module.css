@@ -48,8 +48,6 @@
 @media (orientation: portrait) {
     .Home {
         grid-template-areas: "heading heading" "selects selects" "input input" "buttons buttons";
-        padding-left: 5%;
-        padding-right: 5%;
     }
 
     .selects {
