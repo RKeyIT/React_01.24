@@ -82,7 +82,7 @@ const gameSlice = createSlice({
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
-      state.possible_answers = [state.correct_answer, ...state.incorrect_answers]
+      state.possible_answers = [state.correct_answer, ...state.incorrect_answers].sort(() => Math.random() - 0.5)
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     },
