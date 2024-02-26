@@ -1,16 +1,22 @@
 .AnswersForm {
     display: grid;
     width: 100%;
-    gap: 1em;
+    min-width: 100%;
+    max-width: 100%;
+    gap: var(--ui-element-padding);
+    grid-template-rows: 1fr auto auto;
+}
+
+.answers {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    gap: var(--ui-element-padding);
+    align-items: center;
 }
 
-.AnswersForm :last-child {
-    grid-row-start: 3;
-    grid-column-start: span 2;
+.answers> :nth-child(n + 3) {
+    grid-row-start: 2;
 }
-
 
 /* Other inner elements */
 .label {
@@ -24,6 +30,7 @@
     cursor: pointer;
     transition: var(--anim-fast);
     box-shadow: 0 0 3px 0px inset;
+    overflow: hidden;
 }
 
 .label:hover {

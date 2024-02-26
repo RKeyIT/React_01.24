@@ -1,13 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../../shared/Button/Button'
-import { Heading } from '../../shared/Heading/Heading'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { Table } from '../../shared/Table/Table'
 import { TextField } from '../../shared/TextField/TextField'
 import styles from './Result.module.css'
 import { FC, useEffect } from 'react'
 import { URLS } from '../../router/router.types'
-import { ITableRow, PageNames } from '../../global.types'
+import { ITableRow } from '../../global.types'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { mockGameOff, setGameStartAsTrueAC } from '../../store/gameSlice'
 import { resetConfigAC } from '../../store/configSlice'
@@ -87,7 +86,6 @@ export const Result: FC = () => {
 
   return (
     <div className={styles.Result}>
-      <Heading pageName={PageNames.RESULT} />
       <div className={styles.congratulations}>
         <TextField>Thank you for completing this quiz. Here are your results</TextField>
         <Table name="Quiz configuration" rows={tableRows} />

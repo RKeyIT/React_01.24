@@ -2,6 +2,13 @@
     display: grid;
     position: relative;
     box-sizing: border-box;
+    grid-template-rows: auto 1fr;
+}
+
+.content {
+    display: grid;
+    min-height: 100%;
+    max-height: 100%;
 }
 
 @media (orientation: landscape) {

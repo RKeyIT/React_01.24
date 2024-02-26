@@ -3,10 +3,6 @@
     display: grid;
 }
 
-.heading {
-    grid-area: heading;
-}
-
 .selects {
     grid-area: selects;
     display: flex;
@@ -30,7 +26,8 @@
 
 @media (orientation: landscape) {
     .Home {
-        grid-template-areas: "heading heading" "selects selects" "input buttons";
+        grid-template-areas: "selects selects" "input buttons";
+        grid-template-rows: 1fr auto;
     }
 
     .selects {
@@ -47,7 +44,8 @@
 
 @media (orientation: portrait) {
     .Home {
-        grid-template-areas: "heading heading" "selects selects" "input input" "buttons buttons";
+        grid-template-areas: "selects selects" "input input" "buttons buttons";
+        grid-template-rows: 2fr 1fr auto;
     }
 
     .selects {
@@ -56,6 +54,7 @@
 
     .input {
         justify-content: center;
+        align-self: center;
     }
 
     .buttons {

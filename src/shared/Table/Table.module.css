@@ -1,13 +1,13 @@
 .Table {
     display: grid;
-    border: 0.5em solid var(--color-ui-border);
-    border-radius: var(--ui-element-padding);
 }
 
 .tableName,
 .row {
     padding-top: calc(var(--ui-element-padding) / 2);
     padding-bottom: calc(var(--ui-element-padding) / 2);
+    display: grid;
+    align-items: center;
 }
 
 .tableName {
@@ -17,7 +17,6 @@
 }
 
 .row {
-    display: grid;
     grid-template-columns: 1fr 1fr;
 }
 

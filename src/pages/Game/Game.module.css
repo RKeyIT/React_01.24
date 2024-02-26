@@ -1,6 +1,6 @@
 .Game {
     display: grid;
-    grid-template-rows: auto auto auto 4em auto;
+    grid-template-rows: auto 1fr auto;
     align-content: space-between;
 }
 

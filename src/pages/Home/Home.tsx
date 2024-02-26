@@ -2,7 +2,6 @@ import { Button } from '../../shared/Button/Button'
 import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
-import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { useAppDispatch, useAppSelector } from '../../store'
@@ -15,7 +14,6 @@ import {
   typeAC
 } from '../../store/configSlice'
 import { FC, useEffect } from 'react'
-import { PageNames } from '../../global.types'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
 
@@ -52,9 +50,6 @@ export const Home: FC = () => {
 
   return (
     <div className={styles.Home}>
-      <div className={styles.heading}>
-        <Heading pageName={PageNames.HOME} />
-      </div>
       <div className={styles.selects}>
         <Select
           domId={'CategorySelect'}

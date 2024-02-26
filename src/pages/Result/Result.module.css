@@ -1,16 +1,18 @@
 .Result {
     display: grid;
+    grid-template-rows: 1fr auto auto;
+    gap: var(--ui-element-padding);
 }
 
 .congratulations {
     display: grid;
-    gap: var(--ui-element-padding)
+    grid-template-rows: auto 1fr;
 }
 
 .summary {
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    gap: 0.5em;
+    grid-template: 1fr auto / auto auto;
+    gap: 0.5em 0;
 }
 
 .summary> :nth-child(-n + 2) {

@@ -13,7 +13,7 @@ export const NotFound404: FC = () => {
 
   return (
     <div className={styles.NotFound404}>
-      <h2>ERROR 404. PAGE WAS NOT FOUND...</h2>
+      <h2>PAGE WAS NOT FOUND {`:(`}</h2>
       <Button callback={onGoHome} content="Return to Home page" />
     </div>
   )

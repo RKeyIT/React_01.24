@@ -1,15 +1,12 @@
-import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
 import { TextField } from '../../shared/TextField/TextField'
 import { Timer } from '../../shared/Timer/Timer'
 import styles from './Game.module.css'
 import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
-import { Heading } from '../../shared/Heading/Heading'
 import { useNavigate } from 'react-router-dom'
 import { URLS } from '../../router/router.types'
 import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { saveTimeResult, setPlayerAnswerAC } from '../../store/gameSlice'
-import { PageNames } from '../../global.types'
 import { fetchGameData } from '../../store/gameSlice'
 
 export const Game: FC = () => {
@@ -72,9 +69,7 @@ export const Game: FC = () => {
 
   return (
     <div className={styles.Game}>
-      <Heading pageName={PageNames.GAME} />
       <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer} />
-      <ProgressBar />
       <TextField>{question}</TextField>
       <AnswersForm answers={possible_answers} onSubmit={onSubmit} onChange={onChange} />
       {isMockGame && (

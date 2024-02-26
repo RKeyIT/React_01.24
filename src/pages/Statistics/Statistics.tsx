@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { ITableRow, PageNames } from '../../global.types'
-import { Heading } from '../../shared/Heading/Heading'
+import { ITableRow } from '../../global.types'
 import styles from './Statistics.module.css'
 import { FC, useState } from 'react'
 import { URLS } from '../../router/router.types'
@@ -90,7 +89,6 @@ export const Statistics: FC = () => {
 
   return (
     <div className={styles.Statistics}>
-      <Heading pageName={PageNames.STATISTICS} />
       <div className={styles.tables}>
         <Table name="Overal stats" rows={OveralTableRows} />
         <Table name="Difficulties" rows={DifficultyTableRows} />
