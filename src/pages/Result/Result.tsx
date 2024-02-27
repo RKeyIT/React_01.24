@@ -92,7 +92,7 @@ export const Result: FC = () => {
       </div>
       <div className={styles.summary}>
         <TextField>
-          You answered {rightAnswers} out of {player_answers.length} questions correctly
+          Your result: {rightAnswers}/{player_answers.length}
         </TextField>
         <TextField>Time result: {getFormattedTime()}</TextField>
         <ProgressBar />

@@ -35,6 +35,9 @@
     gap: var(--ui-element-padding);
 }
 
-.buttons a {
-    width: 100%;
+@media screen and (orientation: portrait) {
+    .buttons {
+        display: grid;
+        gap: var(--ui-element-padding);
+    }
 }
