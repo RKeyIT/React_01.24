@@ -7,7 +7,6 @@
     cursor: pointer;
     transition: var(--anim-fast);
     width: 100%;
-    height: var(--ui-element-height);
     padding-left: var(--ui-element-padding);
     padding-right: var(--ui-element-padding);
     line-height: 1em;
@@ -63,4 +62,19 @@
 .Button.red:active,
 .Button.white:active {
     box-shadow: 0 0 15px 5px var(--color-text-white);
+}
+
+@media (orientation: landscape) {
+    .Button {
+        height: var(--ui-element-height);
+    }
+}
+
+@media (orientation: portrait) {
+    .Button {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
 }

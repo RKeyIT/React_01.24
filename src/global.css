@@ -2,7 +2,8 @@
     /* COLORS */
     --color-darker-main: rgb(180, 160, 125);
     --color-bg-main: rgb(200, 175, 140);
-    --color-bg-main-tr: rgba(200, 175, 140, 0.9);
+    --color-bg-main-tr: rgba(200, 175, 140, 0.7);
+    --color-bg-main-tr-ui: rgba(200, 175, 140, 0.8);
     --color-border-main: rgb(245, 220, 180);
     --color-main-modal: rgba(180, 160, 125, 0.5);
     --color-main-dark: rgb(180, 160, 125);
@@ -81,5 +82,11 @@ a {
 @media (orientation: landscape) {
     html {
         font-size: 1.25rem;
+    }
+}
+
+@media (orientation: portrait) {
+    html {
+        font-size: 1.5rem;
     }
 }

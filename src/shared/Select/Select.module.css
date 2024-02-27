@@ -1,6 +1,5 @@
 .select,
 .option {
-    padding: var(--ui-padding);
     cursor: pointer;
     transition: var(--anim-fast);
 }
@@ -8,6 +7,8 @@
 .select {
     border-radius: var(--border-rad-font-half);
     background-color: var(--color-ui-white);
+    width: 100%;
+    max-width: 100%;
 }
 
 .select:hover {
@@ -16,4 +17,20 @@
 
 .select:active {
     background-color: var(--color-ui-active);
+}
+
+@media (orientation: landscape) {
+    .select {
+        padding: var(--ui-padding);
+    }
+}
+
+@media (orientation: portrait) {
+
+    .select {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
 }
