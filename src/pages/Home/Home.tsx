@@ -1,5 +1,4 @@
 import { Button } from '../../shared/Button/Button'
-import { NumberInput } from '../../entities/NumberInput/NumberInput'
 import styles from './Home.module.css'
 import { Select } from '../../shared/Select/Select'
 import { useNavigate } from 'react-router-dom'
@@ -16,6 +15,7 @@ import {
 import { FC, useEffect } from 'react'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
+import { NumberSelect } from '../../entities/NumberSelect/NumberSelect'
 
 export const Home: FC = () => {
   const config = useAppSelector((state) => state.config)
@@ -65,11 +65,11 @@ export const Home: FC = () => {
         <Select domId={'TimeSelect'} callback={dispatchTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
-        <NumberInput
+        <NumberSelect 
           callback={dispatchAmount}
           min={config.minQuestionsCount}
           max={config.maxQuestionsCount}
-          label="Count of questions: "
+          title="Count of questions:"
         />
       </div>
       <div className={styles.buttons}>

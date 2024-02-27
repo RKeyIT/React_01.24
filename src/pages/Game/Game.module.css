@@ -10,3 +10,5 @@
     user-select: none;
     pointer-events: none;
 }
+
+@media (orientation: portrait) {}
