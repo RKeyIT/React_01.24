@@ -8,17 +8,12 @@ interface IProps {
   title?: string
 }
 
-export const NumberSelect: FC<IProps> = ({
-  callback,
-  min = Number.MIN_SAFE_INTEGER,
-  max = Number.MAX_SAFE_INTEGER,
-  title
-}) => {
+export const NumberSelect: FC<IProps> = ({ callback, min, max, title }) => {
   if (max < min) {
     throw new Error('Received invalid values: max should be more than min')
   }
 
-  const options: number[] = new Array(max - min + 1).fill(0).map((_, index) => (min + index))
+  const options: number[] = new Array(max - min + 1).fill(0).map((_, index) => min + index)
   const defaultValue = options[options.length - 1]
 
   const handleSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
