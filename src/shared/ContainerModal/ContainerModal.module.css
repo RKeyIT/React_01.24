@@ -23,11 +23,19 @@
     border: var(--ui-element-padding) solid var(--color-ui-border);
     border-radius: var(--ui-element-padding);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     gap: var(--ui-element-padding);
 }
 
-.confirmation :first-child {
-    grid-column: 1 / span 2;
+
+@media screen and (orientation: landscape) {
+    .confirmation {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .confirmation :first-child {
+        grid-column: 1 / span 2;
+    }
 }
+
+@media screen and (orientation: portrait) {}

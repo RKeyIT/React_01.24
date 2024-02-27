@@ -17,7 +17,7 @@ export const AnswersForm: FC<IProps> = ({ onSubmit, onChange, answers }) => {
     <form onSubmit={onSubmit} className={styles.AnswersForm}>
       <div className={styles.answers}>
         {answers.map((answer, index) => {
-          const key = questionIndex + index + answer
+          const key = answer + questionIndex + index
           const id = String(index)
 
           return (

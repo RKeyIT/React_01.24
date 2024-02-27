@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ICollection } from '../global.types'
 import { saveTimeResult } from './gameSlice'
+import { decode } from 'html-entities'
 
 interface ICategoriesCount {
   [key: string]: number
@@ -68,9 +69,11 @@ const persistorSlice = createSlice({
       questionCollection.forEach((element) => {
         const { category, difficulty, type } = element
 
-        state.CategoriesCount[category]
-          ? state.CategoriesCount[category]++
-          : (state.CategoriesCount[category] = 1)
+        const decodedCategory = decode(category)
+
+        state.CategoriesCount[decodedCategory]
+          ? state.CategoriesCount[decodedCategory]++
+          : (state.CategoriesCount[decodedCategory] = 1)
 
         state.DifficultiesCount[difficulty]++
         state.TypeCount[type]++

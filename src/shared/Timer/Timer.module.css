@@ -63,7 +63,7 @@
     }
 
     100% {
-        box-shadow: 0 0 10px 2px var(--color-main-mid), inset 0 0 20px 2px var(--color-main-mid);
-        color: var(--color-main-mid);
+        box-shadow: 0 0 10px 2px transparent, inset 0 0 20px 2px transparent;
+        color: transparent;
     }
 }

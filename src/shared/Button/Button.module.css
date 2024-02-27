@@ -17,9 +17,6 @@
     background-color: var(--color-green-light-tr);
 }
 
-.Button.green:hover {
-    background-color: var(--color-green-hover);
-}
 
 .Button.green:active {
     background-color: var(--color-green-active);
@@ -30,9 +27,6 @@
     background-color: var(--color-red-light-tr);
 }
 
-.Button.red:hover {
-    background-color: var(--color-red-hover);
-}
 
 .Button.red:active {
     background-color: var(--color-red-active);
@@ -44,18 +38,9 @@
     background-color: var(--color-ui-white);
 }
 
-.Button.white:hover {
-    background-color: var(--color-ui-hover);
-}
 
 .Button.white:active {
     background-color: var(--color-ui-active);
-}
-
-.Button.green:hover,
-.Button.red:hover,
-.Button.white:hover {
-    box-shadow: 0 0 10px 1px var(--color-text-white);
 }
 
 .Button.green:active,
@@ -76,5 +61,46 @@
         padding-right: 1rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
+    }
+}
+
+
+@media (hover:hover) {
+    .Button.green:hover {
+        background-color: var(--color-green-hover);
+    }
+
+    .Button.red:hover {
+        background-color: var(--color-red-hover);
+    }
+
+    .Button.white:hover {
+        background-color: var(--color-ui-hover);
+    }
+
+    .Button.green:hover,
+    .Button.red:hover,
+    .Button.white:hover {
+        box-shadow: 0 0 10px 1px var(--color-text-white);
+    }
+}
+
+@media (hover:none) {
+    .Button.green:active {
+        background-color: var(--color-green-hover);
+    }
+
+    .Button.red:active {
+        background-color: var(--color-red-hover);
+    }
+
+    .Button.white:active {
+        background-color: var(--color-ui-hover);
+    }
+
+    .Button.green:active,
+    .Button.red:active,
+    .Button.white:active {
+        box-shadow: 0 0 10px 1px var(--color-text-white);
     }
 }

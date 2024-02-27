@@ -31,10 +31,6 @@
     box-shadow: 0 0 3px 0px inset;
 }
 
-.label:hover {
-    box-shadow: 0 0 5px 0px inset;
-    background-color: var(--color-yellow-min);
-}
 
 .hiddenInput {
     display: none;
@@ -44,6 +40,25 @@
     background-color: var(--color-yellow-light);
 }
 
-.hiddenInput:checked+.label:hover {
-    background-color: var(--color-yellow-hover);
+
+@media (hover:hover) {
+    .label:hover {
+        box-shadow: 0 0 5px 0px inset;
+        background-color: var(--color-yellow-min);
+    }
+
+    .hiddenInput:checked+.label:hover {
+        background-color: var(--color-yellow-hover);
+    }
+}
+
+@media (hover:none) {
+    .label:active {
+        box-shadow: 0 0 5px 0px inset;
+        background-color: var(--color-yellow-min);
+    }
+
+    .hiddenInput:checked+.label:active {
+        background-color: var(--color-yellow-hover);
+    }
 }

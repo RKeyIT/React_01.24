@@ -1,5 +1,6 @@
 .Table {
     display: grid;
+    border: 1px solid
 }
 
 .tableName,

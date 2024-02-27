@@ -19,9 +19,6 @@ a.active>.NavButton {
     background-color: var(--color-main-light);
 }
 
-.NavButton:hover {
-    background-color: var(--color-main-light);
-}
 
 .NavButton:active {
     background-color: var(--color-main-mid);
@@ -46,5 +43,20 @@ a.active>.NavButton {
         padding-right: 1rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
+    }
+}
+
+
+@media (hover:hover) {
+
+    .NavButton:hover {
+        background-color: var(--color-main-light);
+    }
+}
+
+@media (hover:none) {
+
+    .NavButton:active {
+        background-color: var(--color-main-light);
     }
 }
