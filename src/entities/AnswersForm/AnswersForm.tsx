@@ -1,5 +1,6 @@
 import { Button } from '../../shared/Button/Button'
 import { ProgressBar } from '../../shared/ProgressBar/ProgressBar'
+import { useAppSelector } from '../../store'
 import styles from './AnswersForm.module.css'
 import { ChangeEvent, FC, FormEvent } from 'react'
 
@@ -10,11 +11,14 @@ interface IProps {
 }
 
 export const AnswersForm: FC<IProps> = ({ onSubmit, onChange, answers }) => {
+  const questionIndex = useAppSelector(state => state.game.currentIndex)
+
   return (
     <form onSubmit={onSubmit} className={styles.AnswersForm}>
       <div className={styles.answers}>
         {answers.map((answer, index) => {
-          const key = answer + index + answer.length + answer[0]
+          const key = questionIndex + index + answer
+          const id = String(index)
 
           return (
             <div key={key}>
@@ -24,9 +28,9 @@ export const AnswersForm: FC<IProps> = ({ onSubmit, onChange, answers }) => {
                 value={answer}
                 type="radio"
                 name="radio"
-                id={String(index)}
+                id={id}
               />
-              <label className={styles.label} title={`${answer}`} htmlFor={String(index)}>
+              <label className={styles.label} title={`${answer}`} htmlFor={id}>
                 {answer}
               </label>
             </div>
@@ -34,7 +38,7 @@ export const AnswersForm: FC<IProps> = ({ onSubmit, onChange, answers }) => {
         })}
       </div>
       <ProgressBar />
-      <Button type="submit" content="Accept" style="green" />
+      <Button type="submit" content="Accept answer" style="green" />
     </form>
   )
 }

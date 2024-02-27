@@ -9,6 +9,7 @@
     user-select: none;
     z-index: 0;
     font-family: 'Rubik Glitch Pop', sans-serif;
+    overflow: hidden;
 }
 
 .AppNameHeader {
@@ -38,6 +39,22 @@
     .AppNameHeader,
     .AppNameFooter {
         font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .AppNameHeader,
+    .AppNameFooter {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 310px) {
+
+    .AppNameHeader,
+    .AppNameFooter {
+        font-size: 1rem;
     }
 }
 

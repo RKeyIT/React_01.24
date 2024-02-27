@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../global.contsants'
 
 const resetableState = {
-  questionAmount: 5,
+  questionAmount: 15,
   category: QuizCategories.ANY.id,
   difficulty: QuizDifficulties.ANY.id,
   type: QuizType.ANY.id,
