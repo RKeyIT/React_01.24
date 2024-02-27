@@ -8,12 +8,7 @@ interface IProps {
   title?: string
 }
 
-export const NumberSelect: FC<IProps> = ({
-  callback,
-  min = Number.MIN_SAFE_INTEGER,
-  max = Number.MAX_SAFE_INTEGER,
-  title
-}) => {
+export const NumberSelect: FC<IProps> = ({ callback, min, max, title }) => {
   if (max < min) {
     throw new Error('Received invalid values: max should be more than min')
   }

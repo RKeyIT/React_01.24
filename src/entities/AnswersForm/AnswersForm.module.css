@@ -10,13 +10,8 @@
 .answers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: var(--ui-element-padding);
     align-items: center;
-}
-
-.answers> :nth-child(n + 3) {
-    grid-row-start: 2;
 }
 
 /* Other inner elements */
