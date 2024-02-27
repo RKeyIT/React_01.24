@@ -1,52 +1,42 @@
-import { ChangeEvent, FC, useState } from 'react'
-import styles from './NumberInput.module.css'
+import { FC } from 'react'
+import styles from './NumberSelect.module.css'
 
 interface IProps {
   callback: (newValue: number) => void
   min?: number
   max?: number
-  placeholder?: string
-  label?: string
+  title?: string
 }
-
-type StateType = number
 
 export const NumberSelect: FC<IProps> = ({
   callback,
   min = Number.MIN_SAFE_INTEGER,
   max = Number.MAX_SAFE_INTEGER,
-  placeholder = 'Input number',
-  label = ''
+  title = 'Chose the number',
 }) => {
-  if (max < min) {
-    throw new Error('Received invalid values: max should be more than min')
+    const options: number[] = new Array(max-min + 1).fill(0).map((el, index) => el = min + index)
+  
+    const handleSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      callback(+e.target.value)
+    }
+
+    const isLastOption = (index: number): boolean => index === options.length - 1
+  
+    return (
+      <div className={styles.NumberSelect}>
+        <label htmlFor={'NumberSelect'} className={styles.label}>
+          {title}
+        </label>
+        <select id={'NumberSelect'} onChange={handleSelection} title={title} className={styles.select}>
+          {options.map((el, index) => {
+            return (
+              <option selected={isLastOption(index)} value={el} className={styles.option} key={el}>
+                {el}
+              </option>
+            )
+          })}
+        </select>
+      </div>
+    )
   }
-
-  const [value, setValue] = useState<StateType>(min < 0 ? 0 : min)
-
-  const changeHandler = (Event: ChangeEvent<HTMLInputElement>) => {
-    const newValue = +Event.target.value
-
-    if (isNaN(newValue) || newValue < min || newValue > max) return
-
-    setValue(newValue)
-    callback(newValue)
-  }
-
-  return (
-    <div className={styles.NumberSelect}>
-      <label className={styles.label} htmlFor={styles.label}>
-        {label}
-      </label>
-      <input
-        id={styles.label}
-        name={styles.label}
-        type="number"
-        onChange={changeHandler}
-        value={value}
-        placeholder={placeholder}
-        className={styles.input}
-      />
-    </div>
-  )
-}
+  
