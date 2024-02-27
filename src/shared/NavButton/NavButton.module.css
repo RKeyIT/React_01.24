@@ -13,7 +13,6 @@
     cursor: pointer;
     padding: var(--ui-element-padding);
     border-radius: var(--ui-element-padding);
-    height: var(--ui-element-height);
 }
 
 a.active>.NavButton {
@@ -31,4 +30,21 @@ a.active>.NavButton {
 .NavButton:disabled {
     background-color: var(--color-ui-disabled);
     cursor: default;
+}
+
+@media (orientation: landscape) {
+    .NavButton {
+        height: var(--ui-element-height);
+    }
+}
+
+@media (orientation: portrait) {
+    .NavButton {
+        background-color: var(--color-bg-main-tr-ui);
+        border-color: var(--color-bg-main);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
 }

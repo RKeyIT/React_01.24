@@ -26,14 +26,15 @@
 
 @media (orientation: portrait) {
     .ContentContainer {
-        width: 100vw;
-        padding-left: 5%;
-        padding-right: 5%;
         max-width: 100svw;
-        height: 100svh;
+        min-width: 100svw;
+        max-height: 100svh;
+        min-height: 100svh;
         background-color: var(--color-bg-main-tr);
-        padding-top: var(--ui-element-height);
-        padding-bottom: var(--ui-element-height);
+        padding-left: 0.5rem;
+        padding-right: 1rem;
+        padding-top: 3.5rem;
+        padding-bottom: 0;
     }
 }
 

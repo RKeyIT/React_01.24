@@ -5,8 +5,7 @@
 
 .selects {
     grid-area: selects;
-    display: flex;
-    flex-direction: column;
+    display: grid;
 }
 
 .input {
@@ -19,8 +18,7 @@
 
 .buttons {
     grid-area: buttons;
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: var(--ui-element-padding);
 }
 
@@ -37,6 +35,7 @@
     .input {}
 
     .buttons {
+        grid-template-rows: 1fr 1fr;
         align-self: flex-end;
         justify-self: flex-end;
     }
@@ -45,11 +44,12 @@
 @media (orientation: portrait) {
     .Home {
         grid-template-areas: "selects selects" "input input" "buttons buttons";
-        grid-template-rows: 2fr 1fr auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
     }
 
     .selects {
-        gap: var(--ui-element-padding);
+        gap: 0.5rem;
     }
 
     .input {
@@ -58,6 +58,7 @@
     }
 
     .buttons {
+        grid-template-columns: 1fr 1fr;
         align-self: center;
         justify-self: center;
     }

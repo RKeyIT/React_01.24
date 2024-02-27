@@ -61,7 +61,7 @@ export const CloseButton: FC<IProps> = ({ title = 'Go home' }) => {
         type="button"
         title={title}
         className={styles.CloseButton}>
-        x
+        <span className={styles.content}>x</span>
       </button>
       {isModalVisible && portal}
     </>
