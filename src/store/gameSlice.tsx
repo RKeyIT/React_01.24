@@ -29,7 +29,7 @@ const GET_MOCK_COLLECTION = () => MOCK_DATA[Math.round(Math.random() * 3)].resul
 const MOCK_COLLECTION = GET_MOCK_COLLECTION()
 const MOCK_QUESTION = decode(MOCK_COLLECTION[0].question)
 const MOCK_CORRECT_ANSWER = decode(MOCK_COLLECTION[0].correct_answer)
-const MOCK_INCORRECT_ANSWERS = MOCK_COLLECTION[0].incorrect_answers.map(el => decode(el))
+const MOCK_INCORRECT_ANSWERS = MOCK_COLLECTION[0].incorrect_answers.map((el) => decode(el))
 
 export const fetchGameData = createAsyncThunk(
   'config/dataFetching',
@@ -63,26 +63,38 @@ const initialState: IState = {
   question: MOCK_QUESTION,
   correct_answer: MOCK_CORRECT_ANSWER,
   incorrect_answers: MOCK_INCORRECT_ANSWERS,
-  possible_answers: [MOCK_CORRECT_ANSWER, ...MOCK_INCORRECT_ANSWERS].sort(() => Math.random() - 0.5),
-  player_answers: new Array().fill(null, 0, MOCK_COLLECTION.length),
+  possible_answers: [MOCK_CORRECT_ANSWER, ...MOCK_INCORRECT_ANSWERS].sort(
+    () => Math.random() - 0.5
+  ),
+  player_answers: [].fill(null, 0, MOCK_COLLECTION.length)
 }
 
 const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    saveTimeResult: (state, action) => { state.timeResult = action.payload },
-    setGameStartAsTrueAC: (state) => { state.isGameStarted = true },
-    setGameStartAsFalseAC: (state) => { state.isGameStarted = false },
+    saveTimeResult: (state, action) => {
+      state.timeResult = action.payload
+    },
+    setGameStartAsTrueAC: (state) => {
+      state.isGameStarted = true
+    },
+    setGameStartAsFalseAC: (state) => {
+      state.isGameStarted = false
+    },
     resetGameAC: () => ({ ...initialState }),
-    mockGameOff: (state) => { state.isMockGame = false },
+    mockGameOff: (state) => {
+      state.isMockGame = false
+    },
     collectionAC: (state, action) => {
       state.questionCollection = action.payload
       state.currentIndex = 0
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
-      state.possible_answers = [state.correct_answer, ...state.incorrect_answers].sort(() => Math.random() - 0.5)
+      state.possible_answers = [state.correct_answer, ...state.incorrect_answers].sort(
+        () => Math.random() - 0.5
+      )
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     },
@@ -116,7 +128,9 @@ const gameSlice = createSlice({
       state.question = state.questionCollection[0].question
       state.correct_answer = state.questionCollection[0].correct_answer
       state.incorrect_answers = state.questionCollection[0].incorrect_answers
-      state.possible_answers = [state.correct_answer, ...state.incorrect_answers].sort(() => Math.random() - 0.5)
+      state.possible_answers = [state.correct_answer, ...state.incorrect_answers].sort(
+        () => Math.random() - 0.5
+      )
       state.player_answers.length = state.questionCollection.length
       state.player_answers.fill(null!)
     }

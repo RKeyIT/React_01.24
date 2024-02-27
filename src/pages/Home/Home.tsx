@@ -65,7 +65,7 @@ export const Home: FC = () => {
         <Select domId={'TimeSelect'} callback={dispatchTime} optionObject={QuizTime} />
       </div>
       <div className={styles.input}>
-        <NumberSelect 
+        <NumberSelect
           callback={dispatchAmount}
           min={config.minQuestionsCount}
           max={config.maxQuestionsCount}
