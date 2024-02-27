@@ -66,7 +66,7 @@ const initialState: IState = {
   possible_answers: [MOCK_CORRECT_ANSWER, ...MOCK_INCORRECT_ANSWERS].sort(
     () => Math.random() - 0.5
   ),
-  player_answers: [].fill(null, 0, MOCK_COLLECTION.length)
+  player_answers: new Array(MOCK_COLLECTION.length).fill(null)
 }
 
 const gameSlice = createSlice({
