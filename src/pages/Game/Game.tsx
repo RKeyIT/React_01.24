@@ -18,13 +18,7 @@ export const Game: FC = () => {
 
   const [isFetched, setFetched] = useState(false)
 
-  const {
-    questionCollection,
-    question,
-    possible_answers,
-    currentIndex,
-    isMockGame
-  } = game
+  const { questionCollection, question, possible_answers, currentIndex, isMockGame } = game
   const { questionAmount, category, difficulty, type, time } = config
 
   const dispatchAnswer = (payload: string) => dispatch(setPlayerAnswerAC(payload))

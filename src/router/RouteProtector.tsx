@@ -13,9 +13,12 @@ export const RouteProtector: FC<IRouteProtector> = ({ children }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (path === URLS.HOME) {}
-    if (path === URLS.RESULT) {}
-    if (path === URLS.STATISTICS) {}
+    if (path === URLS.HOME) {
+    }
+    if (path === URLS.RESULT) {
+    }
+    if (path === URLS.STATISTICS) {
+    }
 
     if (path === URLS.GAME) {
       if (isGameStarted) {

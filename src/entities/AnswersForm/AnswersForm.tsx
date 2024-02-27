@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const AnswersForm: FC<IProps> = ({ onSubmit, onChange, answers }) => {
-  const questionIndex = useAppSelector(state => state.game.currentIndex)
+  const questionIndex = useAppSelector((state) => state.game.currentIndex)
 
   return (
     <form onSubmit={onSubmit} className={styles.AnswersForm}>

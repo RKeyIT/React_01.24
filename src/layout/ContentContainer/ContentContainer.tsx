@@ -12,7 +12,7 @@ export const ContentContainer: FC = () => {
   const path = useLocation().pathname
 
   const getHeading = () => {
-    if ([URLS.HOME, URLS.GAME, URLS.RESULT, URLS.STATISTICS].some(el => el === path)) {
+    if ([URLS.HOME, URLS.GAME, URLS.RESULT, URLS.STATISTICS].some((el) => el === path)) {
       return path === URLS.HOME ? 'HOME' : path.slice(1).toUpperCase()
     }
 
