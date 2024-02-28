@@ -7,6 +7,7 @@ import { Loading } from '../../entities/Loading/Loading'
 import { SuspenseLoading } from '../../entities/SuspenseLoading/SuspenseLoading'
 import { URLS } from '../../router/router.types'
 import { Heading } from '../../shared/Heading/Heading'
+import { AnimatePresence } from 'framer-motion'
 
 export const ContentContainer: FC = () => {
   const path = useLocation().pathname
@@ -26,9 +27,11 @@ export const ContentContainer: FC = () => {
       <Loading />
       <Heading pageName={getHeading()} />
       <div className={styles.content}>
-        <Suspense fallback={<SuspenseLoading />}>
-          <Outlet />
-        </Suspense>
+        <AnimatePresence>
+          <Suspense fallback={<SuspenseLoading />}>
+            <Outlet />
+          </Suspense>
+        </AnimatePresence>
       </div>
     </div>
   )

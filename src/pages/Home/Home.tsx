@@ -16,6 +16,7 @@ import { FC, useEffect } from 'react'
 import { QuizCategories, QuizDifficulties, QuizTime, QuizType } from '../../global.contsants'
 import { setGameStartAsTrueAC } from '../../store/gameSlice'
 import { NumberSelect } from '../../entities/NumberSelect/NumberSelect'
+import { motion } from 'framer-motion'
 
 export const Home: FC = () => {
   const config = useAppSelector((state) => state.config)
@@ -49,7 +50,10 @@ export const Home: FC = () => {
   }
 
   return (
-    <div className={styles.Home}>
+    <motion.div className={styles.Home}
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -50 }}>
       <div className={styles.selects}>
         <Select
           domId={'CategorySelect'}
@@ -76,7 +80,7 @@ export const Home: FC = () => {
         <Button callback={onGoStatistics} content="See my statistics" style="white" />
         <Button callback={onStartGame} content="Start quiz" style="green" />
       </div>
-    </div>
+    </motion.div>
   )
 }
 
