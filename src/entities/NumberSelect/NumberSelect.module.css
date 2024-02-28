@@ -13,8 +13,8 @@
     border-radius: var(--border-rad-font-half);
     background-color: var(--color-ui-white);
     transition: var(--anim-fast);
+    cursor: pointer;
 }
-
 
 .select:active {
     background-color: var(--color-ui-active);
