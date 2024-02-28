@@ -17,6 +17,7 @@ import {
   getTypeName
 } from '../../global.contsants'
 import { persistData } from '../../store/persistorSlice'
+import { motion } from 'framer-motion'
 
 export const Result: FC = () => {
   const dispatch = useAppDispatch()
@@ -85,7 +86,10 @@ export const Result: FC = () => {
   }
 
   return (
-    <div className={styles.Result}>
+    <motion.div className={styles.Result}
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}>
       <div className={styles.congratulations}>
         <TextField>Thank you for completing this quiz. Here are your results</TextField>
         <Table name="Quiz configuration" rows={tableRows} />
@@ -102,7 +106,7 @@ export const Result: FC = () => {
         <Button callback={onAnotherQuiz} style="green" content="Chose another quiz" />
         <Button callback={onStatistics} content="Overall statistics" />
       </div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { ButtonColorType } from '../../global.types'
 import { Button } from '../Button/Button'
 import { TextField } from '../TextField/TextField'
@@ -20,14 +21,22 @@ export const ContainerModal: FC<IProps> = ({
   cancel
 }) => {
   return (
-    <div className={styles.ContainerModal}>
-      <div className={styles.confirmation}>
-        <TextField>{textContent}</TextField>
-        {cancel && <Button content="Cancel" style={cancelColor || 'white'} callback={cancel} />}
-        {confirm && (
-          <Button content="Confirm" style={confirmationColor || 'white'} callback={confirm} />
-        )}
-      </div>
-    </div>
+    <AnimatePresence>
+      <motion.div className={styles.ContainerModal}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1}}
+              exit={{ opacity: 0 }}>
+        <motion.div className={styles.confirmation}
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0}}
+              exit={{ opacity: 0, y: -100 }}>
+          <TextField>{textContent}</TextField>
+          {cancel && <Button content="Cancel" style={cancelColor || 'white'} callback={cancel} />}
+          {confirm && (
+            <Button content="Confirm" style={confirmationColor || 'white'} callback={confirm} />
+          )}
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   )
 }

@@ -8,6 +8,7 @@ import { Table } from '../../shared/Table/Table'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { resetPersistor } from '../../store/persistorSlice'
 import { ContainerPortal } from '../../entities/ContainerPortal/ContainerPortal'
+import { motion } from 'framer-motion'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
@@ -88,7 +89,10 @@ export const Statistics: FC = () => {
   )
 
   return (
-    <div className={styles.Statistics}>
+    <motion.div className={styles.Statistics}
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}>
       <div className={styles.tables}>
         <Table name="Overal stats" rows={OveralTableRows} />
         <Table name="Difficulties" rows={DifficultyTableRows} />
@@ -100,7 +104,7 @@ export const Statistics: FC = () => {
         <Button callback={onResetStats} content="Reset stats" style="red" />
       </div>
       {isModalVisible && portal}
-    </div>
+    </motion.div>
   )
 }
 

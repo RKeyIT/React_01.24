@@ -8,6 +8,7 @@ import { AnswersForm } from '../../entities/AnswersForm/AnswersForm'
 import { useAppDispatch, useAppSelector } from '../../store'
 import { saveTimeResult, setPlayerAnswerAC } from '../../store/gameSlice'
 import { fetchGameData } from '../../store/gameSlice'
+import { motion } from 'framer-motion'
 
 export const Game: FC = () => {
   const navigate = useNavigate()
@@ -62,7 +63,10 @@ export const Game: FC = () => {
   }
 
   return (
-    <div className={styles.Game}>
+    <motion.div className={styles.Game}
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}>
       <Timer seconds={Number(time) * 60} timeoutCallback={submitAnswer} />
       <TextField>{question}</TextField>
       <AnswersForm answers={possible_answers} onSubmit={onSubmit} onChange={onChange} />
@@ -71,7 +75,7 @@ export const Game: FC = () => {
           Data requesting was failed. The mock game has been started without results saving!
         </p>
       )}
-    </div>
+    </motion.div>
   )
 }
 

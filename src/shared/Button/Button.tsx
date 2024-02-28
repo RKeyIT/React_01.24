@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styles from './Button.module.css'
 import { ButtonColorType } from '../../global.types'
+import { motion } from 'framer-motion'
 
 interface IButtonProps {
   content: string
@@ -16,8 +17,9 @@ export const Button: FC<IButtonProps> = ({
   type = 'button'
 }) => {
   return (
-    <button onClick={callback} type={type} className={`${styles.Button} ${styles[style]}`}>
+    <motion.button onClick={callback} type={type} className={`${styles.Button} ${styles[style]}`}
+      whileTap={{ scale: 1.05 }} whileHover={{ scale: 1.05 }}>
       {content}
-    </button>
+    </motion.button>
   )
 }
