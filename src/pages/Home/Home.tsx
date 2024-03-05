@@ -34,8 +34,6 @@ export const Home: FC = () => {
   const dispatchType = (payload: string) => dispatch(typeAC(payload))
   const dispatchTime = (payload: string) => dispatch(timeAC(payload))
 
-  // LINK - ../Result/Result.tsx#RepeatableLogic-GAME_START
-  //ANCHOR[id=RepeatableLogic-GAME_START]
   const onStartGame = () => {
     if (game.isGameStarted) {
       throw new Error('Game already started!')

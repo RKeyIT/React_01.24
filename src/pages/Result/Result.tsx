@@ -18,6 +18,7 @@ import {
 } from '../../global.contsants'
 import { persistData } from '../../store/persistorSlice'
 import { motion } from 'framer-motion'
+import { getFormattedTime } from '../../utils/getFormattedTime'
 
 export const Result: FC = () => {
   const dispatch = useAppDispatch()
@@ -54,18 +55,6 @@ export const Result: FC = () => {
     if (el) rightAnswers++
   })
 
-  const getFormattedTime = () => {
-    const mins = Math.floor(timeResult / 60)
-    const secs = timeResult % 60
-
-    const minutes = mins < 10 ? `0${mins}` : String(mins)
-    const seconds = secs < 10 ? `0${secs}` : String(secs)
-
-    return minutes + ':' + seconds
-  }
-
-  // LINK - ../Home/Home.tsx#RepeatableLogic-GAME_START
-  //ANCHOR[id=RepeatableLogic-GAME_START]
   const onRestart = () => {
     if (isGameStarted) {
       throw new Error('Game already started!')
@@ -85,6 +74,8 @@ export const Result: FC = () => {
     navigate(URLS.STATISTICS) // { replace: true }
   }
 
+  const timeSpent = getFormattedTime(timeResult)
+
   return (
     <motion.div className={styles.Result}
       initial={{ opacity: 0, x: 50 }}
@@ -98,7 +89,7 @@ export const Result: FC = () => {
         <TextField>
           Your result: {rightAnswers}/{player_answers.length}
         </TextField>
-        <TextField>Time result: {getFormattedTime()}</TextField>
+        <TextField>Time result: {timeSpent}</TextField>
         <ProgressBar />
       </div>
       <div className={styles.buttons}>
