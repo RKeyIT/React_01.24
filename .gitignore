@@ -24,4 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 
+# My ignoring patterns
 hw-*.md
+coverage
