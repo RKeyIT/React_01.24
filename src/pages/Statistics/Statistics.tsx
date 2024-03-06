@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../store'
 import { resetPersistor } from '../../store/persistorSlice'
 import { ContainerPortal } from '../../entities/ContainerPortal/ContainerPortal'
 import { motion } from 'framer-motion'
+import { getFormattedTime } from '../../utils/getFormattedTime'
 
 export const Statistics: FC = () => {
   const navigate = useNavigate()
@@ -24,16 +25,6 @@ export const Statistics: FC = () => {
 
   const dispatch = useAppDispatch()
   const [isModalVisible, setModalVisible] = useState<boolean>(false)
-
-  const getFormattedTime = (sec: number) => {
-    const mins = Math.floor(sec / 60)
-    const secs = sec % 60
-
-    const minutes = mins < 10 ? `0${mins}` : String(mins)
-    const seconds = secs < 10 ? `0${secs}` : String(secs)
-
-    return minutes + ':' + seconds
-  }
 
   const OveralTableRows: ITableRow[] = [
     { category: 'Overal count of questions', description: OverallQuestionCount },
